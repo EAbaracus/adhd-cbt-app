@@ -1,0 +1,6 @@
+app/build/
+app/.dart_tool/
+backend/.venv/
+__pycache__/
+*.pyc
+.DS_Store
