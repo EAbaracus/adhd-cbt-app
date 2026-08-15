@@ -60,7 +60,7 @@ adhd-cbt-app/
 - Create: `docs/research/2026-08-15-adhd-market.md`
 
 **Interfaces:**
-- Consumes: spec `docs/superpowers/specs/2026-08-15-adhd-cbt-app-design.md` (locked decisions §2), seed source `https://add.org/adhd-tools-for-adults/`
+- Consumes: spec `docs/superpowers/specs/2026-08-15-adhd-cbt-app-design.md` (locked decisions §2), seed sources: `https://add.org/adhd-tools-for-adults/` (ADDA) + `https://www.additudemag.com/mobile-apps-for-adhd-minds/` (ADDitude 25-app list, Feb 2026)
 - Produces: market report consumed by user review; may produce spec amendments (positioning/pricing/content emphasis) — spec edits require user approval, never silent
 
 **Route:** researcher role, `:free` models only (constitution: research → researcher).
