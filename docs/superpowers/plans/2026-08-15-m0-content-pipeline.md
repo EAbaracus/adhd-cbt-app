@@ -48,8 +48,38 @@ adhd-cbt-app/
 │   │   └── test_content.py   # structural tests over real content
 │   ├── build/                # generated bundle (gitignored)
 │   └── pyproject.toml        # pytest config
+├── docs/research/2026-08-15-adhd-market.md   # Task 0 deliverable (market research)
 └── docs/superpowers/plans/2026-08-15-m0-content-pipeline.md
 ```
+
+---
+
+### Task 0: Competitive & market research (gate before content authoring)
+
+**Files:**
+- Create: `docs/research/2026-08-15-adhd-market.md`
+
+**Interfaces:**
+- Consumes: spec `docs/superpowers/specs/2026-08-15-adhd-cbt-app-design.md` (locked decisions §2), seed source `https://add.org/adhd-tools-for-adults/`
+- Produces: market report consumed by user review; may produce spec amendments (positioning/pricing/content emphasis) — spec edits require user approval, never silent
+
+**Route:** researcher role, `:free` models only (constitution: research → researcher).
+
+- [ ] **Step 1: Run the research brief** (delegate to researcher, 3 parallel workstreams)
+
+Brief (self-contained, already dispatched alongside this plan):
+1. **Competitor inventory** — 8-12 adult-ADHD self-help apps (guided CBT programs + adjacent tools: Inflow, Shimmer, Done, Tiimo, Sunsama, etc.): platform, category, business model + price points, store rating, program structure. Seed: ADDi.org tools list. Every claim cited; unverifiable numbers marked UNVERIFIED. No fabrication.
+2. **Deep-dive top 3-4 direct competitors** — program structure, content provenance, onboarding, retention mechanics (gamified vs calm), UX principles, monetization, user complaints from reviews.
+3. **Market synthesis** — gaps vs our locked design (12-week guided, G2 completion-based, I1 anti-engagement, F2 privacy), differentiation vectors, pricing benchmark, risks (clinical-claim/store-review exposure, churn), 5 recommendations marked IMPLEMENT vs NOTE.
+
+- [ ] **Step 2: Consolidate into `docs/research/2026-08-15-adhd-market.md`** and commit
+
+```bash
+git add docs/research/2026-08-15-adhd-market.md
+git commit -m "docs(research): adult ADHD app market research"
+```
+
+- [ ] **Step 3: User review gate** — present report; any spec amendments (positioning, pricing anchor, module emphasis) go through explicit user approval before Task 1. STOP and wait for approval.
 
 ---
 
@@ -862,7 +892,7 @@ git tag v0.1.0-content
 
 Plan complete and saved. Two execution options:
 
-1. **Subagent-Driven (recommended)** — fresh subagent per task, review between tasks; route via `coder` role, `:free` models per constitution; durable progress on the native Kanban board (`hermes kanban`, board `adhd-cbt-app`).
+1. **Subagent-Driven (recommended)** — fresh subagent per task, review between tasks; route via `coder` role, `:free` models per constitution; durable progress on the native Kanban board (`hermes kanban`, board `adhd-cbt-app`). **Task 0 runs first and is researcher-routed** (research → researcher); its report gates content authoring via user review.
 2. **Inline Execution** — execute in this session with executing-plans, batch with checkpoints.
 
 Content-authoring tasks (6-10): run prose through the `humanizer` skill; LLM-assisted drafting is fine, G4 verbatim-copy is not.
