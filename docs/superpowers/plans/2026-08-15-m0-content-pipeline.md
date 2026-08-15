@@ -21,7 +21,7 @@
 - **G7 Ids**: kebab-case, globally unique.
 - **G8 Session skeleton** (from spec §12): every session = ritual checkpoints (symptom checklist, medication adherence, module review) + reading + in-session exercise + home practice + anticipate difficulties.
 - **G9 Bundle**: `manifest.json` = `{schema_version, content_version, built_at, files:[{path, sha256}]}`; rebuild is deterministic for a pinned `content_version`.
-- **G10 Toolchain**: commands run from `content/` via `./.venv/Scripts/python.exe` (MSYS: forward slashes for native tools).
+- **G10 Toolchain**: commands run from `content/` via `env -u PYTHONPATH ./.venv/Scripts/python.exe` (host `PYTHONPATH` → Hermes venv shadows `rpds`, any jsonschema import dies with `ModuleNotFoundError: rpds.rpds`; ALWAYS unset it; MSYS: forward slashes for native tools).
 
 ---
 
@@ -862,9 +862,9 @@ def test_bundle_build_green():
 **Step 3: Full pipeline run**
 
 ```bash
-./.venv/Scripts/python.exe -m pytest tests -q
-./.venv/Scripts/python.exe tools/validate.py
-./.venv/Scripts/python.exe tools/build.py
+env -u PYTHONPATH ./.venv/Scripts/python.exe -m pytest tests -q
+env -u PYTHONPATH ./.venv/Scripts/python.exe tools/validate.py
+env -u PYTHONPATH ./.venv/Scripts/python.exe tools/build.py
 git status --short
 ```
 
