@@ -15,3 +15,18 @@ def test_forms_catalog_complete():
 
 def test_forms_pass_validation():
     assert V.validate() == []
+
+def test_session_skeleton_complete():
+    sessions = {p.stem: json.load(open(p, encoding="utf-8")) for p in V._glob_json(V.SESSIONS_DIR)}
+    for sid, s in sessions.items():
+        types = [c["type"] for c in s["checkpoints"]]
+        assert "ritual" in types, f"{sid}: no ritual checkpoint"
+        assert "reading" in types, f"{sid}: no reading checkpoint"
+        assert "exercise" in types, f"{sid}: no exercise checkpoint"
+        assert "homework" in types, f"{sid}: no homework checkpoint"
+
+def test_session_orders_unique():
+    sessions = [json.load(open(p, encoding="utf-8")) for p in V._glob_json(V.SESSIONS_DIR)]
+    orders = [s["order"] for s in sessions]
+    assert len(orders) == len(set(orders)), "duplicate session orders"
+    assert orders == sorted(orders), "session orders must be 1..N contiguous"
