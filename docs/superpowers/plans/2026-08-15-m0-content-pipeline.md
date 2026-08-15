@@ -244,8 +244,6 @@ Expected: FAIL — `FileNotFoundError` (schema files don't exist yet)
         }
       },
       "allOf": [
-        {"if": {"required": ["type"], "properties": {"type": {"const": "exercise"}}},
-         "then": {"anyOf": [{"required": ["formRef"]}, {"properties": {"content": {"minProperties": 1}}, "required": ["content"]}]}},
         {"if": {"required": ["type"], "properties": {"type": {"const": "ritual"}}},
          "then": {"required": ["formRef"]}}
       ]
