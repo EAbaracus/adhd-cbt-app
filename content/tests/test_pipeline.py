@@ -62,3 +62,30 @@ def test_form_schema_rejects_bad_kind():
            "fields": [{"id": "f1", "kind": "scale_0_5", "label": {"en": "L"}}]}
     errors = list(jsonschema_errors(bad, schema))
     assert any("scale_0_5" in e for e in errors)
+
+
+import sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
+import tools.validate as V
+
+def test_unknown_form_ref_detected(tmp_path, monkeypatch):
+    monkeypatch.setattr(V, "SESSIONS_DIR", tmp_path / "sessions")
+    monkeypatch.setattr(V, "FORMS_DIR", tmp_path / "forms")
+    (tmp_path / "sessions").mkdir(); (tmp_path / "forms").mkdir()
+    sess = {"id": "s1", "order": 1, "module": "psychoeducation", "title": {"en": "t"},
+            "checkpoints": [{"id": "c1", "type": "ritual", "title": {"en": "t"},
+                             "content": {"en": ["x"]}, "formRef": "form:does-not-exist"}]}
+    (tmp_path / "sessions" / "01.json").write_text(json.dumps(sess), encoding="utf-8")
+    errs = V.validate()
+    assert any("form:does-not-exist" in e for e in errs)
+
+def test_iso_date_in_content_detected(tmp_path, monkeypatch):
+    monkeypatch.setattr(V, "SESSIONS_DIR", tmp_path / "sessions")
+    monkeypatch.setattr(V, "FORMS_DIR", tmp_path / "forms")
+    (tmp_path / "sessions").mkdir(); (tmp_path / "forms").mkdir()
+    sess = {"id": "s1", "order": 1, "module": "psychoeducation", "title": {"en": "t"},
+            "checkpoints": [{"id": "c1", "type": "reading", "title": {"en": "t"},
+                             "content": {"en": ["Do this by 2026-09-01."]}}]}
+    (tmp_path / "sessions" / "01.json").write_text(json.dumps(sess), encoding="utf-8")
+    errs = V.validate()
+    assert any("ISO date" in e for e in errs)
