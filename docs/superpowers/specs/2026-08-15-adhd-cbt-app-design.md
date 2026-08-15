@@ -1,7 +1,7 @@
 # ADHD CBT App — Design Spec
 
 > Working repo name: `adhd-cbt-app` · Final product name: **OPEN ITEM** (product-name-prescreen)
-> Date: 2026-08-15 · Status: APPROVED (3 sections, user)
+> Date: 2026-08-15 · Status: APPROVED WITH MINOR CHANGES (review, 7 edits applied)
 > Reference source (concept only, NEVER copied): Safren, Sprich, Perlman & Otto, *Mastering Your Adult ADHD: A Cognitive-Behavioral Treatment Program, Client Workbook* (OUP, 2005)
 
 ## 1. Product
@@ -12,7 +12,7 @@ Guided **12-week CBT program** for adult ADHD, shipped as a self-help mobile app
 - **All program content is ORIGINAL** — the OUP workbook is a conceptual reference only (CBT techniques are not copyrightable; text is). No verbatim copying.
 - **Clinical framing**: supportive tool — "not a diagnosis, not therapy". Disclaimers in onboarding + store listing.
 - **Language**: EN first; TR localization later. Content pipeline is l10n-ready from day 1.
-- **Revenue**: subscription (monthly/yearly) via H2 billing.
+- **Revenue**: monthly/yearly subscription via H2 billing. Trial: implementation-time decision, not part of the architectural contract.
 
 ## 2. Locked Decisions
 
@@ -67,9 +67,9 @@ Guided **12-week CBT program** for adult ADHD, shipped as a self-help mobile app
 
 Monorepo: `app/` + `backend/` + `content/`.
 
-## 4. Components (10)
+## 4. Components (9 product modules + 2 infrastructure runtimes)
 
-1. **Program Engine** — pure Dart state machine; unlock rules by completed prerequisites; skip/catch-up flows; "missed week" = normal state, never punishment (I1/G2).
+1. **Program Engine** — pure Dart state machine; per-checkpoint states: `completed`, `in_progress`, `deferred/skipped`, `current/next candidate`; unlock rules by completed prerequisites; skip/catch-up flows; "missed week" = normal state, never punishment (I1/G2). `week_number` may exist as metadata but is never the progression source of truth.
 2. **Forms Engine** — schema-driven renderer; every form (checklist, thought record, problem-solving, pros/cons) is JSON schema; new form = data, not code; AI hook points reserved in schema (MVP-closed).
 3. **Calendar+TaskList** — single task center; appointments calendar + to-do with A/B/C priority; task breakdown into steps.
 4. **Timer (distractibility delay)** — attention-span gauge (self-timed), chunk timer, "delay the distraction" + active ignoring; environment checklist.
@@ -78,7 +78,8 @@ Monorepo: `app/` + `backend/` + `content/`.
 7. **Symptom Checklist + charts** — weekly ritual: ADHD symptom scale + medication adherence + module review; progress charts.
 8. **Procrastination module** — pros/cons motivational analysis; perfectionism cognitive restructuring.
 9. **Relapse Prevention** — strategy value ratings (0-100), 1-month review reminder, booster content.
-10. **Sync client + Content runtime** — see §5.
+10. **Sync client** — backup/restore (F2), offline-first, retry queue; see §5.
+11. **Content runtime** — bundle v1 (immutable) + OTA manifest + atomic promote; see §5.
 
 ## 5. Data Flows (4 lanes)
 
@@ -88,6 +89,8 @@ Monorepo: `app/` + `backend/` + `content/`.
 | Program state | local-first mutation (Drift) → periodic sync push (snapshot backup) → explicit restore on new device | local = canonical; sync never blocks local use |
 | Timer sessions | fully local; only session logs sync | timer state = local canonical; notification = recovery UX only |
 | Forms/scores | local-first → sync backup; restored on device change | F2 single active device |
+
+**F2 contract**: assumes one active writer device at a time. Multi-device concurrent editing / conflict resolution is out of MVP scope.
 
 ## 6. Error Handling
 
@@ -102,7 +105,7 @@ Monorepo: `app/` + `backend/` + `content/`.
 ```text
 1. Local state hiçbir network failure tarafından bloke edilmez.   (local-first, offline-first)
 2. OTA activation atomiktir; invalid content active olamaz.       (download→temp→hash/verify→schema validate→atomic promote→active_version swap; any fail → temp deleted, active unchanged)
-3. Restore atomiktir ve idempotenttir.                            (restore(snapshot_id) → same snapshot → same result; no duplicate entities; validate→stage→transaction→replace/activate)
+3. Restore atomiktir ve idempotenttir.                            (restore(snapshot_id) → same snapshot → same result; no duplicate entities; validate snapshot → stage complete snapshot → single transaction → atomically replace local syncable state → activate snapshot; failure leaves previous local state UNCHANGED)
 4. Auth/billing failure local user data'yı silemez.               (logout ≠ data deletion; entitlement loss = premium lock only)
 5. Program progression calendar/week_number değil state/completion tarafından belirlenir.
 ```
@@ -129,7 +132,8 @@ Acceptance tests per area:
 - **Program**: skipped session · catch-up · prerequisite · resume after long absence · no calendar punishment
 - **Forms**: invalid schema rejected · unknown field handled · migration/schema_version · persisted draft restore
 - **Sync**: offline mutation · retry/backoff · duplicate push · interrupted restore · repeated restore idempotency
-- **OTA**: bad hash · corrupt archive · incomplete download · incompatible schema · rollback to bundle
+- **Restore** (invariant enforcement): transaction failure · previous local state remains intact
+- **OTA**: bad hash · corrupt archive · incomplete download · incompatible schema · rollback to bundle · activation failure after validation → `active_version` unchanged · previous active content remains renderable
 - **Auth**: expired access token · successful refresh · failed refresh · local data survives logout
 - **Billing**: valid receipt · invalid receipt · grace period · entitlement loss · restore purchase
 - **Timer**: foreground→background→foreground · process kill · notification denied · persisted state recovery
@@ -150,7 +154,7 @@ Method: TDD + subagent-driven development; feature work in separate worktrees + 
 ## 10. Open Items
 
 1. **Name** — product-name-prescreen (trademark + domain + store name); before M0.
-2. **Store setup** — Apple Developer ($99/yr) + Google Play ($25); mental-health category may trigger extra review; privacy policy (health-adjacent data); GDPR/CCPA.
+2. **Store setup** — store accounts + applicable privacy/data-protection requirements (mental-health category may trigger extra review; privacy policy for health-adjacent data). Current fees/policies to be verified before submission.
 3. **Medical framing** — "supportive tool, not diagnosis/therapy" disclaimers: onboarding + store listing.
 4. **Repo structure** — monorepo (`app/`, `backend/`, `content/`); created in M0 (skeleton already initialized with this spec).
 5. **TR l10n** — pipeline l10n-ready; TR content in v2.
