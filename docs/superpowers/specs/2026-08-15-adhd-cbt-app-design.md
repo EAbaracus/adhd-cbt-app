@@ -1,7 +1,7 @@
 # ADHD CBT App — Design Spec
 
 > Working repo name: `adhd-cbt-app` · Final product name: **OPEN ITEM** (product-name-prescreen)
-> Date: 2026-08-15 · Status: APPROVED WITH MINOR CHANGES (review, 7 edits applied)
+> Date: 2026-08-15 · Status: APPROVED WITH MINOR CHANGES + MARKET AMENDMENTS A1-A4 (research gate, user-approved)
 > Reference source (concept only, NEVER copied): Safren, Sprich, Perlman & Otto, *Mastering Your Adult ADHD: A Cognitive-Behavioral Treatment Program, Client Workbook* (OUP, 2005)
 
 ## 1. Product
@@ -12,7 +12,7 @@ Guided **12-week CBT program** for adult ADHD, shipped as a self-help mobile app
 - **All program content is ORIGINAL** — the OUP workbook is a conceptual reference only (CBT techniques are not copyrightable; text is). No verbatim copying.
 - **Clinical framing**: supportive tool — "not a diagnosis, not therapy". Disclaimers in onboarding + store listing.
 - **Language**: EN first; TR localization later. Content pipeline is l10n-ready from day 1.
-- **Revenue**: monthly/yearly subscription via H2 billing. Trial: implementation-time decision, not part of the architectural contract.
+- **Revenue**: monthly/yearly subscription via H2 billing. Decided price anchor (market research A1): **$8.99/month, $69.99/year, 7-day free trial** — trial mechanics stay implementation-level, no entitlement-contract impact.
 
 ## 2. Locked Decisions
 
@@ -108,9 +108,10 @@ Monorepo: `app/` + `backend/` + `content/`.
 3. Restore atomiktir ve idempotenttir.                            (restore(snapshot_id) → same snapshot → same result; no duplicate entities; validate snapshot → stage complete snapshot → single transaction → atomically replace local syncable state → activate snapshot; failure leaves previous local state UNCHANGED)
 4. Auth/billing failure local user data'yı silemez.               (logout ≠ data deletion; entitlement loss = premium lock only)
 5. Program progression calendar/week_number değil state/completion tarafından belirlenir.
+6. Kullanıcı verisi üçüncü taraf reklam/ticari amaçla asla paylaşılamaz. (A3; Apple §5.1.3, FTC BetterHelp $7.8M emsali; in-app hesap silme zorunlu — Apple §5.1.1, GDPR/CCPA right-to-deletion)
 ```
 
-Derived constraints: no LWW contract; sync = snapshot backup; timer local canonical; no streaks / no red "missed" language / no aggressive push (I1).
+Derived constraints: no LWW contract; sync = snapshot backup; timer local canonical; no streaks / no red "missed" language / no aggressive push (I1); missed-week UI copy standard (A4): "Harika, bir sonraki oturuma dön" — never streaks/points/certificates; retention metrics instrumented from M5 (day-30 retention, weekly checkpoint completion).
 
 ## 8. Testing Strategy (frozen pyramid)
 
@@ -149,13 +150,13 @@ Method: TDD + subagent-driven development; feature work in separate worktrees + 
 | M2 | App core: Program Engine (pure Dart) + content runtime (bundle + atomic OTA) + onboarding | Engine unit + widget tests |
 | M3 | Forms Engine + Calendar/TaskList + Timer + Problem-Solving | Form schema tests + timer integration |
 | M4 | Thought Record + Symptom Checklist + progress charts | Weekly ritual complete |
-| M5 | Live OTA + push (FCM/APNs) + entitlement integration + store prep | Store submission |
+| M5 | Live OTA + push (FCM/APNs) + entitlement integration + store prep + retention instrumentation (A4) | Store submission |
 
 ## 10. Open Items
 
 1. **Name** — product-name-prescreen (trademark + domain + store name); before M0.
-2. **Store setup** — store accounts + applicable privacy/data-protection requirements (mental-health category may trigger extra review; privacy policy for health-adjacent data). Current fees/policies to be verified before submission.
-3. **Medical framing** — "supportive tool, not diagnosis/therapy" disclaimers: onboarding + store listing.
+2. **Store setup** — store accounts + applicable privacy/data-protection requirements (mental-health category may trigger extra review; privacy policy for health-adjacent data: no third-party ad sharing, in-app account deletion, GDPR/CCPA right-to-deletion — A3). Current fees/policies to be verified before submission.
+3. **Medical framing** — store/listing copy: "12-week guided CBT support program; not medical advice or diagnosis" (Apple §1.4.1); onboarding + footer 988/NATHELP referral; positioning "supportive guide, not human coach" (A2).
 4. **Repo structure** — monorepo (`app/`, `backend/`, `content/`); created in M0 (skeleton already initialized with this spec).
 5. **TR l10n** — pipeline l10n-ready; TR content in v2.
 6. **AI hooks** — reserved in Forms Engine schemas (Thought Record columns); closed in MVP.
