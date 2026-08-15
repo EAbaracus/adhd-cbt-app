@@ -1,0 +1,11 @@
+{
+  "id": "attention-gauge",
+  "type": "attention_gauge",
+  "title": {"en": "Attention gauge"},
+  "fields": [
+    {"id": "task", "kind": "text", "label": {"en": "What were you working on"}},
+    {"id": "attention_minutes", "kind": "number", "label": {"en": "Minutes you stayed focused"}},
+    {"id": "distraction_count", "kind": "number", "label": {"en": "Times you were pulled away"}},
+    {"id": "notes", "kind": "textarea", "label": {"en": "What pulled you away"}}
+  ]
+}

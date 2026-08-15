@@ -1,0 +1,10 @@
+{
+  "id": "medication-adherence",
+  "type": "medication_adherence",
+  "title": {"en": "Medication adherence"},
+  "fields": [
+    {"id": "prescribed_doses", "kind": "number", "label": {"en": "Doses prescribed this week"}},
+    {"id": "missed_doses", "kind": "number", "label": {"en": "Doses missed this week"}},
+    {"id": "triggers", "kind": "textarea", "label": {"en": "What got in the way of taking it (if anything)"}}
+  ]
+}

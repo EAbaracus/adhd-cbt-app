@@ -1,0 +1,11 @@
+{
+  "id": "thought-record",
+  "type": "thought_record",
+  "title": {"en": "Thought record"},
+  "fields": [
+    {"id": "situation", "kind": "textarea", "label": {"en": "Situation that triggered the reaction"}},
+    {"id": "automatic_thought", "kind": "textarea", "label": {"en": "The thought that popped up"}},
+    {"id": "thinking_error", "kind": "text", "label": {"en": "Which thinking pattern fits"}, "options": ["all-or-nothing", "catastrophizing", "mind-reading", "should-statements", "labeling", "overgeneralization", "mental-filter", "discounting-positive"]},
+    {"id": "rational_response", "kind": "textarea", "label": {"en": "A more balanced way to see it"}}
+  ]
+}
