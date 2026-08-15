@@ -174,16 +174,15 @@ def test_session_schema_rejects_missing_checkpoints():
     errors = list(jsonschema_errors(bad, schema))
     assert any("checkpoints" in e for e in errors)
 
-def test_session_schema_rejects_week_date_in_content():
+def test_session_schema_rejects_missing_type_in_checkpoint():
     schema = load("session.schema.json")
-    # schema itself can't reject dates; this asserts the invariant hook lives in the validator (Task 3).
-    # Here we only assert the locale shape is enforced:
-    bad_cp = {"id": "c1", "type": "reading", "title": {"en": "t"},
-              "content": {"en": ["body"]}}
-    # a checkpoint WITHOUT required 'type' must be rejected by schema:
-    del bad_cp["type"]
+    # Provide 4 checkpoints to satisfy minItems, then remove 'type' from one
+    cp1 = {"id": "c1", "type": "reading", "title": {"en": "t"}, "content": {"en": ["body"]}}
+    cp2 = {"id": "c2", "type": "reading", "title": {"en": "t"}, "content": {"en": ["body"]}}
+    cp3 = {"id": "c3", "type": "reading", "title": {"en": "t"}, "content": {"en": ["body"]}}
+    cp4 = {"id": "c4", "title": {"en": "t"}, "content": {"en": ["body"]}}  # missing 'type'
     sess = {"id": "s1", "order": 1, "module": "psychoeducation", "title": {"en": "x"},
-            "checkpoints": [bad_cp]}
+            "checkpoints": [cp1, cp2, cp3, cp4]}
     errors = list(jsonschema_errors(sess, schema))
     assert any("type" in e for e in errors)
 ```
@@ -245,9 +244,9 @@ Expected: FAIL — `FileNotFoundError` (schema files don't exist yet)
         }
       },
       "allOf": [
-        {"if": {"properties": {"type": {"const": "exercise"}}},
+        {"if": {"required": ["type"], "properties": {"type": {"const": "exercise"}}},
          "then": {"anyOf": [{"required": ["formRef"]}, {"properties": {"content": {"minProperties": 1}}, "required": ["content"]}]}},
-        {"if": {"properties": {"type": {"const": "ritual"}}},
+        {"if": {"required": ["type"], "properties": {"type": {"const": "ritual"}}},
          "then": {"required": ["formRef"]}}
       ]
     }
