@@ -14,11 +14,11 @@
      "content": {"en": [
        "The Thought Record has four parts: the situation, the automatic thought, the thinking error in it, and a more balanced response.",
        "Common thinking errors: all-or-nothing, catastrophizing, mind-reading, fortune-telling, should-statements, overgeneralization.",
-       "A rational response is not forced optimism. It is the most accurate, useful thought available — the one you would offer a friend."],
+       "A rational response is not forced optimism. It is the most accurate, useful thought available, the one you would offer a friend."],
        "tr": [
        "Düşünce Kaydı dört bölümden oluşur: durum, otomatik düşünce, içindeki düşünce hatası ve daha dengeli bir yanıt.",
        "Sık görülen düşünce hataları: ya hep ya hiç, felaketleştirme, zihin okuma, falcılık, 'meli-malı' ifadeleri, aşırı genelleme.",
-       "Rasyonel yanıt zorlama iyimserlik değildir. Mevcut en doğru, en yararlı düşüncedir — bir arkadaşınıza sunacağınız düşünce."]}},
+       "Rasyonel yanıt zorlama iyimserlik değildir. Mevcut en doğru, en yararlı düşüncedir, bir arkadaşınıza sunacağınız düşünce."]}},
     {"id": "ex-record", "type": "exercise", "title": {"en": "Complete a Thought Record", "tr": "Bir Düşünce Kaydı tamamlayın"},
      "content": {"en": ["Pick a real situation from this week. Fill in a full Thought Record."],
                  "tr": ["Bu haftadan gerçek bir durum seçin. Tam bir Düşünce Kaydı doldurun."]},

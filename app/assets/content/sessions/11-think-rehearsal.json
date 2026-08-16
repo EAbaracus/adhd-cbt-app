@@ -12,7 +12,7 @@
      "formRef": "form:medication-adherence"},
     {"id": "read-rehearsal", "type": "reading", "title": {"en": "Rehearsal under mild stress", "tr": "Hafif stres altında tekrar"},
      "content": {"en": [
-       "Skills become automatic through rehearsal. Run the full Thought Record sequence on a real, mildly stressful task — not a calm one.",
+       "Skills become automatic through rehearsal. Run the full Thought Record sequence on a real, mildly stressful task, not a calm one.",
        "Self-coaching is talking yourself through a task the way you would coach a friend: specific, kind, and focused on the next step.",
        "Review what worked afterwards. The point is not perfection; it is that the habit of pausing gets stronger each time."],
        "tr": [

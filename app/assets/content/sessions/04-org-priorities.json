@@ -13,11 +13,11 @@
     {"id": "read-abc", "type": "reading", "title": {"en": "A/B/C priorities", "tr": "A/B/C öncelikler"},
      "content": {"en": [
        "Rate each task A (must do), B (should do), or C (nice to do). Start the day with one A.",
-       "Small tasks first build momentum — a quick win makes the next task easier to start.",
+       "Small tasks first build momentum: a quick win makes the next task easier to start.",
        "Break big tasks into steps sized to your attention. 'Do taxes' is not a step; 'find last year's form' is."],
        "tr": [
        "Her görevi A (yapılmalı), B (yapılmalı iyi olur) veya C (güzel olur) olarak derecelendirin. Güne bir A ile başlayın.",
-       "Önce küçük görevler ivme kazandırır — hızlı bir kazanım, sonraki göreve başlamayı kolaylaştırır.",
+       "Önce küçük görevler ivme kazandırır: hızlı bir kazanım, sonraki göreve başlamayı kolaylaştırır.",
        "Büyük görevleri dikkatinizin boyutuna göre adımlara bölün. 'Vergileri yap' bir adım değildir; 'geçen yılın formunu bul' bir adımdır."]}},
     {"id": "ex-rate", "type": "exercise", "title": {"en": "Rate and break down", "tr": "Derecelendirin ve bölün"},
      "content": {"en": ["Take your current list. Assign A/B/C to each. Pick one A and break it into three small steps."],

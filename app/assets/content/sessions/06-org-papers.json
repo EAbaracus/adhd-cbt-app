@@ -12,17 +12,17 @@
      "formRef": "form:medication-adherence"},
     {"id": "read-workflow", "type": "reading", "title": {"en": "Sort, decide, file", "tr": "Ayır, karar ver, dosyala"},
      "content": {"en": [
-       "For each piece of mail or paper: sort it, decide act/keep/discard, then act or file immediately. Don't set it down to 'deal with later' — later is where papers multiply.",
+       "For each piece of mail or paper: sort it, decide act/keep/discard, then act or file immediately. Don't set it down to 'deal with later'. Later is where papers multiply.",
        "Use a filing system with only a few categories. More than five categories and you won't use it."],
        "tr": [
-       "Her posta veya kağıt parçası için: ayırın, yap/sakla/at kararını verin, sonra hemen yapın veya dosyalayın. 'Sonra hallederim' diye bırakmayın — kağıtlar sonrada çoğalır.",
+       "Her posta veya kağıt parçası için: ayırın, yap/sakla/at kararını verin, sonra hemen yapın veya dosyalayın. 'Sonra hallederim' diye bırakmayın. Kağıtlar sonra da çoğalır.",
        "Yalnızca birkaç kategorisi olan bir dosyalama sistemi kullanın. Beşten fazla kategori olursa kullanmazsınız."]}},
     {"id": "ex-sort", "type": "exercise", "title": {"en": "Sort one real pile", "tr": "Gerçek bir yığını ayırın"},
      "content": {"en": ["Take a real pile of papers. Sort it. Define 3-5 filing categories that make sense to you."],
                  "tr": ["Gerçek bir kağıt yığını alın. Ayırın. Size mantıklı gelen 3-5 dosyalama kategorisi tanımlayın."]}},
     {"id": "hw-read", "type": "homework", "title": {"en": "Home practice", "tr": "Ev pratiği"},
-     "content": {"en": ["Run the sort workflow on one pile this week — act, file, or discard, then close it."],
-                 "tr": ["Bu hafta bir yığına ayırma akışını uygulayın — yapın, dosyalayın veya atın, sonra kapatın."]}},
+     "content": {"en": ["Run the sort workflow on one pile this week: act, file, or discard, then close it."],
+                 "tr": ["Bu hafta bir yığına ayırma akışını uygulayın: yapın, dosyalayın veya atın, sonra kapatın."]}},
     {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week", "tr": "Haftayı öngörün"},
      "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"],
                  "tr": ["Bu hafta neyin önünüze çıkması olası ve bu olduğunda ne yapacaksınız?"]}}

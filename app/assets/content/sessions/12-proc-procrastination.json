@@ -13,11 +13,11 @@
      "formRef": "form:medication-adherence"},
     {"id": "read-avoid", "type": "reading", "title": {"en": "Why we postpone", "tr": "Neden erteleriz"},
      "content": {"en": [
-       "Procrastination is usually cognitive avoidance — we postpone because focus gets easier as the deadline gets closer, and the short-term relief of putting it off rewards the delay.",
-       "Perfectionism drives a lot of it: 'it must be right' makes starting feel dangerous. The fix combines skills you already have — break the task down, set a realistic goal for one step, and challenge the perfectionist thought."],
+       "Procrastination is usually cognitive avoidance: we postpone because focus gets easier as the deadline gets closer, and the short-term relief of putting it off rewards the delay.",
+       "Perfectionism drives a lot of it: 'it must be right' makes starting feel dangerous. The fix combines skills you already have. Break the task down, set a realistic goal for one step, and challenge the perfectionist thought."],
        "tr": [
-       "Erteleme genellikle bilişsel kaçınmadır — erteleriz çünkü teslim tarihi yaklaştıkça odaklanmak kolaylaşır ve ertelemenin kısa vadeli rahatlığı gecikmeyi ödüllendirir.",
-       "Bunun çoğunu mükemmeliyetçilik besler: 'doğru olmalı' başlamayı tehlikeli hissettirir. Çözüm, sahip olduğunuz becerileri birleştirir — görevi bölün, tek bir adım için gerçekçi bir hedef koyun ve mükemmeliyetçi düşünceye meydan okuyun."]}},
+       "Erteleme genellikle bilişsel kaçınmadır; erteleriz çünkü teslim tarihi yaklaştıkça odaklanmak kolaylaşır ve ertelemenin kısa vadeli rahatlığı gecikmeyi ödüllendirir.",
+       "Bunun çoğunu mükemmeliyetçilik besler: 'doğru olmalı' başlamayı tehlikeli hissettirir. Çözüm, sahip olduğunuz becerileri birleştirir: görevi bölün, tek bir adım için gerçekçi bir hedef koyun ve mükemmeliyetçi düşünceye meydan okuyun."]}},
     {"id": "ex-proscons", "type": "exercise", "title": {"en": "Pros and cons of now vs later", "tr": "Şimdi ile sonranın artıları ve eksileri"},
      "content": {"en": ["Take one task you are avoiding. Write the pros and cons of doing it now versus later."],
                  "tr": ["Kaçındığınız bir görevi alın. Şimdi yapmanın ve sonraya bırakmanın artılarını ve eksilerini yazın."]},

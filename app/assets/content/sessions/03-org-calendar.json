@@ -20,8 +20,8 @@
        "Amaç mükemmel araç değil. Amaç, her şeyi kafanızda tutmayı bırakacak kadar tek bir sisteme güvenmeniz.",
        "Kağıt notlar kaybolur; sistem onların yerini alır. Bir düşünce önemliyse sisteme girer, başıboş bir kağıt parçasına değil."]}},
     {"id": "ex-enter", "type": "exercise", "title": {"en": "Enter this week's real items", "tr": "Bu haftanın gerçek öğelerini girin"},
-     "content": {"en": ["Open your calendar and task list. Put in the appointments you already know and the tasks you can name right now. No form needed — just do it."],
-                 "tr": ["Takviminizi ve görev listenizi açın. Bildiğiniz randevuları ve şu an adlandırabildiğiniz görevleri girin. Form gerekmez — sadece yapın."]}},
+     "content": {"en": ["Open your calendar and task list. Put in the appointments you already know and the tasks you can name right now. No form needed. Just do it."],
+                 "tr": ["Takviminizi ve görev listenizi açın. Bildiğiniz randevuları ve şu an adlandırabildiğiniz görevleri girin. Form gerekmez. Sadece yapın."]}},
     {"id": "hw-read", "type": "homework", "title": {"en": "Home practice", "tr": "Ev pratiği"},
      "content": {"en": [
        "Use the calendar and list every day this week.",

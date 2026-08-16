@@ -13,11 +13,11 @@
     {"id": "read-env", "type": "reading", "title": {"en": "Change the environment, not your willpower", "tr": "İradenizi değil, ortamı değiştirin"},
      "content": {"en": [
        "Focus is easier when the environment does the work: one thing on the desk, phone out of sight, notifications off.",
-       "A start ritual signals the brain it is time to work — the same small action every time.",
+       "A start ritual signals the brain it is time to work, the same small action every time.",
        "Active ignoring: keep a written list of intrusive thoughts to park, not fight. Writing them down lets you return to them later instead of circling them now."],
        "tr": [
        "İşi ortam yaptığında odak daha kolaydır: masada tek şey, telefon gözden uzakta, bildirimler kapalı.",
-       "Bir başlangıç ritüeli beyne çalışma zamanının geldiğini söyler — her seferinde aynı küçük eylem.",
+       "Bir başlangıç ritüeli beyne çalışma zamanının geldiğini söyler, her seferinde aynı küçük eylem.",
        "Aktif yok sayma: zihni işgal eden düşünceler için savaşmak yerine park etmek üzere yazılı bir liste tutun. Yazmak, şimdi onların etrafında dönmek yerine sonra onlara dönmenizi sağlar."]}},
     {"id": "ex-changes", "type": "exercise", "title": {"en": "Pick three changes", "tr": "Üç değişiklik seçin"},
      "content": {"en": ["Choose three environment changes for your main work spot. Write them as concrete actions."],

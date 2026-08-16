@@ -80,7 +80,7 @@ class AppStrings {
     'timer_park_label': 'Something pulling you away? Park it here.',
     'timer_park_hint': 'Park a distraction',
     'timer_park_button': 'Park it',
-    'timer_done_notification': 'Timer done — enable notifications for a gentle reminder next time.',
+    'timer_done_notification': 'Timer done. Enable notifications for a gentle reminder next time.',
   };
 
   static const _tr = <String, String>{
@@ -160,7 +160,7 @@ class AppStrings {
     'timer_park_label': 'Sizi çeken bir şey var? Buraya bırakın.',
     'timer_park_hint': 'Dikkat dağıtıcıyı bırak',
     'timer_park_button': 'Bırak',
-    'timer_done_notification': 'Zamanlayıcı bitti — hafif bir hatırlatma için bildirimleri etkinleştirin.',
+    'timer_done_notification': 'Zamanlayıcı bitti. Hafif bir hatırlatma için bildirimleri etkinleştirin.',
   };
 
   static String tr(AppLocaleCode code, String key) {

@@ -12,10 +12,10 @@
      "formRef": "form:medication-adherence"},
     {"id": "read-steps", "type": "reading", "title": {"en": "The six steps", "tr": "Altı adım"},
      "content": {"en": [
-       "1. Define the problem in one sentence. 2. Brainstorm every solution without judging any. 3. List pros and cons of the best option. 4. Pick the best imperfect option — not the perfect one. 5. Plan the concrete first steps. 6. Set a time to review how it went.",
+       "1. Define the problem in one sentence. 2. Brainstorm every solution without judging any. 3. List pros and cons of the best option. 4. Pick the best imperfect option, not the perfect one. 5. Plan the concrete first steps. 6. Set a time to review how it went.",
        "ADHD makes step 2 hard (we judge too early) and step 5 easy to skip. Write both down."],
        "tr": [
-       "1. Sorunu tek cümleyle tanımlayın. 2. Hiçbirini yargılamadan tüm çözümleri listeleyin. 3. En iyi seçeneğin artılarını ve eksilerini yazın. 4. En iyi kusurlu seçeneği seçin — kusursuz olanı değil. 5. Somut ilk adımları planlayın. 6. Nasıl gittiğini gözden geçirmek için bir zaman belirleyin.",
+       "1. Sorunu tek cümleyle tanımlayın. 2. Hiçbirini yargılamadan tüm çözümleri listeleyin. 3. En iyi seçeneğin artılarını ve eksilerini yazın. 4. En iyi kusurlu seçeneği seçin, kusursuz olanı değil. 5. Somut ilk adımları planlayın. 6. Nasıl gittiğini gözden geçirmek için bir zaman belirleyin.",
        "DEHB 2. adımı zorlaştırır (çok erken yargılarız) ve 5. adımı atlamayı kolaylaştırır. İkisini de yazın."]}},
     {"id": "ex-run", "type": "exercise", "title": {"en": "Run it on a real problem", "tr": "Gerçek bir problem üzerinde uygulayın"},
      "content": {"en": ["Pick one problem you are avoiding. Work it through all six steps now."],

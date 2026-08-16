@@ -12,12 +12,12 @@
      "formRef": "form:medication-adherence"},
     {"id": "read-span", "type": "reading", "title": {"en": "Measure, don't guess", "tr": "Ölçün, tahmin etmeyin"},
      "content": {"en": [
-       "Attention span is not a fixed trait — it shifts with task, energy, and setting. Measure it on a task you dread, not one you like.",
-       "The distractibility delay: work in chunks that match your real span, then deliberately delay the distraction. The break is planned and short — it is part of the method, not an escape from it.",
+       "Attention span is not a fixed trait. It shifts with task, energy, and setting. Measure it on a task you dread, not one you like.",
+       "The distractibility delay: work in chunks that match your real span, then deliberately delay the distraction. The break is planned and short. It is part of the method, not an escape from it.",
        "When the urge to switch comes, note it and give yourself a set minute before you act on it. Most urges pass if you let them."],
        "tr": [
-       "Dikkat süresi sabit bir özellik değildir — göreve, enerjiye ve ortama göre değişir. Onu sevdiğiniz bir görevde değil, gözünüzde büyüttüğünüz bir görevde ölçün.",
-       "Dikkat dağınıklığı ertelemesi: gerçek sürenize uyan parçalar halinde çalışın, sonra dikkat dağıtan şeyi bilinçli olarak erteleyin. Mola planlı ve kısadır — yöntemin parçasıdır, ondan kaçış değil.",
+       "Dikkat süresi sabit bir özellik değildir; göreve, enerjiye ve ortama göre değişir. Onu sevdiğiniz bir görevde değil, gözünüzde büyüttüğünüz bir görevde ölçün.",
+       "Dikkat dağınıklığı ertelemesi: gerçek sürenize uyan parçalar halinde çalışın, sonra dikkat dağıtan şeyi bilinçli olarak erteleyin. Mola planlı ve kısadır; yöntemin parçasıdır, ondan kaçış değil.",
        "Geçiş dürtüsü geldiğinde onu fark edin ve harekete geçmeden önce kendinize belirli bir dakika verin. Bırakırsanız çoğu dürtü geçer."]}},
     {"id": "ex-gauge", "type": "exercise", "title": {"en": "Gauge your span now", "tr": "Şimdi sürenizi ölçün"},
      "content": {"en": ["Pick one dreaded task. Work on it and track how long you stayed focused and how many times you were pulled away."],

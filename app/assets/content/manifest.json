@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "content_version": "0.3.0",
-  "built_at": "2026-08-16T10:17:16.113912+00:00",
+  "content_version": "0.3.1",
+  "built_at": "2026-08-16T16:00:53.781954+00:00",
   "files": [
     {
       "path": "schema/form.schema.json",
@@ -45,35 +45,35 @@
     },
     {
       "path": "sessions/01-psycho-what-is-adhd.json",
-      "sha256": "f979718ce024680674eb3b09485a93cec9362f8b99ef5cbed8222e562de2fa6f"
+      "sha256": "84fdad4785a5723ad2376f6eaaf6821b56ee1e693bac879e1a9b1f093213404c"
     },
     {
       "path": "sessions/02-psycho-how-program-works.json",
-      "sha256": "abe7949979d36b1f36fd058b94e7859fff633fe27c1dc7c350cc7401b869b74c"
+      "sha256": "6325c3ded052091935bcfef52b2e8511e5292e399f6ae8e7a943e6c7a2cb956c"
     },
     {
       "path": "sessions/03-org-calendar.json",
-      "sha256": "1d1497aad682242d8eeeb871a794e1624931e6caede42680defe26907c982c11"
+      "sha256": "69d3032d5d9d76da4038a2cc1e43e120e85e54a2a7c2d89dc4beae5016cdc56d"
     },
     {
       "path": "sessions/04-org-priorities.json",
-      "sha256": "acbe8cd3394aa1964216f2ebc65056721d3cfc89d91cda5bdf9565e6fc91a01a"
+      "sha256": "6d83c2da8a8380f8f8fcb41b54352bd11f8180cadc1e73be37c658cab2737426"
     },
     {
       "path": "sessions/05-org-problem-solving.json",
-      "sha256": "0271c28eec59826779cebddb6c3c971d0c00806229b59d3240604fe3d472e7f8"
+      "sha256": "daa5b0f1a560d98ef8b9a7169db8f8d013a2ab423be4d6931c738326f26fef37"
     },
     {
       "path": "sessions/06-org-papers.json",
-      "sha256": "9db5f8133d1f51b85a859b544353a1ee4175e0a430f84d473636ca36f2fa7878"
+      "sha256": "a29d2c2bbd49bd1b044bd085db2d18903b755d222975e4650a78c35e5d907b2e"
     },
     {
       "path": "sessions/07-dist-attention-span.json",
-      "sha256": "3116b2282f77b34e7aa2b2cb4c74c4e59d0c5a6e48de8cc7bdb26d4e47be6ce5"
+      "sha256": "c55a9e19f09864ef6743563f93b00fbdc89e1b2972a52c7e6b304ee6a01df20c"
     },
     {
       "path": "sessions/08-dist-environment.json",
-      "sha256": "aa57e668a5e244ffb2330439541ff74216c093a96342a3304cee7cd1eacadbf6"
+      "sha256": "07c473577c15f3a5f40db41ba303e04db0565981063cb7aceee9b74d9678c3bd"
     },
     {
       "path": "sessions/09-think-cognitive-model.json",
@@ -81,19 +81,19 @@
     },
     {
       "path": "sessions/10-think-adaptive-thinking.json",
-      "sha256": "98e890b4ca44a08973bc16d7e1234fd641b5e27eba90e797ed72807ebb086f27"
+      "sha256": "80b3ceb75ca590e76a3d6cf05922f20de0f1f45f72b89081eaae6aa77894eacc"
     },
     {
       "path": "sessions/11-think-rehearsal.json",
-      "sha256": "dac368aed15449f93e83410c5cc9855ced6f9c089416bf360cc66ae43ea0e0a2"
+      "sha256": "9ec3dd26d0f504bed83b56460a9a81be1a2a062f60eb2e2ff3d2a7e5493ba234"
     },
     {
       "path": "sessions/12-proc-procrastination.json",
-      "sha256": "1cefdaf20f73ce638ef65d83b8c48ca99c5e0be57430a8e563fbe434858cc06c"
+      "sha256": "289947961bd92a526d0cec441acd11094a058c48cf563ebc8c90afe6f1ad5a50"
     },
     {
       "path": "sessions/13-relapse-prevention.json",
-      "sha256": "72e9f53676023fa92452c727a78ded27529997490869b5525f2cfcf4f2fb43ce"
+      "sha256": "3c1b985fb50f1a1f637e28d9856727d289b7d99c729ee95607b5a13492c9290d"
     }
   ]
 }
