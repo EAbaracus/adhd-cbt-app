@@ -95,6 +95,70 @@ class AppTheme {
           side: BorderSide(color: AppColors.border),
         ),
       ),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: Colors.white,
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: AppColors.inputBorder),
+          borderRadius: BorderRadius.circular(AppTheme.radius8),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: AppColors.primary500, width: 2),
+          borderRadius: BorderRadius.circular(AppTheme.radius8),
+        ),
+        hintStyle: AppText.small.copyWith(color: AppColors.placeholder),
+        labelStyle: AppText.small.copyWith(color: AppColors.textSecondary),
+      ),
+      chipTheme: ChipThemeData(
+        backgroundColor: AppColors.panel,
+        selectedColor: AppColors.primary100,
+        side: const BorderSide(color: AppColors.border),
+        labelStyle: AppText.small.copyWith(color: AppColors.textSecondary),
+        secondaryLabelStyle: AppText.small.copyWith(color: AppColors.primary700),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppTheme.radius12)),
+      ),
+      segmentedButtonTheme: SegmentedButtonThemeData(
+        style: ButtonStyle(
+          foregroundColor: WidgetStateProperty.resolveWith((states) =>
+              states.contains(WidgetState.selected)
+                  ? AppColors.primary700
+                  : AppColors.textSecondary),
+          backgroundColor: WidgetStateProperty.resolveWith((states) =>
+              states.contains(WidgetState.selected)
+                  ? AppColors.primary100
+                  : Colors.white),
+          side: const WidgetStatePropertyAll(BorderSide(color: AppColors.border)),
+          shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppTheme.radius8))),
+        ),
+      ),
+      dialogTheme: DialogThemeData(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppTheme.radius12),
+          side: const BorderSide(color: AppColors.border),
+        ),
+      ),
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: AppColors.textPrimary,
+        contentTextStyle: AppText.small.copyWith(color: Colors.white),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppTheme.radius8)),
+      ),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: const WidgetStatePropertyAll(AppColors.primary500),
+      ),
+      switchTheme: SwitchThemeData(
+        thumbColor: const WidgetStatePropertyAll(AppColors.primary500),
+      ),
+      listTileTheme: const ListTileThemeData(
+        textColor: AppColors.textPrimary,
+        iconColor: AppColors.textSecondary,
+      ),
+      progressIndicatorTheme:
+          const ProgressIndicatorThemeData(color: AppColors.primary500),
     );
   }
 }
