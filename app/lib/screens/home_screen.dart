@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final locale = AppLocale.of(context)?.code ?? AppLocaleCode.en;
-    final s = (key) => AppStrings.tr(locale, key);
+    String s(String key) => AppStrings.tr(locale, key);
     return Scaffold(
       appBar: AppBar(
         title: Text(s('home_title')),
@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _sessionCard(Session s) {
     final locale = AppLocale.of(context)?.code ?? AppLocaleCode.en;
-    final tr = (key) => AppStrings.tr(locale, key);
+    String tr(String key) => AppStrings.tr(locale, key);
     final state = widget.engine.sessionState(s);
     final (label, color) = switch (state) {
       SessionState.completed => (tr('session_completed'), AppColors.green900),
