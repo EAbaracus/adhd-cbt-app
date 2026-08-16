@@ -36,10 +36,15 @@ def backup(body: dict, user: dict = Depends(get_current_user), store: UserStore 
 
 @router.get("/snapshot")
 def snapshot(user: dict = Depends(get_current_user), store: UserStore = Depends(get_store)):
-    out = {}
-    for kind in SYNC_KINDS:
-        rows = store.conn.execute(
-            f"SELECT item_key, payload, updated_at FROM sync_{kind} WHERE user_id = ?", (user["id"],)
-        ).fetchall()
-        out[kind] = {r["item_key"]: {"payload": json.loads(r["payload"]), "updated_at": r["updated_at"]} for r in rows}
+    out = {k: {} for k in SYNC_KINDS}
+    query = " UNION ALL ".join(
+        f"SELECT '{kind}' as kind, item_key, payload, updated_at FROM sync_{kind} WHERE user_id = ?"
+        for kind in SYNC_KINDS
+    )
+    params = (user["id"],) * len(SYNC_KINDS)
+
+    rows = store.conn.execute(query, params).fetchall()
+    for r in rows:
+        out[r["kind"]][r["item_key"]] = {"payload": json.loads(r["payload"]), "updated_at": r["updated_at"]}
+
     return {"snapshot_at": dt.datetime.now(dt.timezone.utc).isoformat(), **out}
