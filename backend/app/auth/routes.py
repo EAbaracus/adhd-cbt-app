@@ -1,5 +1,5 @@
 """Anonymous auth routes + bearer-protected me/logout/delete."""
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 
 from app.auth import passwords
 from app.auth.deps import get_current_user, get_store
@@ -34,7 +34,7 @@ def login(body: dict, store: UserStore = Depends(get_store)):
 
 
 @router.post("/logout")
-def logout(request, store: UserStore = Depends(get_store)):
+def logout(request: Request, store: UserStore = Depends(get_store)):
     auth = request.headers.get("Authorization", "")
     token = auth.removeprefix("Bearer ").strip()
     user = store.get_user_by_token(token)
@@ -50,7 +50,7 @@ def me(user: dict = Depends(get_current_user), store: UserStore = Depends(get_st
 
 
 @router.delete("/me")
-def delete_me(request, store: UserStore = Depends(get_store)):
+def delete_me(request: Request, store: UserStore = Depends(get_store)):
     auth = request.headers.get("Authorization", "")
     token = auth.removeprefix("Bearer ").strip()
     user = store.get_user_by_token(token)
