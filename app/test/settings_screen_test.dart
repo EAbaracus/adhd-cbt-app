@@ -96,7 +96,7 @@ void main() {
     await tester.tap(find.text('Delete account'));
     await tester.pumpAndSettle();
     // confirm disabled until typed
-    final confirm = find.widgetWithText(FilledButton, 'Delete');
+    final confirm = find.widgetWithText(FilledButton, 'Delete account');
     expect(tester.widget<FilledButton>(confirm).onPressed, isNull);
     await tester.enterText(find.byType(TextField), 'delete');
     await tester.pump();

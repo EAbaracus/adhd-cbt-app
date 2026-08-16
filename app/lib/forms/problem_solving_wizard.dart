@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../l10n/app_locale.dart';
+import '../l10n/app_strings.dart';
 import '../theme/app_theme.dart';
 import 'form_controller.dart';
 import 'form_definition.dart';
@@ -20,15 +21,6 @@ class _ProblemSolvingWizardState extends State<ProblemSolvingWizard> {
   late final FormController _controller;
   late final List<TextEditingController> _texts;
   int _step = 0;
-
-  static const _labels = [
-    'Define the problem',
-    'Brainstorm solutions',
-    'Pros',
-    'Cons',
-    'Action plan',
-    'Review',
-  ];
 
   @override
   void initState() {
@@ -65,6 +57,7 @@ class _ProblemSolvingWizardState extends State<ProblemSolvingWizard> {
   Widget build(BuildContext context) {
     final field = widget.form.fields[_step];
     final locale = AppLocale.of(context)?.code ?? AppLocaleCode.en;
+    String tr(String key) => AppStrings.tr(locale, key);
     return Scaffold(
       appBar: AppBar(title: Text(widget.form.titleFor(locale.name))),
       body: SafeArea(
@@ -74,7 +67,9 @@ class _ProblemSolvingWizardState extends State<ProblemSolvingWizard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Step ${_step + 1} of ${widget.form.fields.length} — ${_labels[_step]}',
+                tr('problem_solving_step')
+                    .replaceAll('%1', (_step + 1).toString())
+                    .replaceAll('%2', widget.form.fields.length.toString()),
                 style: AppText.caption.copyWith(color: AppColors.textTertiary),
               ),
               const SizedBox(height: AppTheme.spacing8),
@@ -83,7 +78,7 @@ class _ProblemSolvingWizardState extends State<ProblemSolvingWizard> {
               TextField(
                 controller: _texts[_step],
                 maxLines: 5,
-                decoration: const InputDecoration(hintText: 'Write it down'),
+                decoration: InputDecoration(hintText: tr('problem_solving_hint')),
               ),
               const Spacer(),
               Row(
@@ -92,13 +87,13 @@ class _ProblemSolvingWizardState extends State<ProblemSolvingWizard> {
                   TextButton(
                     onPressed:
                         _step > 0 ? () => setState(() => _step--) : null,
-                    child: const Text('Back'),
+                    child: Text(tr('session_back')),
                   ),
                   _step < widget.form.fields.length - 1
                       ? FilledButton(
-                          onPressed: _next, child: const Text('Next'))
+                          onPressed: _next, child: Text(tr('problem_solving_next')))
                       : FilledButton(
-                          onPressed: _finish, child: const Text('Finish')),
+                          onPressed: _finish, child: Text(tr('problem_solving_finish'))),
                 ],
               ),
             ],

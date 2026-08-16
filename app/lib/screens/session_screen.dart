@@ -78,7 +78,7 @@ class _SessionScreenState extends State<SessionScreen> {
     }
     final cp = _current;
     return Scaffold(
-      appBar: AppBar(title: Text(widget.session.title)),
+      appBar: AppBar(title: Text(widget.session.titleFor(locale.name))),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppTheme.spacing32),
@@ -123,8 +123,9 @@ class _SessionScreenState extends State<SessionScreen> {
   }
 
   Widget _completionCard() {
+    final locale = AppLocale.of(context)?.code ?? AppLocaleCode.en;
     return Scaffold(
-      appBar: AppBar(title: Text(widget.session.title)),
+      appBar: AppBar(title: Text(widget.session.titleFor(locale.name))),
       body: SafeArea(
         child: Center(
           child: Padding(

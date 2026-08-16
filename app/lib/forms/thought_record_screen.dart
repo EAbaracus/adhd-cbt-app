@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../l10n/app_locale.dart';
+import '../l10n/app_strings.dart';
 import '../theme/app_theme.dart';
 import 'form_definition.dart';
 import 'thought_record_controller.dart';
@@ -57,6 +58,7 @@ class _ThoughtRecordScreenState extends State<ThoughtRecordScreen> {
   @override
   Widget build(BuildContext context) {
     final locale = AppLocale.of(context)?.code ?? AppLocaleCode.en;
+    String tr(String key) => AppStrings.tr(locale, key);
     return Scaffold(
       appBar: AppBar(title: Text(widget.form.titleFor(locale.name))),
       body: SafeArea(
@@ -66,11 +68,11 @@ class _ThoughtRecordScreenState extends State<ThoughtRecordScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Step ${_step + 1} of 3',
+                tr('thought_record_step').replaceAll('%1', (_step + 1).toString()).replaceAll('%2', '3'),
                 style: AppText.caption.copyWith(color: AppColors.textTertiary),
               ),
               const SizedBox(height: AppTheme.spacing24),
-              Expanded(child: _stepWidget()),
+              Expanded(child: _stepWidget(tr, locale)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -78,13 +80,13 @@ class _ThoughtRecordScreenState extends State<ThoughtRecordScreen> {
                     onPressed: _step > 0
                         ? () => setState(() => _step--)
                         : null,
-                    child: const Text('Back'),
+                    child: Text(tr('session_back')),
                   ),
                   _step < 2
                       ? FilledButton(
-                          onPressed: _next, child: const Text('Next'))
+                          onPressed: _next, child: Text(tr('thought_record_next')))
                       : FilledButton(
-                          onPressed: _finish, child: const Text('Finish')),
+                          onPressed: _finish, child: Text(tr('thought_record_finish'))),
                 ],
               ),
             ],
@@ -94,28 +96,27 @@ class _ThoughtRecordScreenState extends State<ThoughtRecordScreen> {
     );
   }
 
-  Widget _stepWidget() {
+  Widget _stepWidget(Function(String) tr, AppLocaleCode locale) {
     switch (_step) {
       case 0:
         return Column(
           children: [
-            Text('Situation', style: AppText.h2),
+            Text(tr('thought_record_situation_title'), style: AppText.h2),
             const SizedBox(height: AppTheme.spacing12),
             TextField(
               key: const Key('tr-situation'),
               controller: _situation,
               maxLines: 3,
-              decoration: const InputDecoration(hintText: 'What happened?'),
+              decoration: InputDecoration(hintText: tr('thought_record_situation_hint')),
             ),
             const SizedBox(height: AppTheme.spacing24),
-            Text('Automatic thought', style: AppText.h2),
+            Text(tr('thought_record_thought_title'), style: AppText.h2),
             const SizedBox(height: AppTheme.spacing12),
             TextField(
               key: const Key('tr-automatic'),
               controller: _thought,
               maxLines: 3,
-              decoration:
-                  const InputDecoration(hintText: 'What went through your mind?'),
+              decoration: InputDecoration(hintText: tr('thought_record_thought_hint')),
             ),
           ],
         );
@@ -123,9 +124,9 @@ class _ThoughtRecordScreenState extends State<ThoughtRecordScreen> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Thinking error', style: AppText.h2),
+            Text(tr('thought_record_error_title'), style: AppText.h2),
             const SizedBox(height: AppTheme.spacing8),
-            Text('Which pattern fits best?',
+            Text(tr('thought_record_error_hint'),
                 style: AppText.body.copyWith(color: AppColors.textSecondary)),
             const SizedBox(height: AppTheme.spacing16),
             Wrap(
@@ -147,14 +148,13 @@ class _ThoughtRecordScreenState extends State<ThoughtRecordScreen> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Rational response', style: AppText.h2),
+            Text(tr('thought_record_rational_title'), style: AppText.h2),
             const SizedBox(height: AppTheme.spacing12),
             TextField(
               key: const Key('tr-rational'),
               controller: _rational,
               maxLines: 4,
-              decoration: const InputDecoration(
-                  hintText: 'The most accurate, useful thought available'),
+              decoration: InputDecoration(hintText: tr('thought_record_rational_hint')),
             ),
           ],
         );

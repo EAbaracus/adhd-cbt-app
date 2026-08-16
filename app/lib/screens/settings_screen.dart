@@ -26,10 +26,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
         actions: [
           TextButton(
               onPressed: () => Navigator.of(ctx).pop(false),
-              child: const Text('Cancel')),
+              child: Text(AppStrings.tr(_locale(ctx), 'cancel'))),
           FilledButton(
               onPressed: () => Navigator.of(ctx).pop(true),
-              child: const Text('Log out')),
+              child: Text(AppStrings.tr(_locale(ctx), 'settings_logout'))),
         ],
       ),
     );
@@ -173,10 +173,11 @@ class _DeleteConfirmDialogState extends State<_DeleteConfirmDialog> {
       actions: [
         TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel')),
+            child: Text(AppStrings.tr(code, 'cancel')),
+        ),
         FilledButton(
           onPressed: _ok ? () => Navigator.of(context).pop(true) : null,
-          child: const Text('Delete'),
+          child: Text(AppStrings.tr(code, 'settings_delete')),
         ),
       ],
     );

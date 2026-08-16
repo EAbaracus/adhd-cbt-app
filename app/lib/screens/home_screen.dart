@@ -94,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       child: ListTile(
-        title: Text('${tr('session_label')} ${s.order} — ${s.titleFor(locale.name)}',
+        title: Text('${tr('session_label')} ${s.order} · ${s.titleFor(locale.name)}',
             style: AppText.subtitle),
         subtitle: Text(label,
             style: AppText.small.copyWith(color: color)),
