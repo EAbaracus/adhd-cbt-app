@@ -5,6 +5,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:adhd_cbt_app/screens/timer_screen.dart';
 import 'package:adhd_cbt_app/store/app_database.dart';
 import 'package:adhd_cbt_app/timer/timer_controller.dart';
+import 'package:adhd_cbt_app/notifications/notification_service.dart';
+
+class _NoopNotifications implements NotificationService {
+  @override
+  Future<bool> ensurePermission() async => true;
+  @override
+  Future<void> notifyTimerComplete() async {}
+  @override
+  void onPermissionDenied(void Function() cb) {}
+}
 
 void main() {
   testWidgets('start shows running timer, park list works', (tester) async {
@@ -12,7 +22,10 @@ void main() {
         '${Directory.systemTemp.createTempSync('tw_').path}/t.db');
     final controller = TimerController(db);
     await tester.pumpWidget(
-        MaterialApp(home: TimerScreen(controller: controller)));
+        MaterialApp(
+            home: TimerScreen(
+                controller: controller,
+                notifications: _NoopNotifications())));
     await tester.tap(find.text('10 min'));
     await tester.pump();
     expect(find.textContaining(':'), findsWidgets); // mm:ss visible
