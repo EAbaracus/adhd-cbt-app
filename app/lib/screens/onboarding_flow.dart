@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../api/api_client.dart';
+import '../app_scope.dart';
 import '../theme/app_theme.dart';
+import '../store/session_manager.dart';
 
 /// Two-step onboarding: (1) age gate + privacy consent, (2) register/login.
 /// I1: no pressure — primary action only enabled when consent is given.
@@ -39,7 +41,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
       _error = null;
     });
     try {
-      await (_loginMode
+      final result = await (_loginMode
           ? widget.api.login(
               email: _email.text.trim(), password: _password.text)
           : widget.api.register(
@@ -48,7 +50,9 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
               ageCountry: 'US',
               ageMin: 18));
       if (!mounted) return;
-      // M2: in-memory session; Drift UserSettings persistence lands in M3.
+      final sm = AppScope.of(context)?.sessionManager;
+      if (sm != null) await sm.persistAuth(result.token, _email.text.trim());
+      else widget.api.token = result.token;
       Navigator.of(context).pushReplacementNamed('/home');
     } on ApiException catch (e) {
       if (!mounted) return;

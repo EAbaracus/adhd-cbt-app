@@ -121,6 +121,19 @@ class ApiClient {
       return false;
     }
   }
+
+  Future<bool> deleteAccount() async {
+    if (token == null) return false;
+    try {
+      final resp = await httpClient
+          .delete(Uri.parse('$baseUrl/api/auth/me'),
+              headers: {'Authorization': 'Bearer $token'})
+          .timeout(const Duration(seconds: 10));
+      return resp.statusCode == 200;
+    } catch (_) {
+      return false;
+    }
+  }
 }
 
 class ApiException implements Exception {
