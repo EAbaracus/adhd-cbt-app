@@ -5,6 +5,7 @@ from app import db
 from app.auth.routes import router as auth_router
 from app.auth.store import UserStore
 from app.settings import settings
+from app.sync.routes import router as sync_router
 
 
 def create_app(db_path: str | None = None) -> FastAPI:
@@ -14,6 +15,7 @@ def create_app(db_path: str | None = None) -> FastAPI:
     app.state.store = UserStore(app.state.db)
     app.state.store.init_schema()
     app.include_router(auth_router)
+    app.include_router(sync_router)
 
     @app.get("/api/health")
     def health():
