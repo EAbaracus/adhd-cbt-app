@@ -50,7 +50,7 @@ class TimerLog extends Table {
   IntColumn get minutes => integer()();
   IntColumn get distractions => integer().withDefault(const Constant(0))();
   TextColumn get startedAt => text()();
-  TextColumn get endedAt => text()();
+  TextColumn get endedAt => text().nullable()();
   TextColumn get updatedAt => text()();
   @override
   Set<Column> get primaryKey => {id};
