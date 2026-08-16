@@ -4,8 +4,12 @@ Anti-engagement guard (I1): this is the ONLY way to emit remote messages, and no
 engagement copy is emitted. Remote messages carry user-value events only.
 """
 import os
+import pathlib
 
 from app.auth.store import UserStore
+
+
+_CRED_FALLBACK = pathlib.Path(__file__).resolve().parents[2] / "service-account.json"
 
 
 class PushSender:
@@ -30,6 +34,8 @@ def _fcm_sender(store: UserStore):
         return NoopPushSender()
 
     cred_path = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS", "")
+    if not cred_path and _CRED_FALLBACK.exists():
+        cred_path = str(_CRED_FALLBACK)
     if not cred_path or not os.path.exists(cred_path):
         return NoopPushSender()
 

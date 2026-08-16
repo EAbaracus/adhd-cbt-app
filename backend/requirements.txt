@@ -1,2 +1,4 @@
 fastapi>=0.115,<1
 uvicorn[standard]>=0.30,<1
+# Remote push (FCM). Lazy-imported in app/push/sender.py — Noop when absent.
+firebase-admin>=6.2,<7
