@@ -17,3 +17,10 @@ def get_current_user(request: Request, store: UserStore = Depends(get_store)):
     if user is None:
         raise HTTPException(status_code=401, detail="not authenticated")
     return user
+
+
+def require_entitlement(user: dict = Depends(get_current_user)):
+    from app.billing.routes import _status
+    if not _status(user)["active"]:
+        raise HTTPException(status_code=403, detail="entitlement required")
+    return user

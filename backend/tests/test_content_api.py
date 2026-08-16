@@ -12,7 +12,10 @@ def _client(tmp_path, build_dir):
         "email": "a@b.com", "password": "secret123", "age_country": "TR",
         "age_min": 18, "privacy_consent": True,
     })
-    token = client.post("/api/auth/login", json={"email": "a@b.com", "password": "secret123"}).json()["token"]
+    login = client.post("/api/auth/login", json={"email": "a@b.com", "password": "secret123"}).json()
+    token = login["token"]
+    # M1-7: content routes require entitlement — grant one directly for content tests
+    app.state.store.set_entitlement(login["user"]["id"], "2099-01-01T00:00:00+00:00")
     return client, {"Authorization": f"Bearer {token}"}
 
 

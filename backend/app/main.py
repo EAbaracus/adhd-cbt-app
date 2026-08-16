@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from app import db
 from app.auth.routes import router as auth_router
 from app.auth.store import UserStore
+from app.billing.routes import router as billing_router
 from app.content.routes import router as content_router
 from app.settings import settings
 from app.sync.routes import router as sync_router
@@ -25,6 +26,7 @@ def create_app(db_path: str | None = None, content_build_dir: str | None = None)
     app.include_router(auth_router)
     app.include_router(sync_router)
     app.include_router(content_router)
+    app.include_router(billing_router)
 
     @app.get("/api/health")
     def health():

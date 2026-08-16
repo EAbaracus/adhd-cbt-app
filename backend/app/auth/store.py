@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS users (
     age_country TEXT NOT NULL,
     age_min INTEGER NOT NULL,
     privacy_consent INTEGER NOT NULL DEFAULT 0,
+    entitlement_expires_at TEXT NULL,
     created_at TEXT NOT NULL
 );
 CREATE TABLE IF NOT EXISTS sessions (
@@ -70,6 +71,15 @@ class UserStore:
 
     def get_public_user(self, user):
         return {k: v for k, v in user.items() if k != "password_hash"}
+
+    # ---- entitlement ----
+    def set_entitlement(self, user_id, expires_at):
+        self.conn.execute("UPDATE users SET entitlement_expires_at = ? WHERE id = ?", (expires_at, user_id))
+        self.conn.commit()
+
+    def get_entitlement(self, user):
+        """None = never purchased; ISO string = expiry (3-day grace window applied by route)."""
+        return user.get("entitlement_expires_at")
 
     # ---- sessions ----
     def create_session(self, user_id, ttl_days=30):
