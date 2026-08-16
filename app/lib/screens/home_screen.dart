@@ -11,6 +11,7 @@ import '../tasks/task_controller.dart';
 import '../theme/app_theme.dart';
 import '../timer/timer_controller.dart';
 import 'session_screen.dart';
+import 'progress_screen.dart';
 import 'task_list_screen.dart';
 import 'timer_screen.dart';
 
@@ -43,6 +44,12 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (_) =>
                     TimerScreen(controller: TimerController(widget.db)))),
+          ),
+          IconButton(
+            tooltip: 'Progress',
+            icon: const Icon(Icons.show_chart),
+            onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => ProgressScreen(db: widget.db))),
           ),
         ],
       ),

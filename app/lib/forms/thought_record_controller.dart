@@ -1,5 +1,4 @@
 import 'form_controller.dart';
-import 'form_definition.dart';
 
 class ThoughtRecordController extends FormController {
   ThoughtRecordController(super.form);

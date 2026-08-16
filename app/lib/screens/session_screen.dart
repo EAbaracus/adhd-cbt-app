@@ -58,7 +58,7 @@ class _SessionScreenState extends State<SessionScreen> {
         form: form,
         onSubmit: (answers) async {
           await widget.onFormSubmit?.call(form.id, answers);
-          if (context.mounted) Navigator.of(context).pop();
+          if (mounted) Navigator.of(context).pop();
         },
       ),
     ));
