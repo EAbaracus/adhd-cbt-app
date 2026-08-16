@@ -66,6 +66,12 @@ class AppStrings {
     'task_list_add_hint': 'Add a task',
     'task_list_empty': 'Nothing here yet',
     'task_list_step_hint': 'Break it into a step',
+    // Home session states
+    'home_state_completed': 'Completed',
+    'home_state_in_progress': 'In progress',
+    'home_state_available': 'Available',
+    // Session screen caption template
+    'session_caption': 'Session %1 · Checkpoint %2/%3',
     // Timer screen
     'timer_title': 'Focus timer',
     'timer_pause': 'Pause',
@@ -140,6 +146,12 @@ class AppStrings {
     'task_list_add_hint': 'Görev ekle',
     'task_list_empty': 'Henüz bir şey yok',
     'task_list_step_hint': 'Bölüp bir adım ekle',
+    // Home session states
+    'home_state_completed': 'Tamamlandı',
+    'home_state_in_progress': 'Devam ediyor',
+    'home_state_available': 'Mevcut',
+    // Session screen caption template
+    'session_caption': 'Oturum %1 · Checkpoint %2/%3',
     // Timer screen
     'timer_title': 'Odak zamanlayıcı',
     'timer_pause': 'Duraklat',

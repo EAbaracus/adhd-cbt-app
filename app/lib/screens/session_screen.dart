@@ -4,6 +4,7 @@ import '../app_scope.dart';
 import '../engine/models.dart';
 import '../forms/form_renderer.dart';
 import '../l10n/app_locale.dart';
+import '../l10n/app_strings.dart';
 import '../theme/app_theme.dart';
 
 /// Renders one session's checkpoints as a calm, sequential flow (I1).
@@ -23,6 +24,7 @@ class SessionScreen extends StatefulWidget {
 
 class _SessionScreenState extends State<SessionScreen> {
   int _index = 0;
+  Function(String) _tr = (key) => key;
 
   Checkpoint get _current => widget.session.checkpoints[_index];
 
@@ -69,7 +71,8 @@ class _SessionScreenState extends State<SessionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final locale = AppLocale.of(context)?.code.name ?? 'en';
+    final locale = AppLocale.of(context)?.code ?? AppLocaleCode.en;
+    _tr = (key) => AppStrings.tr(locale, key);
     if (_index >= widget.session.checkpoints.length) {
       return _completionCard();
     }
@@ -83,14 +86,13 @@ class _SessionScreenState extends State<SessionScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Session ${widget.session.order} · '
-                'Checkpoint ${_index + 1}/${widget.session.checkpoints.length}',
+                _tr('session_caption').replaceAll('%1', widget.session.order.toString()).replaceAll('%2', (_index + 1).toString()).replaceAll('%3', widget.session.checkpoints.length.toString()),
                 style: AppText.caption.copyWith(color: AppColors.textTertiary),
               ),
               const SizedBox(height: AppTheme.spacing8),
-              Text(cp.titleFor(locale), style: AppText.h2),
+              Text(cp.titleFor(locale.name), style: AppText.h2),
               const SizedBox(height: AppTheme.spacing24),
-              for (final para in cp.contentFor(locale)) ...[
+              for (final para in cp.contentFor(locale.name)) ...[
                 Text(para, style: AppText.body),
                 const SizedBox(height: AppTheme.spacing16),
               ],
@@ -98,20 +100,20 @@ class _SessionScreenState extends State<SessionScreen> {
               if (cp.formRef != null)
                 FilledButton(
                   onPressed: () => _openForm(cp),
-                  child: const Text('Open form'),
+                  child: Text(_tr('session_open_form')),
                 )
               else
                 FilledButton(
                   onPressed: _complete,
-                  child: Text(_isLast ? 'Finish session' : 'Done'),
+                  child: Text(_isLast ? _tr('session_finish') : _tr('session_done')),
                 ),
               TextButton(
                 onPressed: _index > 0 ? () => setState(() => _index--) : null,
-                child: const Text('Back'),
+                child: Text(_tr('session_back')),
               ),
               TextButton(
                 onPressed: _defer,
-                child: const Text('Later'),
+                child: Text(_tr('session_later')),
               ),
             ],
           ),
@@ -130,18 +132,18 @@ class _SessionScreenState extends State<SessionScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Harika, bir sonraki oturuma dön',
+                Text(_tr('session_complete_title'),
                     style: AppText.section, textAlign: TextAlign.center),
                 const SizedBox(height: AppTheme.spacing16),
                 Text(
-                  'You are done with this session.',
+                  _tr('session_complete_body'),
                   style: AppText.body.copyWith(color: AppColors.textSecondary),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: AppTheme.spacing32),
                 FilledButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: const Text('Back to home'),
+                  child: Text(_tr('session_back_home')),
                 ),
               ],
             ),
