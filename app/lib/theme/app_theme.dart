@@ -1,0 +1,100 @@
+import 'package:flutter/material.dart';
+
+/// Refactoring-UI-grounded tokens. Structure is the deliverable; hues are
+/// starting points. Never add ad-hoc values in widgets — change a token here.
+class AppColors {
+  // Cool blue-tinted greys (grey-50..900)
+  static const bg = Color(0xFFF6F8FA);           // grey-50
+  static const panel = Color(0xFFF0F3F6);        // grey-100
+  static const border = Color(0xFFE2E6EB);       // grey-200
+  static const inputBorder = Color(0xFFC6CCD4);  // grey-300
+  static const placeholder = Color(0xFFA3ABB5);  // grey-400
+  static const textTertiary = Color(0xFF7C8490); // grey-500
+  static const textSecondary = Color(0xFF565E6A);// grey-600/700
+  static const textPrimary = Color(0xFF1F242C);  // grey-900, never pure black
+
+  // Primary blue 100-900 (base = 500)
+  static const primary100 = Color(0xFFE3EBFA);
+  static const primary300 = Color(0xFF9DB8EC);
+  static const primary500 = Color(0xFF2F5FD0);
+  static const primary600 = Color(0xFF2750B4);
+  static const primary700 = Color(0xFF1F4296);
+  static const primary900 = Color(0xFF14295C);
+
+  // Accents (100 tint / 500 base / 900 text-on-tint)
+  static const red500 = Color(0xFFE03E3E);
+  static const red900 = Color(0xFF6E1515);
+  static const green500 = Color(0xFF2FA36B);
+  static const green900 = Color(0xFF11452C);
+  static const amber500 = Color(0xFFE5A50E);
+  static const amber900 = Color(0xFF66450A);
+}
+
+class AppText {
+  // Hand-crafted scale, logical px only. 10 sizes max.
+  static const caption = TextStyle(fontSize: 12, height: 1.5, fontWeight: FontWeight.w400);
+  static const small = TextStyle(fontSize: 14, height: 1.5, fontWeight: FontWeight.w400);
+  static const body = TextStyle(fontSize: 16, height: 1.6, fontWeight: FontWeight.w400);
+  static const lead = TextStyle(fontSize: 18, height: 1.6, fontWeight: FontWeight.w400);
+  static const subtitle = TextStyle(fontSize: 20, height: 1.4, fontWeight: FontWeight.w600);
+  static const section = TextStyle(fontSize: 24, height: 1.25, fontWeight: FontWeight.w600);
+  static const h2 = TextStyle(fontSize: 30, height: 1.2, fontWeight: FontWeight.w700);
+  static const h1 = TextStyle(fontSize: 36, height: 1.15, fontWeight: FontWeight.w700);
+}
+
+class AppTheme {
+  static const spacing4 = 4.0, spacing8 = 8.0, spacing12 = 12.0, spacing16 = 16.0;
+  static const spacing24 = 24.0, spacing32 = 32.0, spacing48 = 48.0, spacing64 = 64.0;
+  static const radius8 = 8.0, radius12 = 12.0;
+
+  static ThemeData get light {
+    final base = ThemeData(
+      useMaterial3: true,
+      colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary500),
+      scaffoldBackgroundColor: AppColors.bg,
+    );
+    return base.copyWith(
+      textTheme: base.textTheme
+          .apply(bodyColor: AppColors.textPrimary, displayColor: AppColors.textPrimary)
+          .copyWith(
+            bodyMedium: AppText.body,
+            bodySmall: AppText.small,
+            labelLarge: AppText.subtitle.copyWith(fontSize: 16),
+          ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.bg,
+        foregroundColor: AppColors.textPrimary,
+        elevation: 0,
+        centerTitle: false,
+      ),
+      filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+          backgroundColor: AppColors.primary500,
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(
+              vertical: AppTheme.spacing12, horizontal: AppTheme.spacing24),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppTheme.radius8)),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.textSecondary,
+          side: const BorderSide(color: AppColors.border),
+          padding: const EdgeInsets.symmetric(
+              vertical: AppTheme.spacing12, horizontal: AppTheme.spacing24),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppTheme.radius8)),
+        ),
+      ),
+      cardTheme: const CardThemeData(
+        color: Colors.white,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(AppTheme.radius12)),
+          side: BorderSide(color: AppColors.border),
+        ),
+      ),
+    );
+  }
+}
