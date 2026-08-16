@@ -19,7 +19,12 @@ class ContentActivator {
       _copyRecursive(sourceDir, tmp);
       // 2. verify integrity + schema compatibility
       final rt = ContentRuntime(tmp);
-      final manifest = rt.loadManifest();
+      ContentBundle? manifest;
+      try {
+        manifest = rt.loadManifest();
+      } catch (_) {
+        throw StateError('corrupt manifest');
+      }
       if (manifest == null) throw StateError('no manifest in staged bundle');
       if (manifest.schemaVersion != _expectedSchema) {
         throw StateError('incompatible schema ${manifest.schemaVersion}');
