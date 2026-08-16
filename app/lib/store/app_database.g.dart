@@ -1580,9 +1580,9 @@ class $TimerLogTable extends TimerLog
   late final GeneratedColumn<String> endedAt = GeneratedColumn<String>(
     'ended_at',
     aliasedName,
-    false,
+    true,
     type: DriftSqlType.string,
-    requiredDuringInsert: true,
+    requiredDuringInsert: false,
   );
   static const VerificationMeta _updatedAtMeta = const VerificationMeta(
     'updatedAt',
@@ -1660,8 +1660,6 @@ class $TimerLogTable extends TimerLog
         _endedAtMeta,
         endedAt.isAcceptableOrUnknown(data['ended_at']!, _endedAtMeta),
       );
-    } else if (isInserting) {
-      context.missing(_endedAtMeta);
     }
     if (data.containsKey('updated_at')) {
       context.handle(
@@ -1703,7 +1701,7 @@ class $TimerLogTable extends TimerLog
       endedAt: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}ended_at'],
-      )!,
+      ),
       updatedAt: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}updated_at'],
@@ -1723,7 +1721,7 @@ class TimerLogData extends DataClass implements Insertable<TimerLogData> {
   final int minutes;
   final int distractions;
   final String startedAt;
-  final String endedAt;
+  final String? endedAt;
   final String updatedAt;
   const TimerLogData({
     required this.id,
@@ -1731,7 +1729,7 @@ class TimerLogData extends DataClass implements Insertable<TimerLogData> {
     required this.minutes,
     required this.distractions,
     required this.startedAt,
-    required this.endedAt,
+    this.endedAt,
     required this.updatedAt,
   });
   @override
@@ -1742,7 +1740,9 @@ class TimerLogData extends DataClass implements Insertable<TimerLogData> {
     map['minutes'] = Variable<int>(minutes);
     map['distractions'] = Variable<int>(distractions);
     map['started_at'] = Variable<String>(startedAt);
-    map['ended_at'] = Variable<String>(endedAt);
+    if (!nullToAbsent || endedAt != null) {
+      map['ended_at'] = Variable<String>(endedAt);
+    }
     map['updated_at'] = Variable<String>(updatedAt);
     return map;
   }
@@ -1754,7 +1754,9 @@ class TimerLogData extends DataClass implements Insertable<TimerLogData> {
       minutes: Value(minutes),
       distractions: Value(distractions),
       startedAt: Value(startedAt),
-      endedAt: Value(endedAt),
+      endedAt: endedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(endedAt),
       updatedAt: Value(updatedAt),
     );
   }
@@ -1770,7 +1772,7 @@ class TimerLogData extends DataClass implements Insertable<TimerLogData> {
       minutes: serializer.fromJson<int>(json['minutes']),
       distractions: serializer.fromJson<int>(json['distractions']),
       startedAt: serializer.fromJson<String>(json['startedAt']),
-      endedAt: serializer.fromJson<String>(json['endedAt']),
+      endedAt: serializer.fromJson<String?>(json['endedAt']),
       updatedAt: serializer.fromJson<String>(json['updatedAt']),
     );
   }
@@ -1783,7 +1785,7 @@ class TimerLogData extends DataClass implements Insertable<TimerLogData> {
       'minutes': serializer.toJson<int>(minutes),
       'distractions': serializer.toJson<int>(distractions),
       'startedAt': serializer.toJson<String>(startedAt),
-      'endedAt': serializer.toJson<String>(endedAt),
+      'endedAt': serializer.toJson<String?>(endedAt),
       'updatedAt': serializer.toJson<String>(updatedAt),
     };
   }
@@ -1794,7 +1796,7 @@ class TimerLogData extends DataClass implements Insertable<TimerLogData> {
     int? minutes,
     int? distractions,
     String? startedAt,
-    String? endedAt,
+    Value<String?> endedAt = const Value.absent(),
     String? updatedAt,
   }) => TimerLogData(
     id: id ?? this.id,
@@ -1802,7 +1804,7 @@ class TimerLogData extends DataClass implements Insertable<TimerLogData> {
     minutes: minutes ?? this.minutes,
     distractions: distractions ?? this.distractions,
     startedAt: startedAt ?? this.startedAt,
-    endedAt: endedAt ?? this.endedAt,
+    endedAt: endedAt.present ? endedAt.value : this.endedAt,
     updatedAt: updatedAt ?? this.updatedAt,
   );
   TimerLogData copyWithCompanion(TimerLogCompanion data) {
@@ -1862,7 +1864,7 @@ class TimerLogCompanion extends UpdateCompanion<TimerLogData> {
   final Value<int> minutes;
   final Value<int> distractions;
   final Value<String> startedAt;
-  final Value<String> endedAt;
+  final Value<String?> endedAt;
   final Value<String> updatedAt;
   final Value<int> rowid;
   const TimerLogCompanion({
@@ -1881,14 +1883,13 @@ class TimerLogCompanion extends UpdateCompanion<TimerLogData> {
     required int minutes,
     this.distractions = const Value.absent(),
     required String startedAt,
-    required String endedAt,
+    this.endedAt = const Value.absent(),
     required String updatedAt,
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        task = Value(task),
        minutes = Value(minutes),
        startedAt = Value(startedAt),
-       endedAt = Value(endedAt),
        updatedAt = Value(updatedAt);
   static Insertable<TimerLogData> custom({
     Expression<String>? id,
@@ -1918,7 +1919,7 @@ class TimerLogCompanion extends UpdateCompanion<TimerLogData> {
     Value<int>? minutes,
     Value<int>? distractions,
     Value<String>? startedAt,
-    Value<String>? endedAt,
+    Value<String?>? endedAt,
     Value<String>? updatedAt,
     Value<int>? rowid,
   }) {
@@ -3108,7 +3109,7 @@ typedef $$TimerLogTableCreateCompanionBuilder =
       required int minutes,
       Value<int> distractions,
       required String startedAt,
-      required String endedAt,
+      Value<String?> endedAt,
       required String updatedAt,
       Value<int> rowid,
     });
@@ -3119,7 +3120,7 @@ typedef $$TimerLogTableUpdateCompanionBuilder =
       Value<int> minutes,
       Value<int> distractions,
       Value<String> startedAt,
-      Value<String> endedAt,
+      Value<String?> endedAt,
       Value<String> updatedAt,
       Value<int> rowid,
     });
@@ -3283,7 +3284,7 @@ class $$TimerLogTableTableManager
                 Value<int> minutes = const Value.absent(),
                 Value<int> distractions = const Value.absent(),
                 Value<String> startedAt = const Value.absent(),
-                Value<String> endedAt = const Value.absent(),
+                Value<String?> endedAt = const Value.absent(),
                 Value<String> updatedAt = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => TimerLogCompanion(
@@ -3303,7 +3304,7 @@ class $$TimerLogTableTableManager
                 required int minutes,
                 Value<int> distractions = const Value.absent(),
                 required String startedAt,
-                required String endedAt,
+                Value<String?> endedAt = const Value.absent(),
                 required String updatedAt,
                 Value<int> rowid = const Value.absent(),
               }) => TimerLogCompanion.insert(

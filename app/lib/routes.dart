@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'app_scope.dart';
 import 'screens/home_screen.dart';
 import 'screens/onboarding_screen.dart';
 
 class RouteGenerator {
   static const String onboarding = '/onboarding';
   static const String home = '/home';
-  static const String session = '/session';
   RouteGenerator._();
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -15,7 +15,20 @@ class RouteGenerator {
       case onboarding:
         return MaterialPageRoute(builder: (_) => const OnboardingScreen());
       case home:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+        return MaterialPageRoute(builder: (ctx) {
+          final scope = AppScope.of(ctx);
+          if (scope == null || scope.engine == null || scope.db == null) {
+            return const Scaffold(
+              body: Center(
+                child: Text(
+                  'The program content is not ready yet.\nPlease restart the app.',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            );
+          }
+          return HomeScreen(engine: scope.engine!, db: scope.db!);
+        });
       default:
         throw FormatException('Route not found: ${settings.name}');
     }
