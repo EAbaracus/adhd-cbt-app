@@ -68,7 +68,9 @@ Future<void> main() async {
   unawaited(() async {
     try {
       boot.value = await _bootstrap();
-    } catch (_) {
+    } catch (e) {
+      // ignore: avoid_print
+      print('ADHD-BOOT: main catch: $e');
       boot.value = const BootState();
     }
   }());

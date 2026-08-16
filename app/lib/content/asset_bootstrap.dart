@@ -10,9 +10,15 @@ import 'content_runtime.dart';
 /// content runtime + OTA path have a single directory source of truth.
 /// Returns null on failure (corrupt bundle / platform error).
 Future<Directory?> bootstrapContentFromAssets() async {
+  // ignore: avoid_print
+  print('ADHD-BOOT: start');
   final docs = await getApplicationDocumentsDirectory();
+  // ignore: avoid_print
+  print('ADHD-BOOT: docs=${docs.path}');
   final contentDir = Directory('${docs.path}/content');
   final manifestData = await rootBundle.loadString('assets/content/manifest.json');
+  // ignore: avoid_print
+  print('ADHD-BOOT: manifest loaded, ${manifestData.length} chars');
   final manifest = jsonDecode(manifestData) as Map<String, dynamic>;
   final files = (manifest['files'] as List? ?? []).cast<Map>();
 
@@ -29,6 +35,9 @@ Future<Directory?> bootstrapContentFromAssets() async {
       dest.writeAsBytesSync(
           data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
     }
+    // Stage must carry the manifest — verifyIntegrity reads it via loadManifest()
+    // (same lesson as M5-1 OTA: "no manifest in staged bundle").
+    File('${tmp.path}/manifest.json').writeAsStringSync(manifestData);
     final rt = ContentRuntime(tmp);
     if (!rt.verifyIntegrity()) throw StateError('bundled content failed integrity');
     if (contentDir.existsSync()) contentDir.deleteSync(recursive: true);
