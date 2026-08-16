@@ -26,20 +26,40 @@ class Checkpoint {
     this.formRef,
     this.requires = const [],
     this.state = CheckpointState.current,
-  });
+  })  : titles = {'en': title},
+        contents = {'en': content};
+
+  final Map<String, String> titles;
+  final Map<String, List<String>> contents;
+
+  String titleFor(String locale) => titles[locale] ?? titles['en'] ?? title;
+  List<String> contentFor(String locale) =>
+      contents[locale] ?? contents['en'] ?? content;
 
   factory Checkpoint.fromJson(Map<String, dynamic> json) {
-    final title = (json['title'] as Map?)?['en'] as String? ?? json['id'] as String;
-    final content =
-        ((json['content'] as Map?)?['en'] as List?)?.cast<String>() ?? <String>[];
-    return Checkpoint(
+    final titleJson = (json['title'] as Map?) ?? const {};
+    final contentJson = (json['content'] as Map?) ?? const {};
+    final cp = Checkpoint(
       id: json['id'] as String,
       type: _cpType(json['type'] as String),
-      title: title,
-      content: content,
+      title: titleJson['en'] as String? ?? json['id'] as String,
+      content: (contentJson['en'] as List?)?.cast<String>() ?? <String>[],
       formRef: json['formRef'] as String?,
       requires: (json['requires'] as List?)?.cast<String>() ?? const [],
     );
+    cp.titles
+      ..clear()
+      ..addAll({
+        for (final e in titleJson.entries)
+          if (e.value is String) e.key: e.value as String,
+      });
+    cp.contents
+      ..clear()
+      ..addAll({
+        for (final e in contentJson.entries)
+          if (e.value is List) e.key: (e.value as List).cast<String>(),
+      });
+    return cp;
   }
 
   Map<String, dynamic> toJson() => {
@@ -61,6 +81,7 @@ class Session {
   final String title;
   final bool optional;
   final List<Checkpoint> checkpoints;
+  final Map<String, String> titles;
 
   Session({
     required this.id,
@@ -69,27 +90,40 @@ class Session {
     required this.title,
     this.optional = false,
     required this.checkpoints,
-  });
+  }) : titles = {'en': title};
+
+  String titleFor(String locale) => titles[locale] ?? titles['en'] ?? title;
 
   factory Session.fromJson(Map<String, dynamic> json) {
     final id = json['id'];
     final order = json['order'];
     final module = json['module'];
-    final title = (json['title'] as Map?)?['en'] as String?;
+    final titleJson = (json['title'] as Map?) ?? const {};
     final cps = json['checkpoints'];
-    if (id is! String || order is! int || module is! String || title == null || cps is! List) {
+    if (id is! String ||
+        order is! int ||
+        module is! String ||
+        titleJson.isEmpty ||
+        cps is! List) {
       throw const FormatException('session missing required fields');
     }
-    return Session(
+    final s = Session(
       id: id,
       order: order,
       module: module,
-      title: title,
+      title: titleJson['en'] as String? ?? id,
       optional: json['optional'] == true,
       checkpoints: cps
           .map((c) => Checkpoint.fromJson(c as Map<String, dynamic>))
           .toList(),
     );
+    s.titles
+      ..clear()
+      ..addAll({
+        for (final e in titleJson.entries)
+          if (e.value is String) e.key: e.value as String,
+      });
+    return s;
   }
 
   Map<String, dynamic> toJson() => {

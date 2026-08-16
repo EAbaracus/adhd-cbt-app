@@ -15,6 +15,7 @@ import 'session_screen.dart';
 import 'progress_screen.dart';
 import 'task_list_screen.dart';
 import 'timer_screen.dart';
+import 'settings_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final ProgramEngine engine;
@@ -51,6 +52,12 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(Icons.show_chart),
             onPressed: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (_) => ProgressScreen(db: widget.db))),
+          ),
+          IconButton(
+            tooltip: 'Settings',
+            icon: const Icon(Icons.settings_outlined),
+            onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => const SettingsScreen())),
           ),
         ],
       ),

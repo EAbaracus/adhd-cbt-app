@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../api/api_client.dart';
 import '../app_scope.dart';
 import '../theme/app_theme.dart';
-import '../store/session_manager.dart';
 
 /// Two-step onboarding: (1) age gate + privacy consent, (2) register/login.
 /// I1: no pressure — primary action only enabled when consent is given.
@@ -51,8 +50,12 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
               ageMin: 18));
       if (!mounted) return;
       final sm = AppScope.of(context)?.sessionManager;
-      if (sm != null) await sm.persistAuth(result.token, _email.text.trim());
-      else widget.api.token = result.token;
+      if (sm != null) {
+        await sm.persistAuth(result.token, _email.text.trim());
+      } else {
+        widget.api.token = result.token;
+      }
+      if (!mounted) return;
       Navigator.of(context).pushReplacementNamed('/home');
     } on ApiException catch (e) {
       if (!mounted) return;

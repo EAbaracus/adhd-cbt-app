@@ -15,7 +15,10 @@
   "$defs": {
     "localized": {
       "type": "object", "additionalProperties": false, "required": ["en"],
-      "properties": {"en": {"type": "string", "minLength": 1}}
+      "properties": {
+        "en": {"type": "string", "minLength": 1},
+        "tr": {"type": "string", "minLength": 1}
+      }
     },
     "checkpoint": {
       "type": "object",
@@ -30,7 +33,8 @@
         "content": {
           "type": "object", "additionalProperties": false, "required": ["en"],
           "properties": {
-            "en": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+            "en": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+            "tr": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
           }
         }
       },

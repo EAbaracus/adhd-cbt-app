@@ -6,6 +6,7 @@ import 'content/asset_bootstrap.dart';
 import 'content/content_runtime.dart';
 import 'engine/program_engine.dart';
 import 'forms/form_definition.dart';
+import 'l10n/app_locale.dart';
 import 'routes.dart';
 import 'store/app_database.dart';
 import 'store/bootstrap.dart';
@@ -19,6 +20,7 @@ Future<void> main() async {
   Map<String, FormDefinition>? forms;
   ApiClient? api;
   SessionManager? sessionManager;
+  var locale = AppLocaleCode.en;
   try {
     final contentDir = await bootstrapContentFromAssets();
     if (contentDir != null) {
@@ -28,14 +30,20 @@ Future<void> main() async {
         for (final f in ContentRuntime(contentDir).loadForms()) f.id: f,
       };
       api = ApiClient();
-      sessionManager = SessionManager(db: db, api: api!);
+      sessionManager = SessionManager(db: db, api: api);
       await sessionManager.restoreToken();
+      locale = await AppLocale.load(db);
     }
   } catch (_) {
     engine = null;
   }
   runApp(AdhdCbtApp(
-      engine: engine, db: db, forms: forms, api: api, sessionManager: sessionManager));
+      engine: engine,
+      db: db,
+      forms: forms,
+      api: api,
+      sessionManager: sessionManager,
+      initialLocale: locale));
 }
 
 class AdhdCbtApp extends StatelessWidget {
@@ -44,28 +52,39 @@ class AdhdCbtApp extends StatelessWidget {
   final Map<String, FormDefinition>? forms;
   final ApiClient? api;
   final SessionManager? sessionManager;
+  final AppLocaleCode initialLocale;
   const AdhdCbtApp(
       {super.key,
       this.engine,
       this.db,
       this.forms,
       this.api,
-      this.sessionManager});
+      this.sessionManager,
+      this.initialLocale = AppLocaleCode.en});
 
   @override
   Widget build(BuildContext context) {
-    return AppScope(
-      engine: engine,
-      db: db,
-      forms: forms,
-      api: api,
-      sessionManager: sessionManager,
-      child: MaterialApp(
-        title: 'ADHD CBT',
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.light,
-        onGenerateRoute: RouteGenerator.generateRoute,
-        initialRoute: RouteGenerator.onboarding,
+    final notifier = ValueNotifier<AppLocaleCode>(initialLocale);
+    return ValueListenableBuilder<AppLocaleCode>(
+      valueListenable: notifier,
+      builder: (context, code, _) => AppLocale(
+        code: code,
+        db: db,
+        onChanged: (c) => notifier.value = c,
+        child: AppScope(
+          engine: engine,
+          db: db,
+          forms: forms,
+          api: api,
+          sessionManager: sessionManager,
+          child: MaterialApp(
+            title: 'ADHD CBT',
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.light,
+            onGenerateRoute: RouteGenerator.generateRoute,
+            initialRoute: RouteGenerator.onboarding,
+          ),
+        ),
       ),
     );
   }

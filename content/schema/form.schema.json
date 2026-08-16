@@ -8,7 +8,8 @@
     "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
     "type": {"enum": ["symptom_checklist", "medication_adherence", "module_review", "attention_gauge", "problem_solving", "thought_record", "pros_cons", "strategy_rating"]},
     "title": {"type": "object", "additionalProperties": false, "required": ["en"],
-              "properties": {"en": {"type": "string", "minLength": 1}}},
+              "properties": {"en": {"type": "string", "minLength": 1},
+                              "tr": {"type": "string", "minLength": 1}}},
     "fields": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/field"}}
   },
   "$defs": {
@@ -20,7 +21,8 @@
         "id": {"type": "string", "pattern": "^[a-z0-9_-]+$"},
         "kind": {"enum": ["scale_0_3", "scale_0_100", "text", "textarea", "bool", "number"]},
         "label": {"type": "object", "additionalProperties": false, "required": ["en"],
-                  "properties": {"en": {"type": "string", "minLength": 1}}},
+                  "properties": {"en": {"type": "string", "minLength": 1},
+                                  "tr": {"type": "string", "minLength": 1}}},
         "options": {"type": "array", "items": {"type": "string"}}
       }
     }

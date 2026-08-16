@@ -10,7 +10,7 @@ import tools.validate as V
 
 CONTENT_DIR = pathlib.Path(__file__).resolve().parent.parent
 OUT = CONTENT_DIR / "build"
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 SCHEMA_VERSION = "1.0.0"
 BUNDLE_DIRS = ("schema", "forms", "sessions")
 

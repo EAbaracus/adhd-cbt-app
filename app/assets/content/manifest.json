@@ -1,15 +1,15 @@
 {
   "schema_version": "1.0.0",
-  "content_version": "0.1.0",
-  "built_at": "2026-08-16T07:40:28.725270+00:00",
+  "content_version": "0.2.0",
+  "built_at": "2026-08-16T10:03:07.740585+00:00",
   "files": [
     {
       "path": "schema/form.schema.json",
-      "sha256": "ed7762482800c53bd08689951dcfcde9c563a1e6671a96f8f56ffec4f5428050"
+      "sha256": "1ec22bb643e97c24718b0ce5e516bf38d0bcda76c61917aab71d15ec954934dc"
     },
     {
       "path": "schema/session.schema.json",
-      "sha256": "ee9d19c037b43425c4e9ab066fe43fc872f154020264edf0fb335dd29f3f3ebd"
+      "sha256": "12407e3d3c28670f07798f188dcb61defd83a1931be9e40bc12b8a7419ec403d"
     },
     {
       "path": "forms/attention-gauge.json",
@@ -37,7 +37,7 @@
     },
     {
       "path": "forms/symptom-checklist.json",
-      "sha256": "7a133b8cf9d51b84997e41d8fdf31845be9f84ced951cbb172d96428a4dbf1c3"
+      "sha256": "40e1d4557ed43dbf21de75e09c52d154c16876d9961d8803140da3d1720daa0c"
     },
     {
       "path": "forms/thought-record.json",
@@ -45,11 +45,11 @@
     },
     {
       "path": "sessions/01-psycho-what-is-adhd.json",
-      "sha256": "21e3c7057703a83d26341494345217dc4646ac7aa99eee4a3e96f7c664599a95"
+      "sha256": "f979718ce024680674eb3b09485a93cec9362f8b99ef5cbed8222e562de2fa6f"
     },
     {
       "path": "sessions/02-psycho-how-program-works.json",
-      "sha256": "66bf2af9ce1f8b1316943315c0601629809e36dd68d25ca069cdcadab5d93e2a"
+      "sha256": "abe7949979d36b1f36fd058b94e7859fff633fe27c1dc7c350cc7401b869b74c"
     },
     {
       "path": "sessions/03-org-calendar.json",
