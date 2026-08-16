@@ -2,6 +2,8 @@
 from fastapi import FastAPI
 
 from app import db
+from app.auth.routes import router as auth_router
+from app.auth.store import UserStore
 from app.settings import settings
 
 
@@ -9,6 +11,9 @@ def create_app(db_path: str | None = None) -> FastAPI:
     app = FastAPI(title="adhd-cbt-backend")
     app.state.db_path = db_path or settings.db_path
     app.state.db = db.get_conn(app.state.db_path)
+    app.state.store = UserStore(app.state.db)
+    app.state.store.init_schema()
+    app.include_router(auth_router)
 
     @app.get("/api/health")
     def health():
