@@ -26,14 +26,17 @@ Future<Directory?> bootstrapContentFromAssets() async {
       final data = await rootBundle.load('assets/content/$path');
       final dest = File('${tmp.path}/$path');
       dest.parent.createSync(recursive: true);
-      dest.writeAsBytesSync(data.buffer.asUint8List());
+      dest.writeAsBytesSync(
+          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
     }
     final rt = ContentRuntime(tmp);
     if (!rt.verifyIntegrity()) throw StateError('bundled content failed integrity');
     if (contentDir.existsSync()) contentDir.deleteSync(recursive: true);
     tmp.renameSync(contentDir.path);
     return contentDir;
-  } catch (_) {
+  } catch (e) {
+    // ignore: avoid_print
+    print('ADHD-BOOT-FAIL: $e');
     if (tmp.existsSync()) tmp.deleteSync(recursive: true);
     return null;
   }
