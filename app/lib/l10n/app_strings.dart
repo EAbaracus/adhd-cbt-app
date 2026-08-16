@@ -4,6 +4,7 @@ import 'app_locale.dart';
 /// (G3: never crashes). Screens not yet migrated are documented follow-ups.
 class AppStrings {
   static const _en = <String, String>{
+    'home_anti_pressure': 'Take it one step at a time. Missing a session is part of the process—just pick up where you left off when you\'re ready.',
     'home_title': 'Program',
     'nav_tasks': 'Tasks',
     'nav_timer': 'Focus timer',
@@ -105,10 +106,27 @@ class AppStrings {
       'problem_solving_hint': 'Write it down',
       'problem_solving_next': 'Next',
       'problem_solving_finish': 'Finish',
-    };
+      // Reflection screen
+      'reflection_title': 'Daily Reflection',
+      'reflection_subtitle': 'Take a moment to check in with yourself. There\'s no right or wrong answer here.',
+      'reflection_focus_label': 'What triggered your focus today?',
+      'reflection_focus_hint': 'Did a specific event, thought, or environment help you lock in?',
+      'reflection_focus_placeholder': 'E.g., putting on noise-canceling headphones, a looming deadline, or breaking the task into smaller steps...',
+      'reflection_focus_error': 'This field helps us understand your patterns. Please share a few words.',
+      'reflection_mood_label': 'How are you feeling right now?',
+      'reflection_mood_hint': 'Select the number that best matches your current state.',
+      'reflection_mood_drained': 'Drained',
+      'reflection_mood_neutral': 'Neutral',
+      'reflection_mood_energized': 'Energized',
+      'reflection_mood_error': 'Please select how you\'re feeling to continue.',
+      'reflection_save': 'Save Reflection',
+      'reflection_saved': 'Saved',
+      'reflection_auto_saved': 'Your entry will be saved automatically for your review.',
+  };
 
   static const _tr = <String, String>{
       'home_title': 'Program',
+      'home_anti_pressure': 'Bir adım bir adım ilerleyin. Bir oturumu kaçırmak sürecin bir parçasıdır—hazır olduğunuzda kaldığınız yerden devam edin.',
       'nav_tasks': 'Görevler',
       'nav_timer': 'Odak zamanlayıcı',
       'nav_progress': 'İlerleme',
@@ -209,6 +227,22 @@ class AppStrings {
       'problem_solving_hint': 'Yazın',
       'problem_solving_next': 'İleri',
       'problem_solving_finish': 'Bitir',
+      // Reflection screen
+      'reflection_title': 'Günlük Yansılama',
+      'reflection_subtitle': 'Kendinizle biraz vakit geçirin. Burada doğru ya da yanlış yok.',
+      'reflection_focus_label': 'Bugün odakınızı ne tetikledi?',
+      'reflection_focus_hint': 'Belirli bir olay, düşünce veya ortam odaklanmanıza yardımcı oldu mu?',
+      'reflection_focus_placeholder': 'Örn: Gürültü azaltıcı kulaklık takmak, zor bir son tarih, veya görevi daha küçük adımlara bölmek...',
+      'reflection_focus_error': 'Bu alan desenlerinizi anlamamıza yardımcı olur. Lütfen birkaç kelime paylaşın.',
+      'reflection_mood_label': 'Şu anda nasıl hissediyorsun?',
+      'reflection_mood_hint': 'Mevcut durumunuzla en iyi eşleşen sayıyı seçin.',
+      'reflection_mood_drained': 'Yorgun',
+      'reflection_mood_neutral': 'Nötr',
+      'reflection_mood_energized': 'Enerjik',
+      'reflection_mood_error': 'Devam etmek için lütfen nasıl hissettiğinizi seçin.',
+      'reflection_save': 'Yansılamayı Kaydet',
+      'reflection_saved': 'Kaydedildi',
+      'reflection_auto_saved': 'Girdiniz otomatik olarak kaydedilecek.',
     };
 
   static String tr(AppLocaleCode code, String key) {

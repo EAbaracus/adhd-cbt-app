@@ -78,6 +78,40 @@ flutter:
           weight: 700
 
   assets:
+    - assets/content/forms/attention-gauge.json
+    - assets/content/forms/medication-adherence.json
+    - assets/content/forms/module-review.json
+    - assets/content/forms/problem-solving.json
+    - assets/content/forms/pros-cons.json
+    - assets/content/forms/strategy-rating.json
+    - assets/content/forms/symptom-checklist.json
+    - assets/content/forms/thought-record.json
+    - assets/content/schema/form.schema.json
+    - assets/content/schema/session.schema.json
+    - assets/content/schema/source.schema.json
+    - assets/content/sessions/01-psycho-what-is-adhd.json
+    - assets/content/sessions/02-psycho-how-program-works.json
+    - assets/content/sessions/03-org-calendar.json
+    - assets/content/sessions/04-org-priorities.json
+    - assets/content/sessions/05-org-problem-solving.json
+    - assets/content/sessions/06-org-papers.json
+    - assets/content/sessions/07-dist-attention-span.json
+    - assets/content/sessions/08-dist-environment.json
+    - assets/content/sessions/09-think-cognitive-model.json
+    - assets/content/sessions/10-think-adaptive-thinking.json
+    - assets/content/sessions/11-think-rehearsal.json
+    - assets/content/sessions/12-proc-procrastination.json
+    - assets/content/sessions/13-relapse-prevention.json
+    - assets/content/sources/antshel-barkley-2015.json
+    - assets/content/sources/barkley-2015.json
+    - assets/content/sources/dupaul-stoner-2016.json
+    - assets/content/sources/kendall-braswell-1993.json
+    - assets/content/sources/knouse-safren-2010.json
+    - assets/content/sources/mitchell-2013-mindfulness.json
+    - assets/content/sources/ramsay-rostain-2015.json
+    - assets/content/sources/safren-2010-cbt-rct.json
+    - assets/content/sources/solanto-2008-mct.json
+    - assets/content/sources/sprich-2016-adolescent.json
     - assets/content/manifest.json
     - assets/content/schema/
     - assets/content/forms/

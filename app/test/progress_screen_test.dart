@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:adhd_cbt_app/l10n/app_locale.dart';
+import 'package:adhd_cbt_app/l10n/app_strings.dart';
 import 'package:adhd_cbt_app/screens/progress_screen.dart';
 import 'package:adhd_cbt_app/store/app_database.dart';
 
@@ -10,6 +12,13 @@ Map<String, dynamic> _full(int v) =>
     {for (var i = 1; i <= 18; i++) 's$i': v};
 
 void main() {
+  test('progress_subtitle is localized', () {
+    expect(AppStrings.tr(AppLocaleCode.en, 'progress_subtitle'),
+        'Daily symptom check-in');
+    expect(AppStrings.tr(AppLocaleCode.tr, 'progress_subtitle'),
+        'Günlük semptom kontrolü');
+  });
+
   testWidgets('shows chart after two submissions', (tester) async {
     final db = AppDatabase.open(
         '${Directory.systemTemp.createTempSync('ps_').path}/p.db');
