@@ -6,6 +6,7 @@ import 'api/api_client.dart';
 import 'app_scope.dart';
 import 'content/asset_bootstrap.dart';
 import 'content/content_runtime.dart';
+import 'engine/models.dart';
 import 'engine/program_engine.dart';
 import 'forms/form_definition.dart';
 import 'l10n/app_locale.dart';
@@ -22,6 +23,9 @@ class BootState {
   final ProgramEngine? engine;
   final AppDatabase? db;
   final Map<String, FormDefinition>? forms;
+  final List<SourceInfo>? sources;
+  final Map<String, SourceInfo>? sourceLookup;
+  final ContentRuntime? contentRuntime;
   final ApiClient? api;
   final SessionManager? sessionManager;
   final AppLocaleCode locale;
@@ -30,6 +34,9 @@ class BootState {
     this.engine,
     this.db,
     this.forms,
+    this.sources,
+    this.sourceLookup,
+    this.contentRuntime,
     this.api,
     this.sessionManager,
     this.locale = AppLocaleCode.en,
@@ -41,10 +48,15 @@ class BootState {
 Future<BootState> _bootstrap() async {
   final contentDir = await bootstrapContentFromAssets();
   if (contentDir == null) return const BootState();
+  final runtime = ContentRuntime(contentDir);
   final db = AppDatabase.open('${contentDir.parent.path}/app.db');
   final engine = await bootstrapEngine(db, contentDir);
   final forms = {
-    for (final f in ContentRuntime(contentDir).loadForms()) f.id: f,
+    for (final f in runtime.loadForms()) f.id: f,
+  };
+  final allSources = runtime.loadSources();
+  final sourceLookup = {
+    for (final s in allSources) s.id: s,
   };
   final api = ApiClient();
   final sessionManager = SessionManager(db: db, api: api);
@@ -54,6 +66,9 @@ Future<BootState> _bootstrap() async {
       engine: engine,
       db: db,
       forms: forms,
+      sources: allSources,
+      sourceLookup: sourceLookup,
+      contentRuntime: runtime,
       api: api,
       sessionManager: sessionManager,
       locale: locale);
@@ -96,6 +111,9 @@ class AdhdCbtApp extends StatelessWidget {
               engine: state.engine,
               db: state.db,
               forms: state.forms,
+              sources: state.sources,
+              sourceLookup: state.sourceLookup,
+              contentRuntime: state.contentRuntime,
               api: state.api,
               sessionManager: state.sessionManager,
               child: MaterialApp(

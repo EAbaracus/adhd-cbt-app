@@ -69,6 +69,43 @@ class _SessionScreenState extends State<SessionScreen> {
     _complete();
   }
 
+  void _showEvidenceCard(BuildContext ctx, Checkpoint cp, int i) {
+    final scope = AppScope.of(ctx);
+    final loc = AppLocale.of(ctx)?.code ?? AppLocaleCode.en;
+    final locale = loc.name;
+    final ev = (cp.evidence ?? [])[i];
+    final src = scope?.lookupSource(ev.source);
+    if (src == null) return;
+    showDialog(
+      context: ctx,
+      builder: (_) => AlertDialog(
+        title: Text(src.title, style: AppText.section),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(ev.claimFor(locale), style: AppText.small),
+            const SizedBox(height: AppTheme.spacing12),
+            Text(src.author, style: AppText.caption),
+            Text(src.publication, style: AppText.caption.copyWith(color: AppColors.textTertiary)),
+            if (src.doi != null)
+              SelectableText(src.doi!, style: AppText.caption),
+            if (src.pmid != null)
+              SelectableText('PMID: ${src.pmid}', style: AppText.caption),
+            if (src.isbn != null)
+              SelectableText('ISBN: ${src.isbn}', style: AppText.caption),
+            if (src.accessStatus == 'paywalled')
+              Text('Full text paywalled', style: AppText.caption.copyWith(color: AppColors.textTertiary)),
+          ],
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.of(ctx).pop(),
+                     child: Text(AppStrings.tr(loc, 'dialog_close'))),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final locale = AppLocale.of(context)?.code ?? AppLocaleCode.en;
@@ -95,6 +132,24 @@ class _SessionScreenState extends State<SessionScreen> {
               for (final para in cp.contentFor(locale.name)) ...[
                 Text(para, style: AppText.body),
                 const SizedBox(height: AppTheme.spacing16),
+              ],
+              if (cp.evidence != null && cp.evidence!.isNotEmpty) ...[
+                const SizedBox(height: AppTheme.spacing12),
+                Wrap(
+                  spacing: 4,
+                  runSpacing: 0,
+                  children: [
+                    for (int i = 0; i < cp.evidence!.length; i++)
+                      GestureDetector(
+                        onTap: () => _showEvidenceCard(context, cp, i),
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: Text('[${i + 1}]',
+                              style: AppText.caption.copyWith(color: AppColors.textTertiary)),
+                        ),
+                      ),
+                  ],
+                ),
               ],
               const SizedBox(height: AppTheme.spacing32),
               if (cp.formRef != null)

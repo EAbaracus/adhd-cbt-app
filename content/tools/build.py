@@ -10,9 +10,9 @@ import tools.validate as V
 
 CONTENT_DIR = pathlib.Path(__file__).resolve().parent.parent
 OUT = CONTENT_DIR / "build"
-VERSION = "0.3.1"
-SCHEMA_VERSION = "1.0.0"
-BUNDLE_DIRS = ("schema", "forms", "sessions")
+VERSION = "0.4.0"
+SCHEMA_VERSION = "1.1.0"
+BUNDLE_DIRS = ("schema", "forms", "sessions", "sources")
 
 
 def _sha256(path):

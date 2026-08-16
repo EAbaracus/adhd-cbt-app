@@ -13,7 +13,7 @@ void main() {
     final root = Directory.systemTemp.createTempSync('ota_');
     final dir = Directory('${root.path}/active')..createSync();
     File('${dir.path}/manifest.json').writeAsStringSync(
-        '{"schema_version":"1.0.0","content_version":"$version","files":[]}');
+        '{"schema_version":"1.1.0","content_version":"$version","files":[]}');
     return dir;
   }
 
@@ -24,7 +24,7 @@ void main() {
       ..httpClient = MockClient((req) async {
         if (req.url.path == '/api/content/manifest') {
           return http.Response(
-              '{"schema_version":"1.0.0","content_version":"0.2.0","files":[]}',
+              '{"schema_version":"1.1.0","content_version":"0.2.0","files":[]}',
               200);
         }
         return http.Response('not found', 404);
@@ -38,7 +38,7 @@ void main() {
     final active = activeBundle(version: '0.1.0');
     final api = ApiClient(baseUrl: 'http://fake')
       ..httpClient = MockClient((req) async => http.Response(
-          '{"schema_version":"1.0.0","content_version":"0.1.0","files":[]}',
+          '{"schema_version":"1.1.0","content_version":"0.1.0","files":[]}',
           200));
     final svc = ContentService(
         api: api, activeDir: active, runtime: ContentRuntime(active));
@@ -50,7 +50,7 @@ void main() {
   test('applyUpdate downloads, verifies, activates atomically', () async {
     final active = activeBundle(version: '0.1.0');
     final remoteManifest = jsonEncode({
-      'schema_version': '1.0.0',
+      'schema_version': '1.1.0',
       'content_version': '0.2.0',
       'files': [
         {
@@ -86,7 +86,7 @@ void main() {
       ..httpClient = MockClient((req) async {
         if (req.url.path == '/api/content/manifest') {
           return http.Response(
-              '{"schema_version":"1.0.0","content_version":"0.2.0","files":['
+              '{"schema_version":"1.1.0","content_version":"0.2.0","files":['
               '{"path":"sessions/01.json","sha256":"${'a' * 64}"}]}',
               200);
         }

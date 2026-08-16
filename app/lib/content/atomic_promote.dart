@@ -7,7 +7,7 @@ import 'dart:io';
 import 'content_runtime.dart';
 
 class ContentActivator {
-  static const _expectedSchema = '1.0.0';
+  static const _expectedSchema = '1.1.0';
 
   static Future<void> activate(Directory sourceDir, Directory activeDir) async {
     final tmp = Directory('${activeDir.path}.tmp');

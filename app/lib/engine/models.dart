@@ -9,6 +9,96 @@ CheckpointType _cpType(String raw) => CheckpointType.values.firstWhere(
     (t) => t.name == raw,
     orElse: () => throw FormatException('unknown checkpoint type: $raw'));
 
+class EvidenceItem {
+  final String source;
+  final String claimEn;
+  final String? claimTr;
+
+  EvidenceItem({required this.source, required this.claimEn, this.claimTr});
+
+  factory EvidenceItem.fromJson(Map<String, dynamic> json) {
+    final claim = (json['claim'] as Map?) ?? const {};
+    return EvidenceItem(
+      source: json['source'] as String,
+      claimEn: (claim['en'] ?? '') as String,
+      claimTr: claim['tr'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'source': source,
+        'claim': {
+          'en': claimEn,
+          if (claimTr != null) 'tr': claimTr,
+        },
+      };
+
+  String claimFor(String locale) => locale == 'tr' && claimTr != null
+      ? claimTr!
+      : claimEn;
+}
+
+/// A bibliographic source record from `content/sources/*.json`.
+class SourceInfo {
+  final String id;
+  final String author;
+  final int year;
+  final String title;
+  final String publication;
+  final String? doi;
+  final String? pmid;
+  final String? isbn;
+  final String sourceType;
+  final String accessStatus;
+  final String evidenceRole;
+  final String? note;
+
+  SourceInfo({
+    required this.id,
+    required this.author,
+    required this.year,
+    required this.title,
+    required this.publication,
+    this.doi,
+    this.pmid,
+    this.isbn,
+    required this.sourceType,
+    required this.accessStatus,
+    required this.evidenceRole,
+    this.note,
+  });
+
+  factory SourceInfo.fromJson(Map<String, dynamic> json) => SourceInfo(
+        id: json['id'] as String,
+        author: json['author'] as String,
+        year: json['year'] as int,
+        title: json['title'] as String,
+        publication: json['publication'] as String,
+        doi: json['doi'] as String?,
+        pmid: json['pmid'] as String?,
+        isbn: json['isbn'] as String?,
+        sourceType: json['source_type'] as String,
+        accessStatus: json['access_status'] as String,
+        evidenceRole: json['evidence_role'] as String,
+        note: json['note'] as String?,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'author': author,
+        'year': year,
+        'title': title,
+        'publication': publication,
+        if (doi != null) 'doi': doi,
+        if (pmid != null) 'pmid': pmid,
+        if (isbn != null) 'isbn': isbn,
+        'source_type': sourceType,
+        'access_status': accessStatus,
+        'evidence_role': evidenceRole,
+        if (note != null) 'note': note,
+      };
+}
+
 class Checkpoint {
   final String id;
   final CheckpointType type;
@@ -16,6 +106,7 @@ class Checkpoint {
   final List<String> content;
   final String? formRef;
   final List<String> requires;
+  final List<EvidenceItem>? evidence;
   CheckpointState state;
 
   Checkpoint({
@@ -25,6 +116,7 @@ class Checkpoint {
     required this.content,
     this.formRef,
     this.requires = const [],
+    this.evidence,
     this.state = CheckpointState.current,
   })  : titles = {'en': title},
         contents = {'en': content};
@@ -46,6 +138,9 @@ class Checkpoint {
       content: (contentJson['en'] as List?)?.cast<String>() ?? <String>[],
       formRef: json['formRef'] as String?,
       requires: (json['requires'] as List?)?.cast<String>() ?? const [],
+      evidence: (json['evidence'] as List?)
+          ?.map((e) => EvidenceItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
     cp.titles
       ..clear()
@@ -69,6 +164,8 @@ class Checkpoint {
         'content': {'en': content},
         if (formRef != null) 'formRef': formRef,
         'state': state.name,
+        if (evidence != null)
+          'evidence': evidence!.map((e) => e.toJson()).toList(),
       };
 }
 

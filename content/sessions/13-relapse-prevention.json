@@ -2,32 +2,145 @@
   "id": "13-relapse-prevention",
   "order": 13,
   "module": "relapse_prevention",
-  "title": {"en": "Keeping the gains", "tr": "Kazanımları korumak"},
+  "title": {
+    "en": "Keeping the gains",
+    "tr": "Kazanımları korumak"
+  },
   "checkpoints": [
-    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in", "tr": "Haftalık kontrol"},
-     "content": {"en": ["Fill in the symptom check."], "tr": ["Belirti kontrolünü doldurun."]},
-     "formRef": "form:symptom-checklist"},
-    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check", "tr": "İlaç kontrolü"},
-     "content": {"en": ["Record prescribed and missed doses."], "tr": ["Reçete edilen ve kaçırılan dozları kaydedin."]},
-     "formRef": "form:medication-adherence"},
-    {"id": "read-maintain", "type": "reading", "title": {"en": "The program ends, the practice continues", "tr": "Program biter, pratik sürer"},
-     "content": {"en": [
-       "Finishing the sessions is the start of self-directed practice, not a graduation. The benefits compound with use: the skills get cheaper each time you reach for them.",
-       "Schedule a one-month review with yourself. Note the strategies that earned their place; drop the ones that didn't.",
-       "Relapse is normal. The first signs: skipped check-ins, a growing pile, avoided tasks, are the cue to restart the system, not to start over."],
-       "tr": [
-       "Oturumları bitirmek bir mezuniyet değil, kendi kendine yönlendirilen pratiğin başlangıcıdır. Faydalar kullanımla bileşik büyür; her uzanışta beceriler ucuzlar.",
-       "Kendinizle bir aylık gözden geçirme planlayın. Yerini hak eden stratejileri not edin; etmeyenleri bırakın.",
-       "Nüks normaldir. İlk işaretler: atlanan kontroller, büyüyen bir yığın, ertelenen görevler, sistemi baştan başlatmanın işaretidir, her şeye sıfırdan başlamanın değil."]}},
-    {"id": "ex-rate", "type": "exercise", "title": {"en": "Rate your strategies", "tr": "Stratejilerinizi derecelendirin"},
-     "content": {"en": ["For each strategy you used, rate how useful it was and note why."],
-                 "tr": ["Kullandığınız her strateji için ne kadar yararlı olduğunu derecelendirin ve nedenini not edin."]},
-     "formRef": "form:strategy-rating"},
-    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice", "tr": "Ev pratiği"},
-     "content": {"en": ["Write your maintenance plan: calendar system, chunked work, thought record, and the first signs that tell you to restart them."],
-                 "tr": ["Bakım planınızı yazın: takvim sistemi, parçalı çalışma, düşünce kaydı ve onları yeniden başlatmanızı söyleyen ilk işaretler."]}},
-    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week", "tr": "Haftayı öngörün"},
-     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"],
-                 "tr": ["Bu hafta neyin önünüze çıkması olası ve bu olduğunda ne yapacaksınız?"]}}
+    {
+      "id": "ritual-check",
+      "type": "ritual",
+      "title": {
+        "en": "Weekly check-in",
+        "tr": "Haftalık kontrol"
+      },
+      "content": {
+        "en": [
+          "Fill in the symptom check."
+        ],
+        "tr": [
+          "Belirti kontrolünü doldurun."
+        ]
+      },
+      "formRef": "form:symptom-checklist"
+    },
+    {
+      "id": "ritual-meds",
+      "type": "ritual",
+      "title": {
+        "en": "Medication check",
+        "tr": "İlaç kontrolü"
+      },
+      "content": {
+        "en": [
+          "Record prescribed and missed doses."
+        ],
+        "tr": [
+          "Reçete edilen ve kaçırılan dozları kaydedin."
+        ]
+      },
+      "formRef": "form:medication-adherence"
+    },
+    {
+      "id": "read-maintain",
+      "type": "reading",
+      "title": {
+        "en": "The program ends, the practice continues",
+        "tr": "Program biter, pratik sürer"
+      },
+      "content": {
+        "en": [
+          "Finishing the sessions is the start of self-directed practice, not a graduation. The benefits compound with use: the skills get cheaper each time you reach for them.",
+          "Schedule a one-month review with yourself. Note the strategies that earned their place; drop the ones that didn't.",
+          "Relapse is normal. The first signs: skipped check-ins, a growing pile, avoided tasks, are the cue to restart the system, not to start over."
+        ],
+        "tr": [
+          "Oturumları bitirmek bir mezuniyet değil, kendi kendine yönlendirilen pratiğin başlangıcıdır. Faydalar kullanımla bileşik büyür; her uzanışta beceriler ucuzlar.",
+          "Kendinizle bir aylık gözden geçirme planlayın. Yerini hak eden stratejileri not edin; etmeyenleri bırakın.",
+          "Nüks normaldir. İlk işaretler: atlanan kontroller, büyüyen bir yığın, ertelenen görevler, sistemi baştan başlatmanın işaretidir, her şeye sıfırdan başlamanın değil."
+        ]
+      }
+    },
+    {
+      "id": "ex-rate",
+      "type": "exercise",
+      "title": {
+        "en": "Rate your strategies",
+        "tr": "Stratejilerinizi derecelendirin"
+      },
+      "content": {
+        "en": [
+          "For each strategy you used, rate how useful it was and note why."
+        ],
+        "tr": [
+          "Kullandığınız her strateji için ne kadar yararlı olduğunu derecelendirin ve nedenini not edin."
+        ]
+      },
+      "formRef": "form:strategy-rating"
+    },
+    {
+      "id": "hw-read",
+      "type": "homework",
+      "title": {
+        "en": "Home practice",
+        "tr": "Ev pratiği"
+      },
+      "content": {
+        "en": [
+          "Write your maintenance plan: calendar system, chunked work, thought record, and the first signs that tell you to restart them."
+        ],
+        "tr": [
+          "Bakım planınızı yazın: takvim sistemi, parçalı çalışma, düşünce kaydı ve onları yeniden başlatmanızı söyleyen ilk işaretler."
+        ]
+      }
+    },
+    {
+      "id": "ref-obstacles",
+      "type": "reflection",
+      "title": {
+        "en": "Anticipate the week",
+        "tr": "Haftayı öngörün"
+      },
+      "content": {
+        "en": [
+          "What is likely to get in the way this week, and what will you do when it happens?"
+        ],
+        "tr": [
+          "Bu hafta neyin önünüze çıkması olası ve bu olduğunda ne yapacaksınız?"
+        ]
+      }
+    },
+    {
+      "id": "read-evidence-maintenance",
+      "type": "reading",
+      "title": {
+        "en": "What the research shows: keeping gains",
+        "tr": "Araştırma ne diyor: kazanımları korumak"
+      },
+      "content": {
+        "en": [
+          "Follow-up and maintenance are part of the clinical treatment protocol — and the gains from skills training have been shown to hold months later."
+        ],
+        "tr": [
+          "İzlem ve bakım, klinik tedavi protokolünün bir parçasıdır — ve beceri eğitiminden elde edilen kazanımların aylar sonra da korunduğu gösterilmiştir."
+        ]
+      },
+      "evidence": [
+        {
+          "source": "ramsay-rostain-2015",
+          "claim": {
+            "en": "Follow-up and maintenance are part of the clinical treatment protocol.",
+            "tr": "İzlem ve bakım, klinik tedavi protokolünün parçasıdır."
+          }
+        },
+        {
+          "source": "safren-2010-cbt-rct",
+          "claim": {
+            "en": "In the RCT, CBT responders maintained their gains at 6 and 12 months.",
+            "tr": "Çalışmada BDT yanıt verenler kazanımlarını 6 ve 12 ayda korudu."
+          }
+        }
+      ]
+    }
   ]
 }

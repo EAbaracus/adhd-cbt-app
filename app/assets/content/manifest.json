@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.0.0",
-  "content_version": "0.3.1",
-  "built_at": "2026-08-16T16:00:53.781954+00:00",
+  "schema_version": "1.1.0",
+  "content_version": "0.4.0",
+  "built_at": "2026-08-16T16:53:07.058866+00:00",
   "files": [
     {
       "path": "schema/form.schema.json",
@@ -12,36 +12,40 @@
       "sha256": "12407e3d3c28670f07798f188dcb61defd83a1931be9e40bc12b8a7419ec403d"
     },
     {
+      "path": "schema/source.schema.json",
+      "sha256": "0a6aeba1cc0b0b3d161a4e97e1a59ab79389fb4ba21c57be06a4b97899bef373"
+    },
+    {
       "path": "forms/attention-gauge.json",
-      "sha256": "03c2f3572766103bb91fb9c59a7b5119a54e65e44e7e64bb8e7168cfae757dc9"
+      "sha256": "97e8522b2dd69feeea6f684d911ef87d6808429caca9329b8433261433f71c9b"
     },
     {
       "path": "forms/medication-adherence.json",
-      "sha256": "c190eb781db3e8003667cd3ee88f81182b649d1e407ef9dd1f778850996056dc"
+      "sha256": "420e8c98a3ec801af7ba11fb5d0a65652866ff0e8708a8c9754fc84be275ee93"
     },
     {
       "path": "forms/module-review.json",
-      "sha256": "7b641aefe95519d961ca4a181841856574c656688c80c3263d64bbc7e92a1a1c"
+      "sha256": "92509a2079598156148cadf68a0dd9c7ee0dd56e708a327b3335d6e486ee56c8"
     },
     {
       "path": "forms/problem-solving.json",
-      "sha256": "ff32d89938b64caa7cd1b6b40c86953aa14deffecf0701f1fc1573450bd1f39e"
+      "sha256": "de550185031c8bad397487646bcb343b9683da26731199d4bcceb8357b4906d8"
     },
     {
       "path": "forms/pros-cons.json",
-      "sha256": "051145f6ae51e1d478ff059732d40381d0f51e4440c498dc4ffe3acdab9e3256"
+      "sha256": "94fb81cd1118e65d08b78709ff71d8695977f9c7cf1413534e9287ad2f1aca73"
     },
     {
       "path": "forms/strategy-rating.json",
-      "sha256": "7583b20ef709f7f4443a1e6470afb1e6c7879bfc5240a796f5165ea6a9f90c26"
+      "sha256": "184897ae84eb990f830bf5aa8a8ede5ec0ac8986ca6c591ea7de0f8573988b3c"
     },
     {
       "path": "forms/symptom-checklist.json",
-      "sha256": "40e1d4557ed43dbf21de75e09c52d154c16876d9961d8803140da3d1720daa0c"
+      "sha256": "fdf41e3c281655e8e3408fe40a983c7b5f64f6a6676bd2f17ecb49c735bf5de9"
     },
     {
       "path": "forms/thought-record.json",
-      "sha256": "9e382de5e9e75613caf9a8901151da4d70b0f2d3a642015a8ce8ef29b0dd84e6"
+      "sha256": "5c4d8b42e2220e7bd9a203f64c43932100b8c8322781ec20aefffa7b30e840e7"
     },
     {
       "path": "sessions/01-psycho-what-is-adhd.json",
@@ -77,7 +81,7 @@
     },
     {
       "path": "sessions/09-think-cognitive-model.json",
-      "sha256": "2dd0d550d8a000e7f9daf8ef92c3055752602c7749b47b5410a2ae7aa549d161"
+      "sha256": "1acdb20c52a00d268d7991afff7bd178aa80c650b8529bda80b3c89252f95f18"
     },
     {
       "path": "sessions/10-think-adaptive-thinking.json",
@@ -94,6 +98,46 @@
     {
       "path": "sessions/13-relapse-prevention.json",
       "sha256": "3c1b985fb50f1a1f637e28d9856727d289b7d99c729ee95607b5a13492c9290d"
+    },
+    {
+      "path": "sources/antshel-barkley-2015.json",
+      "sha256": "87e0038d9b00c5ae5bd0fe278e9ddbefeefcd074f7200a43f5c3422c5c182600"
+    },
+    {
+      "path": "sources/barkley-2015.json",
+      "sha256": "1eb5d48cb0d47fc230e5c827c2ecebdeb9b175ab308c5e96c090d30218cc4926"
+    },
+    {
+      "path": "sources/dupaul-stoner-2016.json",
+      "sha256": "2bdd08fc9d0f4dbca4b960ef90b65867141a34da8f8ea5f74d6dfd7cd4c2803d"
+    },
+    {
+      "path": "sources/kendall-braswell-1993.json",
+      "sha256": "536de68881e81500ce7ef05edf86d102c35a89492fe1a775c7d4ade79ae2ae2d"
+    },
+    {
+      "path": "sources/knouse-safren-2010.json",
+      "sha256": "6691b15dcf569225567e35ba81bf2b722008600ccc7ca26420c92f1a249106aa"
+    },
+    {
+      "path": "sources/mitchell-2013-mindfulness.json",
+      "sha256": "0195465cbc7d4810ef01754855ef5e0a2bed9e89c329b4787134c6b9e60238e7"
+    },
+    {
+      "path": "sources/ramsay-rostain-2015.json",
+      "sha256": "57949ff92f9fc3c42f792ee8c0587fa3a3f0d00db277de5cf07e0045654b615d"
+    },
+    {
+      "path": "sources/safren-2010-cbt-rct.json",
+      "sha256": "5a8d0c8add981368f3f8674c2b5438ea8ae2e5ca957122b91fa17be9f1d90507"
+    },
+    {
+      "path": "sources/solanto-2008-mct.json",
+      "sha256": "f2d1d899d2ef121f3adb34d8173fa810b4dbfe1f810e1190fc0e907a82f0ea26"
+    },
+    {
+      "path": "sources/sprich-2016-adolescent.json",
+      "sha256": "118cd5fb4295fce4b59b85b04217490ecccd5b690b9ed53fad84b5d627f2e6fc"
     }
   ]
 }

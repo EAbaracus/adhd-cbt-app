@@ -71,4 +71,4 @@ def test_bundle_build_green():
     import tools.build as B
     m = B.build()
     assert m["content_version"] == B.VERSION
-    assert len(m["files"]) == 13 + 8 + 2  # sessions + forms + schemas
+    assert len(m["files"]) == 13 + 8 + len(list(V._glob_json(B.CONTENT_DIR / "schema"))) + len(list(V._glob_json(B.CONTENT_DIR / "sources")))  # sessions + forms + schemas + sources

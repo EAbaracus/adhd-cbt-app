@@ -7,7 +7,7 @@ Directory _bundle({bool tamper = false, bool missing = false}) {
   final root = Directory.systemTemp.createTempSync('promote_test_');
   final dir = Directory('${root.path}/src')..createSync(recursive: true);
   File('${dir.path}/manifest.json').writeAsStringSync(
-      '{"schema_version":"1.0.0","content_version":"0.2.0","files":['
+      '{"schema_version":"1.1.0","content_version":"0.2.0","files":['
       '{"path":"sessions/01.json","sha256":"${ContentRuntime.sha256Hex('{}')}"}]}');
   Directory('${dir.path}/sessions').createSync();
   File('${dir.path}/sessions/01.json').writeAsStringSync(tamper ? '{"x":1}' : '{}');
@@ -19,7 +19,7 @@ Directory _activeOld() {
   final root = Directory.systemTemp.createTempSync('active_test_');
   final active = Directory('${root.path}/active')..createSync();
   File('${active.path}/manifest.json')
-      .writeAsStringSync('{"schema_version":"1.0.0","content_version":"0.1.0","files":[]}');
+      .writeAsStringSync('{"schema_version":"1.1.0","content_version":"0.1.0","files":[]}');
   return active;
 }
 
@@ -65,7 +65,7 @@ void main() {
     final src = _bundle(missing: true);
     final active = _activeOld();
     File('${active.path}/manifest.json').writeAsStringSync(
-        '{"schema_version":"1.0.0","content_version":"0.1.0","files":['
+        '{"schema_version":"1.1.0","content_version":"0.1.0","files":['
         '{"path":"sessions/01.json","sha256":"${ContentRuntime.sha256Hex('{}')}"}]}');
     Directory('${active.path}/sessions').createSync();
     File('${active.path}/sessions/01.json').writeAsStringSync('{}');

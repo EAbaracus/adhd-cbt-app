@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://adhdapp.local/schema/source.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "author", "year", "title", "publication",
+               "source_type", "access_status", "evidence_role"],
+  "properties": {
+    "id":            {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "author":        {"type": "string", "minLength": 1},
+    "year":          {"type": "integer", "minimum": 1900},
+    "title":         {"type": "string", "minLength": 1},
+    "publication":   {"type": "string", "minLength": 1},
+    "doi":           {"type": "string", "pattern": "^10\\.\\d{4,9}/\\S+$"},
+    "pmid":          {"type": "string", "pattern": "^\\d{5,9}$"},
+    "isbn":          {"type": "string", "pattern": "^(97[89])?\\d{9}[\\dX]$"},
+    "source_type":   {"enum": ["clinical_manual", "handbook", "patient_workbook",
+                               "rct", "literature_review", "meta_analysis",
+                               "pilot_study", "school_intervention_guide", "other"]},
+    "access_status": {"enum": ["verified_accessible", "paywalled", "blocked_404", "unverified"]},
+    "evidence_role": {"enum": ["foundational_framework", "efficacy_evidence",
+                               "mechanism", "assessment_reference",
+                               "contextual_background", "population_extension"]},
+    "note":          {"type": "string"}
+  }
+}

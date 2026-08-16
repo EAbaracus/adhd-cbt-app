@@ -11,6 +11,7 @@ def test_build_produces_manifest_with_hashes(tmp_path, monkeypatch):
     (tmp_path / "schema").mkdir()
     (tmp_path / "forms").mkdir()
     (tmp_path / "sessions").mkdir()
+    (tmp_path / "sources").mkdir()
     (tmp_path / "forms" / "a.json").write_text('{"x": 1}', encoding="utf-8")
     m = B.build()
     assert m["content_version"] == "0.1.0"
@@ -25,6 +26,7 @@ def test_build_is_deterministic(tmp_path, monkeypatch):
     (tmp_path / "schema").mkdir()
     (tmp_path / "forms").mkdir()
     (tmp_path / "sessions").mkdir()
+    (tmp_path / "sources").mkdir()
     (tmp_path / "forms" / "a.json").write_text('{"x": 1}', encoding="utf-8")
     m1 = B.build()
     m2 = B.build()
