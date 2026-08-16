@@ -17,6 +17,19 @@ surrounded by a deliberately *anti-engagement* UX.
 
 ---
 
+## Built by someone who gets it
+
+- The author is a **physician living with ADHD** — the app is built by its own
+  target user, not by a team guessing what ADHD feels like.
+- The program follows the **evidence-based CBT framework for adult ADHD** —
+  organizational skills, attention & distractibility management, cognitive
+  restructuring, and relapse prevention — the structure established by the
+  landmark treatment program *Mastering Your Adult ADHD* (Safren, Sprich,
+  Perlman & Otto, Oxford University Press).
+- Every word in the app is **original** — techniques and structure adapted,
+  nothing copied — written in a non-judgmental tone, because the author has
+  read enough self-help books that quietly assume you're lazy.
+
 ## Why this app exists
 
 Most habit apps assume you'll quit — so they gamify: streaks, badges, pressure.

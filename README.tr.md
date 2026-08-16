@@ -14,6 +14,18 @@ Yetişkin DEHB için kanıta dayalı CBT teknikleri üzerine kurulu (organizasyo
 
 ---
 
+## İşin içinden biri tarafından kuruldu
+
+- Yazar, **DEHB'li bir tıp doktorudur** — uygulama, hedef kullanıcısının kendisi
+  tarafından kuruldu; DEHB'nin ne hissettirdiğini tahmin eden bir ekip tarafından değil.
+- Program, **yetişkin DEHB için kanıta dayalı CBT çerçevesini** izler — organizasyon
+  becerileri, dikkat ve dikkat dağınıklığı yönetimi, bilişsel yeniden yapılandırma ve
+  nüks önleme — çığır açan tedavi programı *Mastering Your Adult ADHD*'nin (Safren,
+  Sprich, Perlman & Otto, Oxford University Press) kurduğu yapı.
+- Uygulamadaki her kelime **özgündür** — teknikler ve yapı uyarlandı, hiçbir şey
+  kopyalanmadı — yargılamayan bir tonda yazıldı, çünkü yazar, içinizden sessizce
+  "tembelsin" diyen yeterince kişisel gelişim kitabı okudu.
+
 ## Bu uygulama neden var
 
 Çoğu alışkanlık uygulaması bırakacağınızı varsayar — bu yüzden oyunlaştırırlar: streak'ler, rozetler, baskı.
