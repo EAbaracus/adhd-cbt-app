@@ -1,4 +1,5 @@
-"""F2 sync: per-user snapshot backup. Idempotent upserts keyed (user_id, item_key)."""
+"""F2 sync: per-user snapshot backup/restore. Idempotent upserts keyed (user_id, item_key)."""
+import datetime as dt
 import json
 
 from fastapi import APIRouter, Depends
@@ -31,3 +32,14 @@ def _upsert(store: UserStore, user_id: int, kind: str, items: dict) -> int:
 def backup(body: dict, user: dict = Depends(get_current_user), store: UserStore = Depends(get_store)):
     saved = _upsert(store, user["id"], body.get("kind", ""), body.get("items", {}))
     return {"saved": saved}
+
+
+@router.get("/snapshot")
+def snapshot(user: dict = Depends(get_current_user), store: UserStore = Depends(get_store)):
+    out = {}
+    for kind in SYNC_KINDS:
+        rows = store.conn.execute(
+            f"SELECT item_key, payload, updated_at FROM sync_{kind} WHERE user_id = ?", (user["id"],)
+        ).fetchall()
+        out[kind] = {r["item_key"]: {"payload": json.loads(r["payload"]), "updated_at": r["updated_at"]} for r in rows}
+    return {"snapshot_at": dt.datetime.now(dt.timezone.utc).isoformat(), **out}

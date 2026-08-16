@@ -37,3 +37,28 @@ def test_backup_updates_existing_key(tmp_path):
     r = client.put("/api/sync/backup", json={"kind": "forms", "items": {"f1": {"payload": {"v": 2}, "updated_at": "t2"}}}, headers=h)
     assert r.json()["saved"] == 1
 
+
+def test_snapshot_returns_full_state(tmp_path):
+    client, h = _authed_client(tmp_path)
+    client.put("/api/sync/backup", json={"kind": "forms", "items": {"f1": {"payload": {"v": 1}, "updated_at": "t1"}}}, headers=h)
+    client.put("/api/sync/backup", json={"kind": "logs", "items": {"l1": {"payload": {"m": "x"}, "updated_at": "t2"}}}, headers=h)
+    snap = client.get("/api/sync/snapshot", headers=h).json()
+    assert snap["forms"]["f1"]["payload"]["v"] == 1
+    assert snap["logs"]["l1"]["payload"]["m"] == "x"
+    assert set(snap.keys()) >= {"forms", "logs", "progress", "settings"}
+
+
+def test_snapshot_empty_user(tmp_path):
+    client, h = _authed_client(tmp_path)
+    snap = client.get("/api/sync/snapshot", headers=h).json()
+    for kind in ("progress", "forms", "logs", "settings"):
+        assert snap[kind] == {}
+
+
+def test_per_user_isolation(tmp_path):
+    client, h = _authed_client(tmp_path)
+    client.put("/api/sync/backup", json={"kind": "forms", "items": {"f1": {"payload": {}, "updated_at": "t"}}}, headers=h)
+    client2, h2 = _authed_client(tmp_path, email="other@x.com")
+    snap = client2.get("/api/sync/snapshot", headers=h2).json()
+    assert snap["forms"] == {}
+
