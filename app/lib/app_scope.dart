@@ -19,8 +19,8 @@ class AppScope extends InheritedWidget {
       required this.engine,
       required this.db,
       required this.forms,
-      required this.api,
-      required this.sessionManager,
+      this.api,
+      this.sessionManager,
       required super.child});
 
   static AppScope? of(BuildContext context) =>
