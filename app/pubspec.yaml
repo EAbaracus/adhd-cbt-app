@@ -68,6 +68,15 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  fonts:
+    - family: PublicSans
+      fonts:
+        - asset: assets/fonts/PublicSans-Regular.ttf
+        - asset: assets/fonts/PublicSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/PublicSans-Bold.ttf
+          weight: 700
+
   assets:
     - assets/content/manifest.json
     - assets/content/schema/

@@ -31,25 +31,27 @@ class AppColors {
 }
 
 class AppText {
+  // Steady design system (DESIGN.md): Public Sans throughout.
+  static const _f = 'PublicSans';
   // Hand-crafted scale, logical px only. 10 sizes max. Every style carries an
   // explicit color (refactoring-ui: 3 text colors max) — a color-less style
   // inherits the ambient DefaultTextStyle, which broke to WHITE-on-white here.
   static const caption =
-      TextStyle(fontSize: 12, height: 1.5, fontWeight: FontWeight.w400, color: AppColors.textTertiary);
+      TextStyle(fontFamily: _f, fontSize: 12, height: 1.5, fontWeight: FontWeight.w400, color: AppColors.textTertiary);
   static const small =
-      TextStyle(fontSize: 14, height: 1.5, fontWeight: FontWeight.w400, color: AppColors.textSecondary);
+      TextStyle(fontFamily: _f, fontSize: 14, height: 1.5, fontWeight: FontWeight.w400, color: AppColors.textSecondary);
   static const body =
-      TextStyle(fontSize: 16, height: 1.6, fontWeight: FontWeight.w400, color: AppColors.textPrimary);
+      TextStyle(fontFamily: _f, fontSize: 16, height: 1.6, fontWeight: FontWeight.w400, color: AppColors.textPrimary);
   static const lead =
-      TextStyle(fontSize: 18, height: 1.6, fontWeight: FontWeight.w400, color: AppColors.textPrimary);
+      TextStyle(fontFamily: _f, fontSize: 18, height: 1.6, fontWeight: FontWeight.w400, color: AppColors.textPrimary);
   static const subtitle =
-      TextStyle(fontSize: 20, height: 1.4, fontWeight: FontWeight.w600, color: AppColors.textPrimary);
+      TextStyle(fontFamily: _f, fontSize: 20, height: 1.4, fontWeight: FontWeight.w600, color: AppColors.textPrimary);
   static const section =
-      TextStyle(fontSize: 24, height: 1.25, fontWeight: FontWeight.w600, color: AppColors.textPrimary);
+      TextStyle(fontFamily: _f, fontSize: 24, height: 1.25, fontWeight: FontWeight.w600, color: AppColors.textPrimary);
   static const h2 =
-      TextStyle(fontSize: 30, height: 1.2, fontWeight: FontWeight.w700, color: AppColors.textPrimary);
+      TextStyle(fontFamily: _f, fontSize: 30, height: 1.2, fontWeight: FontWeight.w700, color: AppColors.textPrimary);
   static const h1 =
-      TextStyle(fontSize: 36, height: 1.15, fontWeight: FontWeight.w700, color: AppColors.textPrimary);
+      TextStyle(fontFamily: _f, fontSize: 36, height: 1.15, fontWeight: FontWeight.w700, color: AppColors.textPrimary);
 }
 
 class AppTheme {
