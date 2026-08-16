@@ -10,15 +10,9 @@ import 'content_runtime.dart';
 /// content runtime + OTA path have a single directory source of truth.
 /// Returns null on failure (corrupt bundle / platform error).
 Future<Directory?> bootstrapContentFromAssets() async {
-  // ignore: avoid_print
-  print('ADHD-BOOT: start');
   final docs = await getApplicationDocumentsDirectory();
-  // ignore: avoid_print
-  print('ADHD-BOOT: docs=${docs.path}');
   final contentDir = Directory('${docs.path}/content');
   final manifestData = await rootBundle.loadString('assets/content/manifest.json');
-  // ignore: avoid_print
-  print('ADHD-BOOT: manifest loaded, ${manifestData.length} chars');
   final manifest = jsonDecode(manifestData) as Map<String, dynamic>;
   final files = (manifest['files'] as List? ?? []).cast<Map>();
 
