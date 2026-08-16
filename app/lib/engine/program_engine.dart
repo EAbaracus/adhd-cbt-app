@@ -22,21 +22,21 @@ class ProgramEngine {
 
   Checkpoint? get currentCheckpoint {
     for (final s in sessions) {
+      Set<String>? doneIds;
       for (final c in s.checkpoints) {
         if (c.state == CheckpointState.completed || c.state == CheckpointState.deferred) {
           continue;
         }
-        final unmet = c.requires.any((r) => !_isDone(s, r));
+        doneIds ??= {
+          for (final check in s.checkpoints)
+            if (check.state == CheckpointState.completed || check.state == CheckpointState.deferred)
+              check.id
+        };
+        final unmet = c.requires.any((r) => !doneIds!.contains(r));
         if (!unmet) return c;
       }
     }
     return null;
-  }
-
-  bool _isDone(Session s, String cpId) {
-    final cp = _findIn(s, cpId);
-    return cp != null &&
-        (cp.state == CheckpointState.completed || cp.state == CheckpointState.deferred);
   }
 
   Checkpoint? _findIn(Session s, String id) {
