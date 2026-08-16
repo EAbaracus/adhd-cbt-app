@@ -92,15 +92,15 @@ Veri akışı: `sources/<id>.json` (bibliyografik gerçek) ← `evidence.source`
 | `ramsay-rostain-2015` | Ramsay & Rostain, CBT for Adult ADHD (2nd ed), Routledge | clinical_manual | verified_accessible (T&F TOC + abstract) | foundational_framework | ISBN 9781135072186 (2nd ed, Google Books'da doğrulandı); basım 2014, atıf 2015 (note) |
 | `barkley-2015` | Barkley (Ed.), ADHD: A Handbook for Diagnosis and Treatment (4th ed), Guilford | handbook | verified_accessible (Guilford) | mechanism | ISBN 9781462517725 (hardcover, Guilford'da doğrulandı) |
 | `safren-2010-cbt-rct` | Safren et al., JAMA 304(8):875-880 | rct | verified_accessible (PubMed/JAMA tam metin) | efficacy_evidence | **PMID 20736471 / DOI 10.1001/jama.2010.1192 — DOĞRULANDI; misattribution düzeltmesi note'unda** |
-| `knouse-safren-2010` | Knouse & Safren, Psychiatr Clin North Am 33(3):497-509 | literature_review | blocked_404 | contextual_background | identifier **uygulamada doğrulanacak** (Crossref/PubMed) |
-| `sprich-2016-adolescent` | Sprich et al., J Clin Psychiatry 77(11):1449-1455 | rct | blocked_404 | population_extension | identifier **uygulamada doğrulanacak** |
+| `knouse-safren-2010` | Knouse & Safren, Psychiatr Clin North Am 33(3):497-509 | literature_review | blocked_404 | contextual_background | **PMID 20599129 / DOI 10.1016/j.psc.2010.04.001 — DOĞRULANDI (Crossref/PubMed)** |
+| `sprich-2016-adolescent` | Sprich et al., *J Child Psychol Psychiatry* 57(3):275-283 | rct | blocked_404 | population_extension | **DOI 10.1111/jcpp.12549 / PMID 26990084 — DOĞRULANDI; kullanıcı atfı "J Clin Psychiatry 77(11)" YANLIŞ (dergi adı düzeltildi, note)** |
 | `solanto-2008-mct` | Solanto et al., J Atten Disord 11(6):728-736 | pilot_study | verified_accessible (SAGE abstract) | efficacy_evidence | DOI 10.1177/1087054707305100 — DOĞRULANDI |
-| `mitchell-2013-mindfulness` | Mitchell et al., J Atten Disord 17(2):110-119 | pilot_study | blocked_404 | contextual_background | identifier **uygulamada doğrulanacak** (verilen DOI SAGE'de bulunamadı) |
-| `antshel-barkley-2020` | Antshel & Barkley, Child Adolesc Psychiatr Clin N Am 29(3) | literature_review | blocked_404 | contextual_background | identifier **uygulamada doğrulanacak** |
+| `mitchell-2013-mindfulness` | Mitchell et al., J Atten Disord 21(13):1105-1120 (online 2013) | pilot_study | blocked_404 | contextual_background | **DOI 10.1177/1087054713513328 — DOĞRULANDI (Crossref); kullanıcı atfı "17(2):110-119" YANLIŞ (cilt/sayfa düzeltildi, note)** |
+| `antshel-barkley-2015` | Antshel & Barkley, "Psychosocial interventions in ADHD: Update", Child Adolesc Psychiatr Clin N Am 24(1):79-97 | literature_review | blocked_404 | contextual_background | **PMID 25455577 / DOI 10.1016/j.chc.2014.08.002 — DOĞRULANDI (PubMed); kullanıcı atfı "2020, 29(3)" YANLIŞ (gerçek: 2015 Update, note)** |
 | `kendall-braswell-1993` | Kendall & Braswell, CBT for Impulsive Children (2nd ed), Guilford | clinical_manual | blocked_404 | foundational_framework | ISBN 9780898620138 (kullanıcı URL'si) |
 | `dupaul-stoner-2016` | DuPaul & Stoner, ADHD in the Schools (3rd ed), Guilford | school_intervention_guide | verified_accessible (Guilford) | assessment_reference | ISBN 9781462526000 (paperback, Guilford'da doğrulandı) |
 
-**Doğrulanamayan identifier'lar (knouse-safren, sprich, mitchell, antshel):** registry'ye `unverified`/`blocked_404` ile girer; Faz 1'de Crossref/PubMed üzerinden çözülür. Çözülemeyen kayıt `note` ile işaretlenir ve MVP'de cite edilmez. LOW-confidence → unresolved (kullanıcı standardı).
+**Doğrulama sonuçları (2026-08-16):** 10 kaynağın 9'u Crossref/PubMed/Guilford üzerinden kesin identifier ile doğrulandı. **Üç misattribution düzeltildi:** (1) Safren/JAMA URL → MMWR makalesi; canonical = PMID 20736471 / DOI 10.1001/jama.2010.1192. (2) Sprich "J Clin Psychiatry 77(11)" → gerçek yayın J Child Psychol Psychiatry 57(3):275-283 (DOI 10.1111/jcpp.12549). (3) Antshel & Barkley "2020, 29(3)" → gerçek kayıt 2015 Update, 24(1):79-97 (PMID 25455577). Ayrıca Mitchell cilt/sayfa atfı 17(2):110-119 → 21(13):1105-1120 olarak düzeltildi (DOI aynı çalışmayı doğruluyor). Tüm düzeltmeler kayıtların `note` alanına yazılacak.
 
 **Safren misattribution notu** (`note` alanı): Kullanıcı listesindeki 186352 URL'si bir MMWR makalesine (reçeteli ilaç ED başvuruları) çözülüyordu — Safren RCT'si değil. Canonical kayıt PMID 20736471 / DOI 10.1001/jama.2010.1192'dir; [4]/[8]/[15]/[21] girdileri bu tek kayda dedupe edilir.
 
@@ -184,6 +184,6 @@ Her zenginleştirilmiş seansa yeni `read-evidence-*` checkpoint'i eklenir; mevc
 
 ## 10. Open Items
 
-1. Doğrulanamayan identifier'lar (knouse-safren, sprich, mitchell, antshel) — Faz 1'de Crossref/PubMed çözümü; çözülemeyenler `note` ile işaretlenir, cite edilmez.
+1. ~~Doğrulanamayan identifier'lar~~ — **ÇÖZÜLDÜ:** 9/10 kaynak Crossref/PubMed/Guilford'da kesin identifier ile doğrulandı. `kendall-braswell-1993` ISBN'i kullanıcı URL'sinden geldi, Guilford 404 — ISBN-10 kontrolü Faz 1'de yapılacak (9780898620138 formatı geçerli görünüyor).
 2. `ramsay-rostain-2015` yıl alanı: kullanıcı atfı 2015 (2nd ed basımı 2014-09-25). `year=2015` kaydedilir, note'a basım farkı yazılır.
 3. App footnote kartı kopyası (EN/TR) — Faz 2'de AppStrings üzerinden.
