@@ -54,3 +54,21 @@ def test_optional_flag_and_relapse_closer():
     sessions = {p.stem: json.load(open(p, encoding="utf-8")) for p in V._glob_json(V.SESSIONS_DIR)}
     assert sessions["12-proc-procrastination"].get("optional") is True
     assert sessions["13-relapse-prevention"]["order"] == 13
+
+def test_module_coverage():
+    sessions = [json.load(open(p, encoding="utf-8")) for p in V._glob_json(V.SESSIONS_DIR)]
+    modules = {s["module"] for s in sessions}
+    assert {"psychoeducation", "organization_planning", "distractibility",
+            "adaptive_thinking", "relapse_prevention"} <= modules
+
+def test_full_catalog_gate():
+    sessions = {p.stem: json.load(open(p, encoding="utf-8")) for p in V._glob_json(V.SESSIONS_DIR)}
+    assert len(sessions) == 13
+    orders = sorted(s["order"] for s in sessions.values())
+    assert orders == list(range(1, 14))
+
+def test_bundle_build_green():
+    import tools.build as B
+    m = B.build()
+    assert m["content_version"] == "0.1.0"
+    assert len(m["files"]) == 13 + 8 + 2  # sessions + forms + schemas
