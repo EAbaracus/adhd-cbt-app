@@ -2352,6 +2352,260 @@ class FormSubmissionsCompanion extends UpdateCompanion<FormSubmission> {
   }
 }
 
+class $RetentionEventsTable extends RetentionEvents
+    with TableInfo<$RetentionEventsTable, RetentionEvent> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $RetentionEventsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _eventMeta = const VerificationMeta('event');
+  @override
+  late final GeneratedColumn<String> event = GeneratedColumn<String>(
+    'event',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _atMeta = const VerificationMeta('at');
+  @override
+  late final GeneratedColumn<String> at = GeneratedColumn<String>(
+    'at',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [id, event, at];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'retention_events';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<RetentionEvent> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('event')) {
+      context.handle(
+        _eventMeta,
+        event.isAcceptableOrUnknown(data['event']!, _eventMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_eventMeta);
+    }
+    if (data.containsKey('at')) {
+      context.handle(_atMeta, at.isAcceptableOrUnknown(data['at']!, _atMeta));
+    } else if (isInserting) {
+      context.missing(_atMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  RetentionEvent map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return RetentionEvent(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      event: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}event'],
+      )!,
+      at: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}at'],
+      )!,
+    );
+  }
+
+  @override
+  $RetentionEventsTable createAlias(String alias) {
+    return $RetentionEventsTable(attachedDatabase, alias);
+  }
+}
+
+class RetentionEvent extends DataClass implements Insertable<RetentionEvent> {
+  final String id;
+  final String event;
+  final String at;
+  const RetentionEvent({
+    required this.id,
+    required this.event,
+    required this.at,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['event'] = Variable<String>(event);
+    map['at'] = Variable<String>(at);
+    return map;
+  }
+
+  RetentionEventsCompanion toCompanion(bool nullToAbsent) {
+    return RetentionEventsCompanion(
+      id: Value(id),
+      event: Value(event),
+      at: Value(at),
+    );
+  }
+
+  factory RetentionEvent.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return RetentionEvent(
+      id: serializer.fromJson<String>(json['id']),
+      event: serializer.fromJson<String>(json['event']),
+      at: serializer.fromJson<String>(json['at']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'event': serializer.toJson<String>(event),
+      'at': serializer.toJson<String>(at),
+    };
+  }
+
+  RetentionEvent copyWith({String? id, String? event, String? at}) =>
+      RetentionEvent(
+        id: id ?? this.id,
+        event: event ?? this.event,
+        at: at ?? this.at,
+      );
+  RetentionEvent copyWithCompanion(RetentionEventsCompanion data) {
+    return RetentionEvent(
+      id: data.id.present ? data.id.value : this.id,
+      event: data.event.present ? data.event.value : this.event,
+      at: data.at.present ? data.at.value : this.at,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('RetentionEvent(')
+          ..write('id: $id, ')
+          ..write('event: $event, ')
+          ..write('at: $at')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, event, at);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is RetentionEvent &&
+          other.id == this.id &&
+          other.event == this.event &&
+          other.at == this.at);
+}
+
+class RetentionEventsCompanion extends UpdateCompanion<RetentionEvent> {
+  final Value<String> id;
+  final Value<String> event;
+  final Value<String> at;
+  final Value<int> rowid;
+  const RetentionEventsCompanion({
+    this.id = const Value.absent(),
+    this.event = const Value.absent(),
+    this.at = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  RetentionEventsCompanion.insert({
+    required String id,
+    required String event,
+    required String at,
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       event = Value(event),
+       at = Value(at);
+  static Insertable<RetentionEvent> custom({
+    Expression<String>? id,
+    Expression<String>? event,
+    Expression<String>? at,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (event != null) 'event': event,
+      if (at != null) 'at': at,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  RetentionEventsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? event,
+    Value<String>? at,
+    Value<int>? rowid,
+  }) {
+    return RetentionEventsCompanion(
+      id: id ?? this.id,
+      event: event ?? this.event,
+      at: at ?? this.at,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (event.present) {
+      map['event'] = Variable<String>(event.value);
+    }
+    if (at.present) {
+      map['at'] = Variable<String>(at.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('RetentionEventsCompanion(')
+          ..write('id: $id, ')
+          ..write('event: $event, ')
+          ..write('at: $at, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -2366,6 +2620,9 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $FormSubmissionsTable formSubmissions = $FormSubmissionsTable(
     this,
   );
+  late final $RetentionEventsTable retentionEvents = $RetentionEventsTable(
+    this,
+  );
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -2378,6 +2635,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     formDrafts,
     timerLog,
     formSubmissions,
+    retentionEvents,
   ];
 }
 
@@ -3927,6 +4185,174 @@ typedef $$FormSubmissionsTableProcessedTableManager =
       FormSubmission,
       PrefetchHooks Function()
     >;
+typedef $$RetentionEventsTableCreateCompanionBuilder =
+    RetentionEventsCompanion Function({
+      required String id,
+      required String event,
+      required String at,
+      Value<int> rowid,
+    });
+typedef $$RetentionEventsTableUpdateCompanionBuilder =
+    RetentionEventsCompanion Function({
+      Value<String> id,
+      Value<String> event,
+      Value<String> at,
+      Value<int> rowid,
+    });
+
+class $$RetentionEventsTableFilterComposer
+    extends Composer<_$AppDatabase, $RetentionEventsTable> {
+  $$RetentionEventsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get event => $composableBuilder(
+    column: $table.event,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get at => $composableBuilder(
+    column: $table.at,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$RetentionEventsTableOrderingComposer
+    extends Composer<_$AppDatabase, $RetentionEventsTable> {
+  $$RetentionEventsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get event => $composableBuilder(
+    column: $table.event,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get at => $composableBuilder(
+    column: $table.at,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$RetentionEventsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $RetentionEventsTable> {
+  $$RetentionEventsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get event =>
+      $composableBuilder(column: $table.event, builder: (column) => column);
+
+  GeneratedColumn<String> get at =>
+      $composableBuilder(column: $table.at, builder: (column) => column);
+}
+
+class $$RetentionEventsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $RetentionEventsTable,
+          RetentionEvent,
+          $$RetentionEventsTableFilterComposer,
+          $$RetentionEventsTableOrderingComposer,
+          $$RetentionEventsTableAnnotationComposer,
+          $$RetentionEventsTableCreateCompanionBuilder,
+          $$RetentionEventsTableUpdateCompanionBuilder,
+          (
+            RetentionEvent,
+            BaseReferences<
+              _$AppDatabase,
+              $RetentionEventsTable,
+              RetentionEvent
+            >,
+          ),
+          RetentionEvent,
+          PrefetchHooks Function()
+        > {
+  $$RetentionEventsTableTableManager(
+    _$AppDatabase db,
+    $RetentionEventsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$RetentionEventsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$RetentionEventsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$RetentionEventsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> event = const Value.absent(),
+                Value<String> at = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => RetentionEventsCompanion(
+                id: id,
+                event: event,
+                at: at,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String event,
+                required String at,
+                Value<int> rowid = const Value.absent(),
+              }) => RetentionEventsCompanion.insert(
+                id: id,
+                event: event,
+                at: at,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$RetentionEventsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $RetentionEventsTable,
+      RetentionEvent,
+      $$RetentionEventsTableFilterComposer,
+      $$RetentionEventsTableOrderingComposer,
+      $$RetentionEventsTableAnnotationComposer,
+      $$RetentionEventsTableCreateCompanionBuilder,
+      $$RetentionEventsTableUpdateCompanionBuilder,
+      (
+        RetentionEvent,
+        BaseReferences<_$AppDatabase, $RetentionEventsTable, RetentionEvent>,
+      ),
+      RetentionEvent,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -3945,4 +4371,6 @@ class $AppDatabaseManager {
       $$TimerLogTableTableManager(_db, _db.timerLog);
   $$FormSubmissionsTableTableManager get formSubmissions =>
       $$FormSubmissionsTableTableManager(_db, _db.formSubmissions);
+  $$RetentionEventsTableTableManager get retentionEvents =>
+      $$RetentionEventsTableTableManager(_db, _db.retentionEvents);
 }

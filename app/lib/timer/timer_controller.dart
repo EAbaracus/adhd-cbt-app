@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:drift/drift.dart';
 
 import '../store/app_database.dart';
+import '../retention/retention_service.dart';
 import 'chunk_timer.dart';
 
 class TimerController {
@@ -21,6 +22,7 @@ class TimerController {
           endedAt: Value<String?>(now),
           updatedAt: now,
         ));
+    await RetentionService(db).record('timer_finished');
   }
 
   /// Crash recovery (spec §6.4): last in-progress timer, reconstructed.

@@ -65,3 +65,11 @@ class FormSubmissions extends Table {
   @override
   Set<Column> get primaryKey => {id};
 }
+
+class RetentionEvents extends Table {
+  TextColumn get id => text()();
+  TextColumn get event => text()();
+  TextColumn get at => text()();
+  @override
+  Set<Column> get primaryKey => {id};
+}

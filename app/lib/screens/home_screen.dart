@@ -7,6 +7,7 @@ import '../engine/models.dart';
 import '../engine/program_engine.dart';
 import '../store/app_database.dart';
 import '../store/drift_progress_store.dart';
+import '../retention/retention_service.dart';
 import '../tasks/task_controller.dart';
 import '../theme/app_theme.dart';
 import '../timer/timer_controller.dart';
@@ -83,6 +84,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     onProgress: (session) async {
                       await widget.engine.persist(
                           DriftProgressStore(widget.db));
+                      await RetentionService(widget.db)
+                          .record('session_completed');
                       if (context.mounted) setState(() {});
                     },
                     onFormSubmit: (formId, answers) async {
@@ -95,6 +98,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               answersJson: jsonEncode(answers),
                               submittedAt: now,
                               updatedAt: now));
+                      await RetentionService(widget.db)
+                          .record('form_submitted');
                     },
                   )));
           if (context.mounted) setState(() {});
