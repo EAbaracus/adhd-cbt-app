@@ -1,0 +1,27 @@
+{
+  "id": "13-relapse-prevention",
+  "order": 13,
+  "module": "relapse_prevention",
+  "title": {"en": "Keeping the gains"},
+  "checkpoints": [
+    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in"},
+     "content": {"en": ["Fill in the symptom check."]},
+     "formRef": "form:symptom-checklist"},
+    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check"},
+     "content": {"en": ["Record prescribed and missed doses."]},
+     "formRef": "form:medication-adherence"},
+    {"id": "read-maintain", "type": "reading", "title": {"en": "The program ends, the practice continues"},
+     "content": {"en": [
+       "Finishing the sessions is the start of self-directed practice, not a graduation. The benefits compound with use — the skills get cheaper each time you reach for them.",
+       "Schedule a one-month review with yourself. Note the strategies that earned their place; drop the ones that didn't.",
+       "Relapse is normal. The first signs — skipped check-ins, a growing pile, avoided tasks — are the cue to restart the system, not to start over."
+     ]}},
+    {"id": "ex-rate", "type": "exercise", "title": {"en": "Rate your strategies"},
+     "content": {"en": ["For each strategy you used, rate how useful it was and note why."]},
+     "formRef": "form:strategy-rating"},
+    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice"},
+     "content": {"en": ["Write your maintenance plan: calendar system, chunked work, thought record — and the first signs that tell you to restart them."]}},
+    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week"},
+     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"]}}
+  ]
+}

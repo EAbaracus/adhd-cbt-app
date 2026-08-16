@@ -49,3 +49,8 @@ def test_thought_record_used_in_adaptive_thinking():
     used = [s["id"] for s in sessions.values()
             if any(c.get("formRef") == "form:thought-record" for c in s["checkpoints"])]
     assert "10-think-adaptive-thinking" in used and "11-think-rehearsal" in used
+
+def test_optional_flag_and_relapse_closer():
+    sessions = {p.stem: json.load(open(p, encoding="utf-8")) for p in V._glob_json(V.SESSIONS_DIR)}
+    assert sessions["12-proc-procrastination"].get("optional") is True
+    assert sessions["13-relapse-prevention"]["order"] == 13
