@@ -34,6 +34,10 @@ class AppStrings {
     'session_back_home': 'Back to home',
     'session_back': 'Back',
     'session_completed': 'Completed',
+    // Evidence card
+    'evidence_close': 'Close',
+    'evidence_fullText': 'Read full source',
+    'evidence_paywall': 'Full text is paywalled',
     'session_in_progress': 'In progress',
     'session_available': 'Available',
     // Form renderer
@@ -61,6 +65,7 @@ class AppStrings {
     'onboarding_get_started': 'Get started',
     // Progress screen
     'progress_title': 'Progress',
+    'progress_subtitle': 'Daily symptom check-in',
     'progress_weekly_score': 'Weekly symptom score',
     'progress_score_hint': 'Lower is better. Each point is one weekly check-in.',
     // Task list screen
@@ -133,6 +138,10 @@ class AppStrings {
       'session_back_home': 'Ana sayfaya dön',
       'session_back': 'Geri',
       'session_completed': 'Tamamlandı',
+      // Evidence card
+      'evidence_close': 'Kapat',
+      'evidence_fullText': 'Kaynağı oku',
+      'evidence_paywall': 'Tam metin ödeme duvarı arkasında',
       'session_in_progress': 'Devam ediyor',
       'session_available': 'Mevcut',
       // Form renderer
@@ -160,6 +169,7 @@ class AppStrings {
       'onboarding_get_started': 'Başlayalım',
       // Progress screen
       'progress_title': 'İlerleme',
+      'progress_subtitle': 'Günlük semptom kontrolü',
       'progress_weekly_score': 'Haftalık belirti puanı',
       'progress_score_hint': 'Daha düşük daha iyidir. Her puan bir haftalık kontrol.',
       // Task list screen

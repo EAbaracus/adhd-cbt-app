@@ -19,7 +19,9 @@ class OnboardingScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Spacer(),
+              const SizedBox(height: AppTheme.spacing24),
+              Image.asset('assets/icons/brain_leaf_mark.png', height: 56),
+              const SizedBox(height: AppTheme.spacing24),
               Text(tr('onboarding_app_title'), style: AppText.h1),
               const SizedBox(height: AppTheme.spacing16),
               Text(
