@@ -15,14 +15,18 @@ class DriftProgressStore implements ProgressStore {
 
   @override
   Future<void> save(Map<String, String> states) async {
-    await db.transaction(() async {
-      for (final e in states.entries) {
-        await db.into(db.checkpointStates).insertOnConflictUpdate(
-            CheckpointStatesCompanion.insert(
-                checkpointId: e.key,
-                state: e.value,
-                updatedAt: DateTime.now().toUtc().toIso8601String()));
-      }
+    final now = DateTime.now().toUtc().toIso8601String();
+    await db.batch((batch) {
+      batch.insertAllOnConflictUpdate(
+        db.checkpointStates,
+        states.entries.map(
+          (e) => CheckpointStatesCompanion.insert(
+            checkpointId: e.key,
+            state: e.value,
+            updatedAt: now,
+          ),
+        ),
+      );
     });
   }
 }
