@@ -13,7 +13,7 @@ class FakeReceiptProvider implements PlatformReceiptProvider {
 }
 
 void main() {
-  ApiClient _api({int status = 200, List<String>? received}) =>
+  ApiClient apiFor({int status = 200, List<String>? received}) =>
       ApiClient(baseUrl: 'http://fake')
         ..token = 't'
         ..httpClient = MockClient((req) async {
@@ -23,7 +23,7 @@ void main() {
 
   test('submit posts platform+receipt_data, 200 -> submitted', () async {
     final received = <String>[];
-    final api = _api(received: received);
+    final api = apiFor(received: received);
     final svc = ReceiptService(
         api: api, provider: FakeReceiptProvider({'platform': 'apple', 'receipt_data': 'abc'}));
     expect(await svc.submit(), ReceiptResult.submitted);
@@ -32,14 +32,14 @@ void main() {
   });
 
   test('400 -> failed', () async {
-    final api = _api(status: 400);
+    final api = apiFor(status: 400);
     final svc = ReceiptService(
         api: api, provider: FakeReceiptProvider({'platform': 'google', 'receipt_data': 'x'}));
     expect(await svc.submit(), ReceiptResult.failed);
   });
 
   test('null provider -> failed without crash', () async {
-    final api = _api();
+    final api = apiFor();
     final svc = ReceiptService(api: api);
     expect(await svc.submit(), ReceiptResult.failed);
   });
