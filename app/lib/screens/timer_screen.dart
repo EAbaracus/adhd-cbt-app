@@ -5,10 +5,13 @@ import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 import '../timer/chunk_timer.dart';
 import '../timer/timer_controller.dart';
+import '../notifications/notification_service.dart';
+import '../notifications/local_notifications.dart';
 
 class TimerScreen extends StatefulWidget {
   final TimerController controller;
-  const TimerScreen({super.key, required this.controller});
+  final NotificationService? notifications;
+  const TimerScreen({super.key, required this.controller, this.notifications});
 
   @override
   State<TimerScreen> createState() => _TimerScreenState();
@@ -16,6 +19,8 @@ class TimerScreen extends StatefulWidget {
 
 class _TimerScreenState extends State<TimerScreen> {
   static const presets = [10, 15, 25, 45];
+  late final NotificationService _notifications =
+      widget.notifications ?? LocalNotificationService();
   ChunkTimer? _timer;
   Timer? _ticker;
   final _parkController = TextEditingController();
@@ -72,6 +77,16 @@ class _TimerScreenState extends State<TimerScreen> {
     t.finish();
     _ticker?.cancel();
     await widget.controller.saveLog(t, distractions: _parked.length);
+    _notifications.onPermissionDenied(() {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+              'Timer done — enable notifications for a gentle reminder next time.'),
+        ));
+      }
+    });
+    final granted = await _notifications.ensurePermission();
+    if (granted) await _notifications.notifyTimerComplete();
     if (!mounted) return;
     setState(() {
       _timer = null;
