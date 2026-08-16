@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
+
+import '../content/content_runtime.dart';
 
 class AuthResult {
   final String token;
@@ -10,7 +13,7 @@ class AuthResult {
 
 class ApiClient {
   final String baseUrl;
-  final http.Client httpClient;
+  http.Client httpClient;
   ApiClient({String? baseUrl, http.Client? httpClient})
       : baseUrl = baseUrl ?? 'http://127.0.0.1:8000',
         httpClient = httpClient ?? http.Client();
@@ -53,6 +56,37 @@ class ApiClient {
   Future<AuthResult> login(
           {required String email, required String password}) =>
       _post('/api/auth/login', {'email': email, 'password': password});
+
+  String? token;
+
+  Future<ContentBundle?> fetchRemoteManifest() async {
+    if (token == null) return null;
+    try {
+      final resp = await httpClient
+          .get(Uri.parse('$baseUrl/api/content/manifest'),
+              headers: {'Authorization': 'Bearer $token'})
+          .timeout(const Duration(seconds: 10));
+      if (resp.statusCode != 200) return null;
+      return ContentBundle.fromManifestJson(
+          jsonDecode(resp.body) as Map<String, dynamic>);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<Uint8List?> fetchContentFile(String path) async {
+    if (token == null) return null;
+    try {
+      final resp = await httpClient
+          .get(Uri.parse('$baseUrl/api/content/file/$path'),
+              headers: {'Authorization': 'Bearer $token'})
+          .timeout(const Duration(seconds: 30));
+      if (resp.statusCode != 200) return null;
+      return resp.bodyBytes;
+    } catch (_) {
+      return null;
+    }
+  }
 }
 
 class ApiException implements Exception {
