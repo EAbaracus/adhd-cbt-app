@@ -6,3 +6,7 @@ __pycache__/
 .DS_Store
 content/.venv/
 content/build/
+# FCM / Firebase secrets (user-supplied at build; never committed)
+**/google-services.json
+**/GoogleService-Info.plist
+**/service-account*.json

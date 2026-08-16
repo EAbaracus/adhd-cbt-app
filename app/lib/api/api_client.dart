@@ -134,6 +134,45 @@ class ApiClient {
       return false;
     }
   }
+
+  /// Registers this device's push token with the backend (auth required).
+  /// Returns true on 200; swallows auth/network errors (non-fatal, A3 local-first).
+  Future<bool> registerPushToken(String token, String platform) async {
+    if (token.isEmpty) return false;
+    try {
+      final resp = await httpClient
+          .post(
+            Uri.parse('$baseUrl/api/push/token'),
+            headers: {
+              'Content-Type': 'application/json',
+              if (this.token != null && this.token!.isNotEmpty) 'Authorization': 'Bearer ${this.token}',
+            },
+            body: jsonEncode({'token': token, 'platform': platform}),
+          )
+          .timeout(const Duration(seconds: 8));
+      return resp.statusCode == 200;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Removes this device's push token (logout/account delete).
+  Future<bool> unregisterPushToken(String token) async {
+    if (token.isEmpty) return false;
+    try {
+      final resp = await httpClient
+          .delete(
+            Uri.parse('$baseUrl/api/push/token/$token'),
+            headers: {
+              if (this.token != null && this.token!.isNotEmpty) 'Authorization': 'Bearer ${this.token}',
+            },
+          )
+          .timeout(const Duration(seconds: 8));
+      return resp.statusCode == 200;
+    } catch (_) {
+      return false;
+    }
+  }
 }
 
 class ApiException implements Exception {
