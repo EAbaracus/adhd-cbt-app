@@ -2,6 +2,7 @@
 library;
 
 import 'models.dart';
+import '../store/progress_store.dart';
 
 class ProgramEngine {
   final List<Session> sessions;
@@ -63,6 +64,24 @@ class ProgramEngine {
 
   int completedCount(Session s) =>
       s.checkpoints.where((c) => c.state == CheckpointState.completed).length;
+
+  Future<void> restore(ProgressStore store) async {
+    final states = await store.load();
+    for (final entry in states.entries) {
+      _find(entry.key)?.state = CheckpointState.values.firstWhere(
+          (s) => s.name == entry.value,
+          orElse: () => CheckpointState.current);
+    }
+  }
+
+  Future<void> persist(ProgressStore store) async {
+    final states = <String, String>{
+      for (final s in sessions)
+        for (final c in s.checkpoints)
+          if (c.state != CheckpointState.current) c.id: c.state.name,
+    };
+    await store.save(states);
+  }
 
   SessionState sessionState(Session s) {
     final all = s.checkpoints.every((c) =>
