@@ -1,0 +1,35 @@
+{
+  "id": "02-psycho-how-program-works",
+  "order": 2,
+  "module": "psychoeducation",
+  "title": {"en": "How the program works"},
+  "checkpoints": [
+    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in"},
+     "content": {"en": ["Fill in the symptom check again. Compare it to last week only to notice, not to judge."]},
+     "formRef": "form:symptom-checklist"},
+    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check"},
+     "content": {"en": ["Same as last week — record what was prescribed and what you missed."]},
+     "formRef": "form:medication-adherence"},
+    {"id": "read-structure", "type": "reading", "title": {"en": "The shape of the 12 weeks"},
+     "content": {"en": [
+       "Each week follows the same rhythm: a short check-in, one new skill to read about, and a small practice to carry into the week.",
+       "The sessions move from understanding ADHD, to organizing your life, to protecting your attention, to changing the thoughts that drive avoidance, and finally to keeping the gains.",
+       "You do not need to master a session before moving on. The skills layer — later weeks make sense because earlier ones prepared the ground, but showing up is enough."
+     ]}},
+    {"id": "read-quit", "type": "reading", "title": {"en": "The middle-phase temptation"},
+     "content": {"en": [
+       "Most people feel a pull to quit around the halfway point. The early relief fades, the hard work stays, and the new habit has not yet paid off.",
+       "That pull is normal and expected — it is not a sign the program is wrong for you. Plan now to notice it, and keep the practice small enough to keep doing."
+     ]}},
+    {"id": "ex-goal", "type": "exercise", "title": {"en": "Choose one program goal"},
+     "content": {"en": ["Pick a single thing you want different by the end — one sentence. Keep it concrete and yours, not what anyone expects."]},
+     "formRef": "form:module-review"},
+    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice"},
+     "content": {"en": [
+       "Run the week with your calendar and task list in place.",
+       "Each evening, note the one thing that went as planned and the one that didn't."
+     ]}},
+    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week"},
+     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"]}}
+  ]
+}

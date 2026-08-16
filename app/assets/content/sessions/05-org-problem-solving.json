@@ -1,0 +1,26 @@
+{
+  "id": "05-org-problem-solving",
+  "order": 5,
+  "module": "organization_planning",
+  "title": {"en": "Six-step problem solving"},
+  "checkpoints": [
+    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in"},
+     "content": {"en": ["Fill in the symptom check."]},
+     "formRef": "form:symptom-checklist"},
+    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check"},
+     "content": {"en": ["Record prescribed and missed doses."]},
+     "formRef": "form:medication-adherence"},
+    {"id": "read-steps", "type": "reading", "title": {"en": "The six steps"},
+     "content": {"en": [
+       "1. Define the problem in one sentence. 2. Brainstorm every solution without judging any. 3. List pros and cons of the best option. 4. Pick the best imperfect option — not the perfect one. 5. Plan the concrete first steps. 6. Set a time to review how it went.",
+       "ADHD makes step 2 hard (we judge too early) and step 5 easy to skip. Write both down."
+     ]}},
+    {"id": "ex-run", "type": "exercise", "title": {"en": "Run it on a real problem"},
+     "content": {"en": ["Pick one problem you are avoiding. Work it through all six steps now."]},
+     "formRef": "form:problem-solving"},
+    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice"},
+     "content": {"en": ["Use the form for one real problem this week."]}},
+    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week"},
+     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"]}}
+  ]
+}

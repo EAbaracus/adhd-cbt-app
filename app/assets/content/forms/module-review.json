@@ -1,0 +1,10 @@
+{
+  "id": "module-review",
+  "type": "module_review",
+  "title": {"en": "Module review"},
+  "fields": [
+    {"id": "module", "kind": "text", "label": {"en": "Which module did you work on"}, "options": ["psychoeducation", "organization_planning", "distractibility", "adaptive_thinking", "procrastination", "relapse_prevention"]},
+    {"id": "worked_well", "kind": "textarea", "label": {"en": "What worked well this week"}},
+    {"id": "difficulties", "kind": "textarea", "label": {"en": "What was difficult"}}
+  ]
+}

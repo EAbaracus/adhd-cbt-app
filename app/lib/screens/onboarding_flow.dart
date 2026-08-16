@@ -39,14 +39,14 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
       _error = null;
     });
     try {
-      final result = _loginMode
-          ? await widget.api.login(
+      await (_loginMode
+          ? widget.api.login(
               email: _email.text.trim(), password: _password.text)
-          : await widget.api.register(
+          : widget.api.register(
               email: _email.text.trim(),
               password: _password.text,
               ageCountry: 'US',
-              ageMin: 18);
+              ageMin: 18));
       if (!mounted) return;
       // M2: in-memory session; Drift UserSettings persistence lands in M3.
       Navigator.of(context).pushReplacementNamed('/home');

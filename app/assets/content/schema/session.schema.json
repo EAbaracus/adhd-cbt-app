@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://adhdapp.local/schema/session.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "order", "module", "title", "checkpoints"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "order": {"type": "integer", "minimum": 1},
+    "optional": {"type": "boolean", "default": false},
+    "module": {"enum": ["psychoeducation", "organization_planning", "distractibility", "adaptive_thinking", "procrastination", "relapse_prevention"]},
+    "title": {"$ref": "#/$defs/localized"},
+    "checkpoints": {"type": "array", "minItems": 4, "items": {"$ref": "#/$defs/checkpoint"}}
+  },
+  "$defs": {
+    "localized": {
+      "type": "object", "additionalProperties": false, "required": ["en"],
+      "properties": {"en": {"type": "string", "minLength": 1}}
+    },
+    "checkpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "title", "content"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+        "type": {"enum": ["ritual", "reading", "exercise", "homework", "reflection"]},
+        "title": {"$ref": "#/$defs/localized"},
+        "formRef": {"type": "string", "pattern": "^form:[a-z0-9-]+$"},
+        "requires": {"type": "array", "items": {"type": "string", "pattern": "^[a-z0-9-]+$"}, "uniqueItems": true},
+        "content": {
+          "type": "object", "additionalProperties": false, "required": ["en"],
+          "properties": {
+            "en": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+          }
+        }
+      },
+      "allOf": [
+        {"if": {"required": ["type"], "properties": {"type": {"const": "ritual"}}},
+         "then": {"required": ["formRef"]}}
+      ]
+    }
+  }
+}

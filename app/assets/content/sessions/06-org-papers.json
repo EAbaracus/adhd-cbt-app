@@ -1,0 +1,25 @@
+{
+  "id": "06-org-papers",
+  "order": 6,
+  "module": "organization_planning",
+  "title": {"en": "Taming the paper pile"},
+  "checkpoints": [
+    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in"},
+     "content": {"en": ["Fill in the symptom check."]},
+     "formRef": "form:symptom-checklist"},
+    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check"},
+     "content": {"en": ["Record prescribed and missed doses."]},
+     "formRef": "form:medication-adherence"},
+    {"id": "read-workflow", "type": "reading", "title": {"en": "Sort, decide, file"},
+     "content": {"en": [
+       "For each piece of mail or paper: sort it, decide act/keep/discard, then act or file immediately. Don't set it down to 'deal with later' — later is where papers multiply.",
+       "Use a filing system with only a few categories. More than five categories and you won't use it."
+     ]}},
+    {"id": "ex-sort", "type": "exercise", "title": {"en": "Sort one real pile"},
+     "content": {"en": ["Take a real pile of papers. Sort it. Define 3-5 filing categories that make sense to you."]}},
+    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice"},
+     "content": {"en": ["Run the sort workflow on one pile this week — act, file, or discard, then close it."]}},
+    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week"},
+     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"]}}
+  ]
+}

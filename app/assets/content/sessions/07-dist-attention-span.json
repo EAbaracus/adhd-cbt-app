@@ -1,0 +1,27 @@
+{
+  "id": "07-dist-attention-span",
+  "order": 7,
+  "module": "distractibility",
+  "title": {"en": "Your attention span is not fixed"},
+  "checkpoints": [
+    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in"},
+     "content": {"en": ["Fill in the symptom check."]},
+     "formRef": "form:symptom-checklist"},
+    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check"},
+     "content": {"en": ["Record prescribed and missed doses."]},
+     "formRef": "form:medication-adherence"},
+    {"id": "read-span", "type": "reading", "title": {"en": "Measure, don't guess"},
+     "content": {"en": [
+       "Attention span is not a fixed trait — it shifts with task, energy, and setting. Measure it on a task you dread, not one you like.",
+       "The distractibility delay: work in chunks that match your real span, then deliberately delay the distraction. The break is planned and short — it is part of the method, not an escape from it.",
+       "When the urge to switch comes, note it and give yourself a set minute before you act on it. Most urges pass if you let them."
+     ]}},
+    {"id": "ex-gauge", "type": "exercise", "title": {"en": "Gauge your span now"},
+     "content": {"en": ["Pick one dreaded task. Work on it and track how long you stayed focused and how many times you were pulled away."]},
+     "formRef": "form:attention-gauge"},
+    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice"},
+     "content": {"en": ["Run three chunked work sessions this week using the delay technique."]}},
+    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week"},
+     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"]}}
+  ]
+}

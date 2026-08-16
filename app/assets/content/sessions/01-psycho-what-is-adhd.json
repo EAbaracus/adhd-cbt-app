@@ -1,0 +1,38 @@
+{
+  "id": "01-psycho-what-is-adhd",
+  "order": 1,
+  "module": "psychoeducation",
+  "title": {"en": "Understanding ADHD"},
+  "checkpoints": [
+    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in"},
+     "content": {"en": ["This is the first session, so your baseline matters. Answer as honestly as you can."]},
+     "formRef": "form:symptom-checklist"},
+    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check"},
+     "content": {"en": ["Track what you were prescribed and any doses you missed this week."]},
+     "formRef": "form:medication-adherence"},
+    {"id": "read-adhd", "type": "reading", "title": {"en": "What ADHD is — and is not"},
+     "content": {"en": [
+       "ADHD is a real, biological condition, not a character flaw. It is not about intelligence, laziness, or willpower.",
+       "The core difficulties are attention, impulsivity, and activity level — and they have been with you since childhood, even if the shape of them changed as you grew up.",
+       "Symptoms alone are not a diagnosis. Diagnosis requires that these difficulties actually interfere with real parts of your life — work, school, relationships — and that they are not better explained by something else.",
+       "The useful question for this program is not 'do I have ADHD?' but 'which situations are hardest for me, and what skills help there?'"
+     ]}},
+    {"id": "read-cbt-model", "type": "reading", "title": {"en": "The cycle this program targets"},
+     "content": {"en": [
+       "Years of struggling can teach a person to expect failure. That expectation shows up as negative automatic thoughts: 'I can't do this', 'I'll just do it later', 'it won't work anyway'.",
+       "Those thoughts drive avoidance, avoidance erodes skills, and eroded skills produce more failures — a self-reinforcing loop.",
+       "This program interrupts that loop. Medication (if you take it) reduces the core symptoms; the skills here give you ways to cope with what remains. Both together work better than either alone.",
+       "You will not be graded, and there is no way to fall behind in a way that matters. Missing a session or a practice week is part of the process, not a failure of it."
+     ]}},
+    {"id": "ex-map", "type": "exercise", "title": {"en": "Map your hard situations"},
+     "content": {"en": ["Write down three situations from the last month that felt overwhelming, and what you did in each."]},
+     "formRef": "form:module-review"},
+    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice"},
+     "content": {"en": [
+       "Set up your calendar and a simple task list — one place where appointments and to-dos live. The next session builds on this.",
+       "Each day, write down the two or three things that matter most, in the order you plan to do them."
+     ]}},
+    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week"},
+     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"]}}
+  ]
+}

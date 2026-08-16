@@ -1,0 +1,10 @@
+{
+  "id": "strategy-rating",
+  "type": "strategy_rating",
+  "title": {"en": "Strategy rating"},
+  "fields": [
+    {"id": "strategy", "kind": "text", "label": {"en": "Which strategy did you try"}},
+    {"id": "usefulness", "kind": "scale_0_100", "label": {"en": "How useful was it (0-100)"}},
+    {"id": "why", "kind": "textarea", "label": {"en": "What made it work or not"}}
+  ]
+}

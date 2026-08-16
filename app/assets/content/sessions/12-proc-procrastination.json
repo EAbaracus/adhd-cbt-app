@@ -1,0 +1,27 @@
+{
+  "id": "12-proc-procrastination",
+  "order": 12,
+  "module": "procrastination",
+  "optional": true,
+  "title": {"en": "Procrastination as cognitive avoidance"},
+  "checkpoints": [
+    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in"},
+     "content": {"en": ["Fill in the symptom check."]},
+     "formRef": "form:symptom-checklist"},
+    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check"},
+     "content": {"en": ["Record prescribed and missed doses."]},
+     "formRef": "form:medication-adherence"},
+    {"id": "read-avoid", "type": "reading", "title": {"en": "Why we postpone"},
+     "content": {"en": [
+       "Procrastination is usually cognitive avoidance — we postpone because focus gets easier as the deadline gets closer, and the short-term relief of putting it off rewards the delay.",
+       "Perfectionism drives a lot of it: 'it must be right' makes starting feel dangerous. The fix combines skills you already have — break the task down, set a realistic goal for one step, and challenge the perfectionist thought."
+     ]}},
+    {"id": "ex-proscons", "type": "exercise", "title": {"en": "Pros and cons of now vs later"},
+     "content": {"en": ["Take one task you are avoiding. Write the pros and cons of doing it now versus later."]},
+     "formRef": "form:pros-cons"},
+    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice"},
+     "content": {"en": ["Use breakdown plus one rational response on a dreaded task this week."]}},
+    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week"},
+     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"]}}
+  ]
+}

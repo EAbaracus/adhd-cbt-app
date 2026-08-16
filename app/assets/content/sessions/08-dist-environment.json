@@ -1,0 +1,26 @@
+{
+  "id": "08-dist-environment",
+  "order": 8,
+  "module": "distractibility",
+  "title": {"en": "Make focus cost less"},
+  "checkpoints": [
+    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in"},
+     "content": {"en": ["Fill in the symptom check."]},
+     "formRef": "form:symptom-checklist"},
+    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check"},
+     "content": {"en": ["Record prescribed and missed doses."]},
+     "formRef": "form:medication-adherence"},
+    {"id": "read-env", "type": "reading", "title": {"en": "Change the environment, not your willpower"},
+     "content": {"en": [
+       "Focus is easier when the environment does the work: one thing on the desk, phone out of sight, notifications off.",
+       "A start ritual signals the brain it is time to work — the same small action every time.",
+       "Active ignoring: keep a written list of intrusive thoughts to park, not fight. Writing them down lets you return to them later instead of circling them now."
+     ]}},
+    {"id": "ex-changes", "type": "exercise", "title": {"en": "Pick three changes"},
+     "content": {"en": ["Choose three environment changes for your main work spot. Write them as concrete actions."]}},
+    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice"},
+     "content": {"en": ["Apply the three changes and keep a park-list for one week."]}},
+    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week"},
+     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"]}}
+  ]
+}
