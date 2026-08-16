@@ -2,29 +2,36 @@
   "id": "04-org-priorities",
   "order": 4,
   "module": "organization_planning",
-  "title": {"en": "Priorities that fit attention"},
+  "title": {"en": "Priorities that fit attention", "tr": "Dikkate uyan öncelikler"},
   "checkpoints": [
-    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in"},
-     "content": {"en": ["Fill in the symptom check."]},
+    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in", "tr": "Haftalık kontrol"},
+     "content": {"en": ["Fill in the symptom check."], "tr": ["Belirti kontrolünü doldurun."]},
      "formRef": "form:symptom-checklist"},
-    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check"},
-     "content": {"en": ["Record prescribed and missed doses."]},
+    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check", "tr": "İlaç kontrolü"},
+     "content": {"en": ["Record prescribed and missed doses."], "tr": ["Reçete edilen ve kaçırılan dozları kaydedin."]},
      "formRef": "form:medication-adherence"},
-    {"id": "read-abc", "type": "reading", "title": {"en": "A/B/C priorities"},
+    {"id": "read-abc", "type": "reading", "title": {"en": "A/B/C priorities", "tr": "A/B/C öncelikler"},
      "content": {"en": [
        "Rate each task A (must do), B (should do), or C (nice to do). Start the day with one A.",
        "Small tasks first build momentum — a quick win makes the next task easier to start.",
-       "Break big tasks into steps sized to your attention. 'Do taxes' is not a step; 'find last year's form' is."
-     ]}},
-    {"id": "ex-rate", "type": "exercise", "title": {"en": "Rate and break down"},
-     "content": {"en": ["Take your current list. Assign A/B/C to each. Pick one A and break it into three small steps."]},
+       "Break big tasks into steps sized to your attention. 'Do taxes' is not a step; 'find last year's form' is."],
+       "tr": [
+       "Her görevi A (yapılmalı), B (yapılmalı iyi olur) veya C (güzel olur) olarak derecelendirin. Güne bir A ile başlayın.",
+       "Önce küçük görevler ivme kazandırır — hızlı bir kazanım, sonraki göreve başlamayı kolaylaştırır.",
+       "Büyük görevleri dikkatinizin boyutuna göre adımlara bölün. 'Vergileri yap' bir adım değildir; 'geçen yılın formunu bul' bir adımdır."]}},
+    {"id": "ex-rate", "type": "exercise", "title": {"en": "Rate and break down", "tr": "Derecelendirin ve bölün"},
+     "content": {"en": ["Take your current list. Assign A/B/C to each. Pick one A and break it into three small steps."],
+                 "tr": ["Mevcut listenizi alın. Her birine A/B/C atayın. Bir A seçin ve onu üç küçük adıma bölün."]},
      "formRef": "form:module-review"},
-    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice"},
+    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice", "tr": "Ev pratiği"},
      "content": {"en": [
        "Each morning, mark A/B/C on the day's tasks and do one A first.",
-       "Break at least one A-task into steps before you start it."
-     ]}},
-    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week"},
-     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"]}}
+       "Break at least one A-task into steps before you start it."],
+       "tr": [
+       "Her sabah günün görevlerine A/B/C işaretleyin ve önce bir A yapın.",
+       "Başlamadan önce en az bir A görevini adımlara bölün."]}},
+    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week", "tr": "Haftayı öngörün"},
+     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"],
+                 "tr": ["Bu hafta neyin önünüze çıkması olası ve bu olduğunda ne yapacaksınız?"]}}
   ]
 }

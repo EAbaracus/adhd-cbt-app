@@ -1,13 +1,13 @@
 {
   "id": "problem-solving",
   "type": "problem_solving",
-  "title": {"en": "Problem solving steps"},
+  "title": {"en": "Problem solving steps", "tr": "Problem çözme adımları"},
   "fields": [
-    {"id": "problem", "kind": "textarea", "label": {"en": "Describe the problem in one sentence"}},
-    {"id": "solutions", "kind": "textarea", "label": {"en": "List every solution you can think of"}},
-    {"id": "pros", "kind": "textarea", "label": {"en": "Pros of the best option"}},
-    {"id": "cons", "kind": "textarea", "label": {"en": "Cons of the best option"}},
-    {"id": "action_plan", "kind": "textarea", "label": {"en": "What is your first concrete step"}},
-    {"id": "review", "kind": "textarea", "label": {"en": "When will you check back on this"}}
+    {"id": "problem", "kind": "textarea", "label": {"en": "Describe the problem in one sentence", "tr": "Sorunu tek cümleyle tanımlayın"}},
+    {"id": "solutions", "kind": "textarea", "label": {"en": "List every solution you can think of", "tr": "Aklınıza gelen her çözümü listeleyin"}},
+    {"id": "pros", "kind": "textarea", "label": {"en": "Pros of the best option", "tr": "En iyi seçeneğin artıları"}},
+    {"id": "cons", "kind": "textarea", "label": {"en": "Cons of the best option", "tr": "En iyi seçeneğin eksileri"}},
+    {"id": "action_plan", "kind": "textarea", "label": {"en": "What is your first concrete step", "tr": "İlk somut adımınız nedir"}},
+    {"id": "review", "kind": "textarea", "label": {"en": "When will you check back on this", "tr": "Bunu ne zaman yeniden gözden geçireceksiniz"}}
   ]
 }

@@ -8,6 +8,7 @@ import '../engine/program_engine.dart';
 import '../store/app_database.dart';
 import '../store/drift_progress_store.dart';
 import '../retention/retention_service.dart';
+import '../l10n/app_locale.dart';
 import '../tasks/task_controller.dart';
 import '../theme/app_theme.dart';
 import '../timer/timer_controller.dart';
@@ -71,6 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _sessionCard(Session s) {
+    final locale = AppLocale.of(context)?.code.name ?? 'en';
     final state = widget.engine.sessionState(s);
     final (label, color) = switch (state) {
       SessionState.completed => ('Completed', AppColors.green900),
@@ -79,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
     };
     return Card(
       child: ListTile(
-        title: Text('Session ${s.order} — ${s.title}',
+        title: Text('Session ${s.order} — ${s.titleFor(locale)}',
             style: AppText.subtitle),
         subtitle: Text(label,
             style: AppText.small.copyWith(color: color)),

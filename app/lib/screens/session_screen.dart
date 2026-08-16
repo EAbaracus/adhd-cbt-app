@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../app_scope.dart';
 import '../engine/models.dart';
 import '../forms/form_renderer.dart';
+import '../l10n/app_locale.dart';
 import '../theme/app_theme.dart';
 
 /// Renders one session's checkpoints as a calm, sequential flow (I1).
@@ -68,6 +69,7 @@ class _SessionScreenState extends State<SessionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocale.of(context)?.code.name ?? 'en';
     if (_index >= widget.session.checkpoints.length) {
       return _completionCard();
     }
@@ -85,9 +87,9 @@ class _SessionScreenState extends State<SessionScreen> {
                 style: AppText.caption.copyWith(color: AppColors.textTertiary),
               ),
               const SizedBox(height: AppTheme.spacing8),
-              Text(cp.title, style: AppText.h2),
+              Text(cp.titleFor(locale), style: AppText.h2),
               const SizedBox(height: AppTheme.spacing24),
-              for (final para in cp.content) ...[
+              for (final para in cp.contentFor(locale)) ...[
                 Text(para, style: AppText.body),
                 const SizedBox(height: AppTheme.spacing16),
               ],

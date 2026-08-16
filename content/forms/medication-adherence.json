@@ -1,10 +1,10 @@
 {
   "id": "medication-adherence",
   "type": "medication_adherence",
-  "title": {"en": "Medication adherence"},
+  "title": {"en": "Medication adherence", "tr": "İlaç uyumu"},
   "fields": [
-    {"id": "prescribed_doses", "kind": "number", "label": {"en": "Doses prescribed this week"}},
-    {"id": "missed_doses", "kind": "number", "label": {"en": "Doses missed this week"}},
-    {"id": "triggers", "kind": "textarea", "label": {"en": "What got in the way of taking it (if anything)"}}
+    {"id": "prescribed_doses", "kind": "number", "label": {"en": "Doses prescribed this week", "tr": "Bu hafta reçete edilen doz"}},
+    {"id": "missed_doses", "kind": "number", "label": {"en": "Doses missed this week", "tr": "Bu hafta kaçırılan doz"}},
+    {"id": "triggers", "kind": "textarea", "label": {"en": "What got in the way of taking it (if anything)", "tr": "Almanıza ne engel oldu (varsa)"}}
   ]
 }

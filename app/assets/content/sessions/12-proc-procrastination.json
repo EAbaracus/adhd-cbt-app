@@ -3,25 +3,30 @@
   "order": 12,
   "module": "procrastination",
   "optional": true,
-  "title": {"en": "Procrastination as cognitive avoidance"},
+  "title": {"en": "Procrastination as cognitive avoidance", "tr": "Bilişsel kaçınma olarak erteleme"},
   "checkpoints": [
-    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in"},
-     "content": {"en": ["Fill in the symptom check."]},
+    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in", "tr": "Haftalık kontrol"},
+     "content": {"en": ["Fill in the symptom check."], "tr": ["Belirti kontrolünü doldurun."]},
      "formRef": "form:symptom-checklist"},
-    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check"},
-     "content": {"en": ["Record prescribed and missed doses."]},
+    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check", "tr": "İlaç kontrolü"},
+     "content": {"en": ["Record prescribed and missed doses."], "tr": ["Reçete edilen ve kaçırılan dozları kaydedin."]},
      "formRef": "form:medication-adherence"},
-    {"id": "read-avoid", "type": "reading", "title": {"en": "Why we postpone"},
+    {"id": "read-avoid", "type": "reading", "title": {"en": "Why we postpone", "tr": "Neden erteleriz"},
      "content": {"en": [
        "Procrastination is usually cognitive avoidance — we postpone because focus gets easier as the deadline gets closer, and the short-term relief of putting it off rewards the delay.",
-       "Perfectionism drives a lot of it: 'it must be right' makes starting feel dangerous. The fix combines skills you already have — break the task down, set a realistic goal for one step, and challenge the perfectionist thought."
-     ]}},
-    {"id": "ex-proscons", "type": "exercise", "title": {"en": "Pros and cons of now vs later"},
-     "content": {"en": ["Take one task you are avoiding. Write the pros and cons of doing it now versus later."]},
+       "Perfectionism drives a lot of it: 'it must be right' makes starting feel dangerous. The fix combines skills you already have — break the task down, set a realistic goal for one step, and challenge the perfectionist thought."],
+       "tr": [
+       "Erteleme genellikle bilişsel kaçınmadır — erteleriz çünkü teslim tarihi yaklaştıkça odaklanmak kolaylaşır ve ertelemenin kısa vadeli rahatlığı gecikmeyi ödüllendirir.",
+       "Bunun çoğunu mükemmeliyetçilik besler: 'doğru olmalı' başlamayı tehlikeli hissettirir. Çözüm, sahip olduğunuz becerileri birleştirir — görevi bölün, tek bir adım için gerçekçi bir hedef koyun ve mükemmeliyetçi düşünceye meydan okuyun."]}},
+    {"id": "ex-proscons", "type": "exercise", "title": {"en": "Pros and cons of now vs later", "tr": "Şimdi ile sonranın artıları ve eksileri"},
+     "content": {"en": ["Take one task you are avoiding. Write the pros and cons of doing it now versus later."],
+                 "tr": ["Kaçındığınız bir görevi alın. Şimdi yapmanın ve sonraya bırakmanın artılarını ve eksilerini yazın."]},
      "formRef": "form:pros-cons"},
-    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice"},
-     "content": {"en": ["Use breakdown plus one rational response on a dreaded task this week."]}},
-    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week"},
-     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"]}}
+    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice", "tr": "Ev pratiği"},
+     "content": {"en": ["Use breakdown plus one rational response on a dreaded task this week."],
+                 "tr": ["Bu hafta gözünüzde büyüttüğünüz bir görevde bölme ve bir rasyonel yanıt kullanın."]}},
+    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week", "tr": "Haftayı öngörün"},
+     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"],
+                 "tr": ["Bu hafta neyin önünüze çıkması olası ve bu olduğunda ne yapacaksınız?"]}}
   ]
 }

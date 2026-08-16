@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "content_version": "0.2.0",
-  "built_at": "2026-08-16T10:03:07.740585+00:00",
+  "content_version": "0.3.0",
+  "built_at": "2026-08-16T10:17:16.113912+00:00",
   "files": [
     {
       "path": "schema/form.schema.json",
@@ -13,27 +13,27 @@
     },
     {
       "path": "forms/attention-gauge.json",
-      "sha256": "85b151bfd34a18a7f1374175f4e472bc5a1f440b2091714a237145806f030472"
+      "sha256": "03c2f3572766103bb91fb9c59a7b5119a54e65e44e7e64bb8e7168cfae757dc9"
     },
     {
       "path": "forms/medication-adherence.json",
-      "sha256": "1de48c702f73396bc4f8f41a5eec4eabf066850d857165b3d033208cda13280a"
+      "sha256": "c190eb781db3e8003667cd3ee88f81182b649d1e407ef9dd1f778850996056dc"
     },
     {
       "path": "forms/module-review.json",
-      "sha256": "9230c78f5b3d12f44d8ddea4e0829897a42bf57522877479c0207c3d3cd4bc3c"
+      "sha256": "7b641aefe95519d961ca4a181841856574c656688c80c3263d64bbc7e92a1a1c"
     },
     {
       "path": "forms/problem-solving.json",
-      "sha256": "3dcdadf3b95a8037846c838c183ff7069809065dc16059d721638f1389b9a843"
+      "sha256": "ff32d89938b64caa7cd1b6b40c86953aa14deffecf0701f1fc1573450bd1f39e"
     },
     {
       "path": "forms/pros-cons.json",
-      "sha256": "049de84eebf50af50640d882c2e2363679740486796ff2b778a441af717ef044"
+      "sha256": "051145f6ae51e1d478ff059732d40381d0f51e4440c498dc4ffe3acdab9e3256"
     },
     {
       "path": "forms/strategy-rating.json",
-      "sha256": "078e020f49144150d9e8a5d459e4b92a25b61aa845e6d7c6654afc700f1cc9b4"
+      "sha256": "7583b20ef709f7f4443a1e6470afb1e6c7879bfc5240a796f5165ea6a9f90c26"
     },
     {
       "path": "forms/symptom-checklist.json",
@@ -41,7 +41,7 @@
     },
     {
       "path": "forms/thought-record.json",
-      "sha256": "d1a874df65b9730065209638959f7748ec688e49e7f8b8c883bf25577150e2d2"
+      "sha256": "9e382de5e9e75613caf9a8901151da4d70b0f2d3a642015a8ce8ef29b0dd84e6"
     },
     {
       "path": "sessions/01-psycho-what-is-adhd.json",
@@ -53,47 +53,47 @@
     },
     {
       "path": "sessions/03-org-calendar.json",
-      "sha256": "cf82f7aabeff007152743120f7fa542ca97580e155f6c31aa6717a6bba2fdf97"
+      "sha256": "1d1497aad682242d8eeeb871a794e1624931e6caede42680defe26907c982c11"
     },
     {
       "path": "sessions/04-org-priorities.json",
-      "sha256": "3393a75071762e7fada10d5959e87ee8e7138a06c90f0cc3be0c2ca6c8434fcc"
+      "sha256": "acbe8cd3394aa1964216f2ebc65056721d3cfc89d91cda5bdf9565e6fc91a01a"
     },
     {
       "path": "sessions/05-org-problem-solving.json",
-      "sha256": "895bc2c8e9ac4a9129505d5f8588fed75b4b1e3b38050ac1ef45de4238ba616f"
+      "sha256": "0271c28eec59826779cebddb6c3c971d0c00806229b59d3240604fe3d472e7f8"
     },
     {
       "path": "sessions/06-org-papers.json",
-      "sha256": "184ba349a0193c515f399434bf199fa3561a20c6ee41587f61aceb5ce34cc052"
+      "sha256": "9db5f8133d1f51b85a859b544353a1ee4175e0a430f84d473636ca36f2fa7878"
     },
     {
       "path": "sessions/07-dist-attention-span.json",
-      "sha256": "567a01d51e5c19412738b41f2baf9d4b693180001cd0d36c9c207c56433e08a8"
+      "sha256": "3116b2282f77b34e7aa2b2cb4c74c4e59d0c5a6e48de8cc7bdb26d4e47be6ce5"
     },
     {
       "path": "sessions/08-dist-environment.json",
-      "sha256": "4b44a10254011e0c693eb49b10fbf9fbab4a98e4b4386b5ab70ffaa51db7f10c"
+      "sha256": "aa57e668a5e244ffb2330439541ff74216c093a96342a3304cee7cd1eacadbf6"
     },
     {
       "path": "sessions/09-think-cognitive-model.json",
-      "sha256": "3c87e4a02c3e9f8570e039dd1eaa599f49fd6d81c9ad453f1df0bcf9edab8281"
+      "sha256": "2dd0d550d8a000e7f9daf8ef92c3055752602c7749b47b5410a2ae7aa549d161"
     },
     {
       "path": "sessions/10-think-adaptive-thinking.json",
-      "sha256": "c0fd5baebf534117c24668774fae1c2d719497896899578405fdb0a635862eb6"
+      "sha256": "98e890b4ca44a08973bc16d7e1234fd641b5e27eba90e797ed72807ebb086f27"
     },
     {
       "path": "sessions/11-think-rehearsal.json",
-      "sha256": "10b6ec3a09d2201522f760ae3fd24f99b2c7ebe7818b966256b0ff44eb409844"
+      "sha256": "dac368aed15449f93e83410c5cc9855ced6f9c089416bf360cc66ae43ea0e0a2"
     },
     {
       "path": "sessions/12-proc-procrastination.json",
-      "sha256": "dc7e873d69f6faa350d40e9beaf2d43cc023a4aeb9a114db6e99d3fdaa55d0c3"
+      "sha256": "1cefdaf20f73ce638ef65d83b8c48ca99c5e0be57430a8e563fbe434858cc06c"
     },
     {
       "path": "sessions/13-relapse-prevention.json",
-      "sha256": "20c5412d886bed321432e3e52bd7b5535674cfb6eaf27eade9e5666f0421343c"
+      "sha256": "72e9f53676023fa92452c727a78ded27529997490869b5525f2cfcf4f2fb43ce"
     }
   ]
 }

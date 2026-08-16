@@ -1,11 +1,11 @@
 {
   "id": "attention-gauge",
   "type": "attention_gauge",
-  "title": {"en": "Attention gauge"},
+  "title": {"en": "Attention gauge", "tr": "Dikkat ölçer"},
   "fields": [
-    {"id": "task", "kind": "text", "label": {"en": "What were you working on"}},
-    {"id": "attention_minutes", "kind": "number", "label": {"en": "Minutes you stayed focused"}},
-    {"id": "distraction_count", "kind": "number", "label": {"en": "Times you were pulled away"}},
-    {"id": "notes", "kind": "textarea", "label": {"en": "What pulled you away"}}
+    {"id": "task", "kind": "text", "label": {"en": "What were you working on", "tr": "Neyin üzerinde çalışıyordunuz"}},
+    {"id": "attention_minutes", "kind": "number", "label": {"en": "Minutes you stayed focused", "tr": "Odaklı kaldığınız dakika"}},
+    {"id": "distraction_count", "kind": "number", "label": {"en": "Times you were pulled away", "tr": "Koparıldığınız kaç kez"}},
+    {"id": "notes", "kind": "textarea", "label": {"en": "What pulled you away", "tr": "Sizi ne kopardı"}}
   ]
 }

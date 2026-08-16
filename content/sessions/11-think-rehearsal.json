@@ -2,26 +2,32 @@
   "id": "11-think-rehearsal",
   "order": 11,
   "module": "adaptive_thinking",
-  "title": {"en": "Make the skill automatic"},
+  "title": {"en": "Make the skill automatic", "tr": "Beceriyi otomatik hale getirin"},
   "checkpoints": [
-    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in"},
-     "content": {"en": ["Fill in the symptom check."]},
+    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in", "tr": "Haftalık kontrol"},
+     "content": {"en": ["Fill in the symptom check."], "tr": ["Belirti kontrolünü doldurun."]},
      "formRef": "form:symptom-checklist"},
-    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check"},
-     "content": {"en": ["Record prescribed and missed doses."]},
+    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check", "tr": "İlaç kontrolü"},
+     "content": {"en": ["Record prescribed and missed doses."], "tr": ["Reçete edilen ve kaçırılan dozları kaydedin."]},
      "formRef": "form:medication-adherence"},
-    {"id": "read-rehearsal", "type": "reading", "title": {"en": "Rehearsal under mild stress"},
+    {"id": "read-rehearsal", "type": "reading", "title": {"en": "Rehearsal under mild stress", "tr": "Hafif stres altında tekrar"},
      "content": {"en": [
        "Skills become automatic through rehearsal. Run the full Thought Record sequence on a real, mildly stressful task — not a calm one.",
        "Self-coaching is talking yourself through a task the way you would coach a friend: specific, kind, and focused on the next step.",
-       "Review what worked afterwards. The point is not perfection; it is that the habit of pausing gets stronger each time."
-     ]}},
-    {"id": "ex-coach", "type": "exercise", "title": {"en": "Self-coach out loud"},
-     "content": {"en": ["Complete a full Thought Record and talk yourself through it out loud, as if coaching a friend."]},
+       "Review what worked afterwards. The point is not perfection; it is that the habit of pausing gets stronger each time."],
+       "tr": [
+       "Beceriler tekrarla otomatikleşir. Tam Düşünce Kaydı dizisini sakin bir görevde değil, gerçek ve hafif stresli bir görevde uygulayın.",
+       "Kendine koçluk, bir görevde bir arkadaşınıza koçluk yapacağınız gibi kendinizle konuşmaktır: belirli, nazik ve sonraki adıma odaklı.",
+       "Sonrasında neyin işe yaradığını gözden geçirin. Amaç kusursuzluk değildir; amaç duraklama alışkanlığının her seferinde güçlenmesidir."]}},
+    {"id": "ex-coach", "type": "exercise", "title": {"en": "Self-coach out loud", "tr": "Yüksek sesle kendinize koçluk edin"},
+     "content": {"en": ["Complete a full Thought Record and talk yourself through it out loud, as if coaching a friend."],
+                 "tr": ["Tam bir Düşünce Kaydı tamamlayın ve bir arkadaşa koçluk eder gibi yüksek sesle kendinizle konuşun."]},
      "formRef": "form:thought-record"},
-    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice"},
-     "content": {"en": ["Keep two Thought Records and do one self-coached task this week."]}},
-    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week"},
-     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"]}}
+    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice", "tr": "Ev pratiği"},
+     "content": {"en": ["Keep two Thought Records and do one self-coached task this week."],
+                 "tr": ["Bu hafta iki Düşünce Kaydı tutun ve bir görevi kendi kendinize koçlukla yapın."]}},
+    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week", "tr": "Haftayı öngörün"},
+     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"],
+                 "tr": ["Bu hafta neyin önünüze çıkması olası ve bu olduğunda ne yapacaksınız?"]}}
   ]
 }

@@ -70,5 +70,5 @@ def test_full_catalog_gate():
 def test_bundle_build_green():
     import tools.build as B
     m = B.build()
-    assert m["content_version"] == "0.1.0"
+    assert m["content_version"] == B.VERSION
     assert len(m["files"]) == 13 + 8 + 2  # sessions + forms + schemas

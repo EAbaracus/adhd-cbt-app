@@ -2,26 +2,32 @@
   "id": "07-dist-attention-span",
   "order": 7,
   "module": "distractibility",
-  "title": {"en": "Your attention span is not fixed"},
+  "title": {"en": "Your attention span is not fixed", "tr": "Dikkat süreniz sabit değildir"},
   "checkpoints": [
-    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in"},
-     "content": {"en": ["Fill in the symptom check."]},
+    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in", "tr": "Haftalık kontrol"},
+     "content": {"en": ["Fill in the symptom check."], "tr": ["Belirti kontrolünü doldurun."]},
      "formRef": "form:symptom-checklist"},
-    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check"},
-     "content": {"en": ["Record prescribed and missed doses."]},
+    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check", "tr": "İlaç kontrolü"},
+     "content": {"en": ["Record prescribed and missed doses."], "tr": ["Reçete edilen ve kaçırılan dozları kaydedin."]},
      "formRef": "form:medication-adherence"},
-    {"id": "read-span", "type": "reading", "title": {"en": "Measure, don't guess"},
+    {"id": "read-span", "type": "reading", "title": {"en": "Measure, don't guess", "tr": "Ölçün, tahmin etmeyin"},
      "content": {"en": [
        "Attention span is not a fixed trait — it shifts with task, energy, and setting. Measure it on a task you dread, not one you like.",
        "The distractibility delay: work in chunks that match your real span, then deliberately delay the distraction. The break is planned and short — it is part of the method, not an escape from it.",
-       "When the urge to switch comes, note it and give yourself a set minute before you act on it. Most urges pass if you let them."
-     ]}},
-    {"id": "ex-gauge", "type": "exercise", "title": {"en": "Gauge your span now"},
-     "content": {"en": ["Pick one dreaded task. Work on it and track how long you stayed focused and how many times you were pulled away."]},
+       "When the urge to switch comes, note it and give yourself a set minute before you act on it. Most urges pass if you let them."],
+       "tr": [
+       "Dikkat süresi sabit bir özellik değildir — göreve, enerjiye ve ortama göre değişir. Onu sevdiğiniz bir görevde değil, gözünüzde büyüttüğünüz bir görevde ölçün.",
+       "Dikkat dağınıklığı ertelemesi: gerçek sürenize uyan parçalar halinde çalışın, sonra dikkat dağıtan şeyi bilinçli olarak erteleyin. Mola planlı ve kısadır — yöntemin parçasıdır, ondan kaçış değil.",
+       "Geçiş dürtüsü geldiğinde onu fark edin ve harekete geçmeden önce kendinize belirli bir dakika verin. Bırakırsanız çoğu dürtü geçer."]}},
+    {"id": "ex-gauge", "type": "exercise", "title": {"en": "Gauge your span now", "tr": "Şimdi sürenizi ölçün"},
+     "content": {"en": ["Pick one dreaded task. Work on it and track how long you stayed focused and how many times you were pulled away."],
+                 "tr": ["Gözünüzde büyüttüğünüz bir görev seçin. Üzerinde çalışın ve ne kadar odaklı kaldığınızı ile kaç kez koparıldığınızı izleyin."]},
      "formRef": "form:attention-gauge"},
-    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice"},
-     "content": {"en": ["Run three chunked work sessions this week using the delay technique."]}},
-    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week"},
-     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"]}}
+    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice", "tr": "Ev pratiği"},
+     "content": {"en": ["Run three chunked work sessions this week using the delay technique."],
+                 "tr": ["Bu hafta erteleme tekniğini kullanarak üç parçalı çalışma oturumu yapın."]}},
+    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week", "tr": "Haftayı öngörün"},
+     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"],
+                 "tr": ["Bu hafta neyin önünüze çıkması olası ve bu olduğunda ne yapacaksınız?"]}}
   ]
 }

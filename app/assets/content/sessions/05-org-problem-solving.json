@@ -2,25 +2,30 @@
   "id": "05-org-problem-solving",
   "order": 5,
   "module": "organization_planning",
-  "title": {"en": "Six-step problem solving"},
+  "title": {"en": "Six-step problem solving", "tr": "Altı adımlı problem çözme"},
   "checkpoints": [
-    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in"},
-     "content": {"en": ["Fill in the symptom check."]},
+    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in", "tr": "Haftalık kontrol"},
+     "content": {"en": ["Fill in the symptom check."], "tr": ["Belirti kontrolünü doldurun."]},
      "formRef": "form:symptom-checklist"},
-    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check"},
-     "content": {"en": ["Record prescribed and missed doses."]},
+    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check", "tr": "İlaç kontrolü"},
+     "content": {"en": ["Record prescribed and missed doses."], "tr": ["Reçete edilen ve kaçırılan dozları kaydedin."]},
      "formRef": "form:medication-adherence"},
-    {"id": "read-steps", "type": "reading", "title": {"en": "The six steps"},
+    {"id": "read-steps", "type": "reading", "title": {"en": "The six steps", "tr": "Altı adım"},
      "content": {"en": [
        "1. Define the problem in one sentence. 2. Brainstorm every solution without judging any. 3. List pros and cons of the best option. 4. Pick the best imperfect option — not the perfect one. 5. Plan the concrete first steps. 6. Set a time to review how it went.",
-       "ADHD makes step 2 hard (we judge too early) and step 5 easy to skip. Write both down."
-     ]}},
-    {"id": "ex-run", "type": "exercise", "title": {"en": "Run it on a real problem"},
-     "content": {"en": ["Pick one problem you are avoiding. Work it through all six steps now."]},
+       "ADHD makes step 2 hard (we judge too early) and step 5 easy to skip. Write both down."],
+       "tr": [
+       "1. Sorunu tek cümleyle tanımlayın. 2. Hiçbirini yargılamadan tüm çözümleri listeleyin. 3. En iyi seçeneğin artılarını ve eksilerini yazın. 4. En iyi kusurlu seçeneği seçin — kusursuz olanı değil. 5. Somut ilk adımları planlayın. 6. Nasıl gittiğini gözden geçirmek için bir zaman belirleyin.",
+       "DEHB 2. adımı zorlaştırır (çok erken yargılarız) ve 5. adımı atlamayı kolaylaştırır. İkisini de yazın."]}},
+    {"id": "ex-run", "type": "exercise", "title": {"en": "Run it on a real problem", "tr": "Gerçek bir problem üzerinde uygulayın"},
+     "content": {"en": ["Pick one problem you are avoiding. Work it through all six steps now."],
+                 "tr": ["Kaçındığınız bir problemi seçin. Şimdi altı adımın tamamını uygulayın."]},
      "formRef": "form:problem-solving"},
-    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice"},
-     "content": {"en": ["Use the form for one real problem this week."]}},
-    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week"},
-     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"]}}
+    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice", "tr": "Ev pratiği"},
+     "content": {"en": ["Use the form for one real problem this week."],
+                 "tr": ["Bu hafta gerçek bir problem için formu kullanın."]}},
+    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week", "tr": "Haftayı öngörün"},
+     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"],
+                 "tr": ["Bu hafta neyin önünüze çıkması olası ve bu olduğunda ne yapacaksınız?"]}}
   ]
 }

@@ -1,11 +1,11 @@
 {
   "id": "pros-cons",
   "type": "pros_cons",
-  "title": {"en": "Pros and cons"},
+  "title": {"en": "Pros and cons", "tr": "Artılar ve eksiler"},
   "fields": [
-    {"id": "decision", "kind": "text", "label": {"en": "The decision you are weighing"}},
-    {"id": "pros", "kind": "textarea", "label": {"en": "Pros of deciding"}},
-    {"id": "cons", "kind": "textarea", "label": {"en": "Cons of deciding"}},
-    {"id": "verdict", "kind": "textarea", "label": {"en": "What you lean toward, and why"}}
+    {"id": "decision", "kind": "text", "label": {"en": "The decision you are weighing", "tr": "Tarttığınız karar"}},
+    {"id": "pros", "kind": "textarea", "label": {"en": "Pros of deciding", "tr": "Karar vermenin artıları"}},
+    {"id": "cons", "kind": "textarea", "label": {"en": "Cons of deciding", "tr": "Karar vermenin eksileri"}},
+    {"id": "verdict", "kind": "textarea", "label": {"en": "What you lean toward, and why", "tr": "Neye meyillisiniz ve neden"}}
   ]
 }

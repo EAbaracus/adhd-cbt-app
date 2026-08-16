@@ -2,28 +2,35 @@
   "id": "03-org-calendar",
   "order": 3,
   "module": "organization_planning",
-  "title": {"en": "One home for commitments"},
+  "title": {"en": "One home for commitments", "tr": "Yükümlülükler için tek bir yer"},
   "checkpoints": [
-    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in"},
-     "content": {"en": ["Fill in the symptom check."]},
+    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in", "tr": "Haftalık kontrol"},
+     "content": {"en": ["Fill in the symptom check."], "tr": ["Belirti kontrolünü doldurun."]},
      "formRef": "form:symptom-checklist"},
-    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check"},
-     "content": {"en": ["Record prescribed and missed doses."]},
+    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check", "tr": "İlaç kontrolü"},
+     "content": {"en": ["Record prescribed and missed doses."], "tr": ["Reçete edilen ve kaçırılan dozları kaydedin."]},
      "formRef": "form:medication-adherence"},
-    {"id": "read-system", "type": "reading", "title": {"en": "Calendar and list, not paper"},
+    {"id": "read-system", "type": "reading", "title": {"en": "Calendar and list, not paper", "tr": "Takvim ve liste, kağıt değil"},
      "content": {"en": [
        "Appointments live in a calendar. To-dos live in a task list. Keep them in one place each, not scattered across notes, phone, and memory.",
        "The goal is not the perfect tool. The goal is that you trust one system enough to stop holding it all in your head.",
-       "Paper notes get lost; the system replaces them. If a thought is important, it goes into the system, not onto a loose scrap."
-     ]}},
-    {"id": "ex-enter", "type": "exercise", "title": {"en": "Enter this week's real items"},
-     "content": {"en": ["Open your calendar and task list. Put in the appointments you already know and the tasks you can name right now. No form needed — just do it."]}},
-    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice"},
+       "Paper notes get lost; the system replaces them. If a thought is important, it goes into the system, not onto a loose scrap."],
+       "tr": [
+       "Randevular bir takvimde yaşar. Yapılacaklar bir görev listesinde yaşar. Her birini tek bir yerde tutun; notlara, telefona ve hafızaya dağıtmayın.",
+       "Amaç mükemmel araç değil. Amaç, her şeyi kafanızda tutmayı bırakacak kadar tek bir sisteme güvenmeniz.",
+       "Kağıt notlar kaybolur; sistem onların yerini alır. Bir düşünce önemliyse sisteme girer, başıboş bir kağıt parçasına değil."]}},
+    {"id": "ex-enter", "type": "exercise", "title": {"en": "Enter this week's real items", "tr": "Bu haftanın gerçek öğelerini girin"},
+     "content": {"en": ["Open your calendar and task list. Put in the appointments you already know and the tasks you can name right now. No form needed — just do it."],
+                 "tr": ["Takviminizi ve görev listenizi açın. Bildiğiniz randevuları ve şu an adlandırabildiğiniz görevleri girin. Form gerekmez — sadece yapın."]}},
+    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice", "tr": "Ev pratiği"},
      "content": {"en": [
        "Use the calendar and list every day this week.",
-       "When something new comes up, put it in the system immediately instead of trusting you'll remember."
-     ]}},
-    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week"},
-     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"]}}
+       "When something new comes up, put it in the system immediately instead of trusting you'll remember."],
+       "tr": [
+       "Bu hafta her gün takvimi ve listeyi kullanın.",
+       "Yeni bir şey çıktığında, hatırlayacağınıza güvenmek yerine hemen sisteme girin."]}},
+    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week", "tr": "Haftayı öngörün"},
+     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"],
+                 "tr": ["Bu hafta neyin önünüze çıkması olası ve bu olduğunda ne yapacaksınız?"]}}
   ]
 }

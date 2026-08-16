@@ -2,25 +2,31 @@
   "id": "09-think-cognitive-model",
   "order": 9,
   "module": "adaptive_thinking",
-  "title": {"en": "Thoughts sit between events and feelings"},
+  "title": {"en": "Thoughts sit between events and feelings", "tr": "Düşünceler olaylar ile duygular arasında durur"},
   "checkpoints": [
-    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in"},
-     "content": {"en": ["Fill in the symptom check."]},
+    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in", "tr": "Haftalık kontrol"},
+     "content": {"en": ["Fill in the symptom check."], "tr": ["Belirti kontrolünü doldurun."]},
      "formRef": "form:symptom-checklist"},
-    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check"},
-     "content": {"en": ["Record prescribed and missed doses."]},
+    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check", "tr": "İlaç kontrolü"},
+     "content": {"en": ["Record prescribed and missed doses."], "tr": ["Reçete edilen ve kaçırılan dozları kaydedin."]},
      "formRef": "form:medication-adherence"},
-    {"id": "read-model", "type": "reading", "title": {"en": "The cognitive model"},
+    {"id": "read-model", "type": "reading", "title": {"en": "The cognitive model", "tr": "Bilişsel model"},
      "content": {"en": [
        "Between a situation and how you feel sits a thought. Two people in the same moment can feel differently because their thoughts differ.",
        "In ADHD, years of struggle build a failure narrative: tasks feel bigger than they are, because the old story says you won't manage.",
-       "The skill is noticing the thought before you act on it. You can't always stop the thought, but you can pause long enough to see it."
-     ]}},
-    {"id": "ex-label", "type": "exercise", "title": {"en": "Re-read your Week-1 map"},
-     "content": {"en": ["Open the situations you mapped in session 1. For each, name the automatic thought that showed up."]}},
-    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice"},
-     "content": {"en": ["Catch and write down three automatic thoughts during the week as they happen."]}},
-    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week"},
-     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"]}}
+       "The skill is noticing the thought before you act on it. You can't always stop the thought, but you can pause long enough to see it."],
+       "tr": [
+       "Bir durum ile nasıl hissettiğiniz arasında bir düşünce durur. Aynı andaki iki kişi, düşünceleri farklı olduğu için farklı hissedebilir.",
+       "DEHB'de yıllarca süren zorlanma bir başarısızlık anlatısı kurar: görevler olduklarından büyük hissettirir, çünkü eski hikâye başaramayacağınızı söyler.",
+       "Beceri, düşünceyi ona göre davranmadan önce fark etmektir. Düşünceyi her zaman durduramazsınız, ama onu görecek kadar duraklayabilirsiniz."]}},
+    {"id": "ex-label", "type": "exercise", "title": {"en": "Re-read your Week-1 map", "tr": "1. hafta haritanızı yeniden okuyun"},
+     "content": {"en": ["Open the situations you mapped in session 1. For each, name the automatic thought that showed up."],
+                 "tr": ["1. oturumda haritaladığınız durumları açın. Her biri için ortaya çıkan otomatik düşünceyi adlandırın."]}},
+    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice", "tr": "Ev pratiği"},
+     "content": {"en": ["Catch and write down three automatic thoughts during the week as they happen."],
+                 "tr": ["Hafta boyunca üç otomatik düşünceyi oluştuğu anda yakalayıp yazın."]}},
+    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week", "tr": "Haftayı öngörün"},
+     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"],
+                 "tr": ["Bu hafta neyin önünüze çıkması olası ve bu olduğunda ne yapacaksınız?"]}}
   ]
 }
