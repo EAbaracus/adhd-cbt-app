@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'dart:convert';
+import 'dart:math';
+
 import '../engine/models.dart';
 import '../engine/program_engine.dart';
 import '../store/app_database.dart';
@@ -74,6 +77,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       await widget.engine.persist(
                           DriftProgressStore(widget.db));
                       if (context.mounted) setState(() {});
+                    },
+                    onFormSubmit: (formId, answers) async {
+                      final now =
+                          DateTime.now().toUtc().toIso8601String();
+                      await widget.db.into(widget.db.formSubmissions).insert(
+                          FormSubmissionsCompanion.insert(
+                              id: 'sub-${Random().nextInt(1 << 32).toRadixString(16)}',
+                              formId: formId,
+                              answersJson: jsonEncode(answers),
+                              submittedAt: now,
+                              updatedAt: now));
                     },
                   )));
           if (context.mounted) setState(() {});

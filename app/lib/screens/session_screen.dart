@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
+import '../app_scope.dart';
 import '../engine/models.dart';
+import '../forms/form_renderer.dart';
 import '../theme/app_theme.dart';
 
 /// Renders one session's checkpoints as a calm, sequential flow (I1).
 /// Mutates the session's checkpoint states directly; the caller persists.
+/// Checkpoints with formRef open the referenced form (weekly ritual).
 class SessionScreen extends StatefulWidget {
   final Session session;
   final void Function(Session)? onProgress;
-  const SessionScreen({super.key, required this.session, this.onProgress});
+  final Future<void> Function(String formId, Map<String, dynamic> answers)?
+      onFormSubmit;
+  const SessionScreen(
+      {super.key, required this.session, this.onProgress, this.onFormSubmit});
 
   @override
   State<SessionScreen> createState() => _SessionScreenState();
@@ -41,6 +47,25 @@ class _SessionScreenState extends State<SessionScreen> {
     });
   }
 
+  Future<void> _openForm(Checkpoint cp) async {
+    final scope = AppScope.of(context);
+    final forms = scope?.forms;
+    if (forms == null || cp.formRef == null) return;
+    final form = forms[cp.formRef!.replaceFirst('form:', '')];
+    if (form == null) return; // unknown ref: falls back to Done (G7)
+    await Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => FormScreen(
+        form: form,
+        onSubmit: (answers) async {
+          await widget.onFormSubmit?.call(form.id, answers);
+          if (context.mounted) Navigator.of(context).pop();
+        },
+      ),
+    ));
+    if (!mounted) return;
+    _complete();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_index >= widget.session.checkpoints.length) {
@@ -67,10 +92,16 @@ class _SessionScreenState extends State<SessionScreen> {
                 const SizedBox(height: AppTheme.spacing16),
               ],
               const SizedBox(height: AppTheme.spacing32),
-              FilledButton(
-                onPressed: _complete,
-                child: Text(_isLast ? 'Finish session' : 'Done'),
-              ),
+              if (cp.formRef != null)
+                FilledButton(
+                  onPressed: () => _openForm(cp),
+                  child: const Text('Open form'),
+                )
+              else
+                FilledButton(
+                  onPressed: _complete,
+                  child: Text(_isLast ? 'Finish session' : 'Done'),
+                ),
               TextButton(
                 onPressed: _defer,
                 child: const Text('Later'),

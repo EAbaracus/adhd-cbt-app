@@ -7,6 +7,8 @@ import 'dart:io';
 
 import 'package:crypto/crypto.dart';
 
+import '../forms/form_definition.dart';
+
 class ContentBundle {
   final String schemaVersion;
   final String contentVersion;
@@ -53,5 +55,17 @@ class ContentRuntime {
       if (sha256Hex(f.readAsStringSync()) != entry.value) return false;
     }
     return true;
+  }
+
+  List<FormDefinition> loadForms() {
+    final dir = Directory('${root.path}/forms');
+    if (!dir.existsSync()) return [];
+    final out = <FormDefinition>[];
+    for (final f in dir.listSync().whereType<File>().toList()
+      ..sort((a, b) => a.path.compareTo(b.path))) {
+      out.add(FormDefinition.fromJson(
+          jsonDecode(f.readAsStringSync()) as Map<String, dynamic>));
+    }
+    return out;
   }
 }
