@@ -87,6 +87,40 @@ class ApiClient {
       return null;
     }
   }
+
+  Future<String?> fetchEntitlement() async {
+    if (token == null) return null;
+    try {
+      final resp = await httpClient
+          .get(Uri.parse('$baseUrl/api/billing/entitlement'),
+              headers: {'Authorization': 'Bearer $token'})
+          .timeout(const Duration(seconds: 10));
+      if (resp.statusCode != 200) return null;
+      final data = jsonDecode(resp.body) as Map<String, dynamic>;
+      return data['status'] as String?; // 'active' | 'expired'
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<bool> submitReceipt(
+      {required String platform, required String receiptData}) async {
+    if (token == null) return false;
+    try {
+      final resp = await httpClient
+          .post(Uri.parse('$baseUrl/api/billing/receipt'),
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer $token',
+              },
+              body: jsonEncode(
+                  {'platform': platform, 'receipt_data': receiptData}))
+          .timeout(const Duration(seconds: 10));
+      return resp.statusCode == 200;
+    } catch (_) {
+      return false;
+    }
+  }
 }
 
 class ApiException implements Exception {
