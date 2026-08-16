@@ -83,7 +83,8 @@ class _SessionScreenState extends State<SessionScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Session ${widget.session.order}',
+                'Session ${widget.session.order} · '
+                'Checkpoint ${_index + 1}/${widget.session.checkpoints.length}',
                 style: AppText.caption.copyWith(color: AppColors.textTertiary),
               ),
               const SizedBox(height: AppTheme.spacing8),
@@ -104,6 +105,10 @@ class _SessionScreenState extends State<SessionScreen> {
                   onPressed: _complete,
                   child: Text(_isLast ? 'Finish session' : 'Done'),
                 ),
+              TextButton(
+                onPressed: _index > 0 ? () => setState(() => _index--) : null,
+                child: const Text('Back'),
+              ),
               TextButton(
                 onPressed: _defer,
                 child: const Text('Later'),
