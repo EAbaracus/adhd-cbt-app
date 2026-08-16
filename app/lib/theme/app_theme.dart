@@ -31,7 +31,7 @@ class AppColors {
 }
 
 class AppText {
-  // Steady design system (DESIGN.md): Public Sans throughout.
+  // Ballast design system (DESIGN.md): Public Sans throughout.
   static const _f = 'PublicSans';
   // Hand-crafted scale, logical px only. 10 sizes max. Every style carries an
   // explicit color (refactoring-ui: 3 text colors max) — a color-less style

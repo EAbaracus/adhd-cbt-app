@@ -37,9 +37,15 @@ Future<Directory?> bootstrapContentFromAssets() async {
     if (contentDir.existsSync()) contentDir.deleteSync(recursive: true);
     tmp.renameSync(contentDir.path);
     return contentDir;
-  } catch (e) {
-    // ignore: avoid_print
-    print('ADHD-BOOT-FAIL: $e');
+  } catch (e, st) {
+    // In debug, log the asset path that failed. In profile/release, rethrow so
+    // bootstrap failures surface instead of silently leaving the UI broken.
+    if (const bool.fromEnvironment('dart.vm.product') == false) {
+      // ignore: avoid_print
+      print('ADHD-BOOT-FAIL: $e');
+    } else {
+      Error.throwWithStackTrace(e, st);
+    }
     if (tmp.existsSync()) tmp.deleteSync(recursive: true);
     return null;
   }

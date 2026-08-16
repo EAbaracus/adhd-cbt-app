@@ -1,0 +1,28 @@
+# Text files
+*.dart text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.py text eol=lf
+*.js text eol=lf
+*.toml text eol=lf
+*.lock text eol=lf
+
+# Images/binaries
+*.png binary
+*.webp binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg text eol=lf
+
+# Flutter
+*.flutter-plugins text eol=lf
+.flutter-plugins-dependencies text eol=lf
+
+# Never convert
+*.iml binary
+.gradle/ binary
+```
+

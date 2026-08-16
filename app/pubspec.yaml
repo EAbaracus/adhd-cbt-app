@@ -82,6 +82,8 @@ flutter:
     - assets/content/schema/
     - assets/content/forms/
     - assets/content/sessions/
+    - assets/content/sources/
+    - assets/icons/brain_leaf_mark.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -1,0 +1,125 @@
+npm notice run npx
+npm notice run designmd export --format json-tailwind DESIGN.md
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#2f5fd0",
+        "primary-100": "#e3ebfa",
+        "primary-300": "#9db8ec",
+        "primary-500": "#2f5fd0",
+        "primary-600": "#2750b4",
+        "primary-700": "#1f4296",
+        "primary-900": "#14295c",
+        "secondary": "#565e6a",
+        "tertiary": "#b8422e",
+        "bg": "#f6f8fa",
+        "panel": "#f0f3f6",
+        "border": "#e2e6eb",
+        "input-border": "#c6ccd4",
+        "placeholder": "#a3abb5",
+        "text-tertiary": "#7c8490",
+        "text-secondary": "#565e6a",
+        "text-primary": "#1f242c",
+        "white": "#ffffff",
+        "red-500": "#e03e3e",
+        "red-900": "#6e1515",
+        "green-500": "#2fa36b",
+        "green-900": "#11452c",
+        "amber-500": "#e5a50e",
+        "amber-900": "#66450a"
+      },
+      "fontFamily": {
+        "h1": [
+          "Public Sans"
+        ],
+        "h2": [
+          "Public Sans"
+        ],
+        "section": [
+          "Public Sans"
+        ],
+        "subtitle": [
+          "Public Sans"
+        ],
+        "lead": [
+          "Public Sans"
+        ],
+        "body": [
+          "Public Sans"
+        ],
+        "small": [
+          "Public Sans"
+        ],
+        "caption": [
+          "Public Sans"
+        ]
+      },
+      "fontSize": {
+        "h1": [
+          "36px",
+          {
+            "letterSpacing": "-0.01em",
+            "fontWeight": "700"
+          }
+        ],
+        "h2": [
+          "30px",
+          {
+            "fontWeight": "700"
+          }
+        ],
+        "section": [
+          "24px",
+          {
+            "fontWeight": "600"
+          }
+        ],
+        "subtitle": [
+          "20px",
+          {
+            "fontWeight": "600"
+          }
+        ],
+        "lead": [
+          "18px",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "body": [
+          "16px",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "small": [
+          "14px",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "caption": [
+          "12px",
+          {
+            "fontWeight": "400"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "8px",
+        "lg": "12px"
+      },
+      "spacing": {
+        "4": "4px",
+        "8": "8px",
+        "12": "12px",
+        "16": "16px",
+        "24": "24px",
+        "32": "32px",
+        "48": "48px",
+        "64": "64px"
+      }
+    }
+  }
+}
