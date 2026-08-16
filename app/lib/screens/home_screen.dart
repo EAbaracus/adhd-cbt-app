@@ -9,6 +9,7 @@ import '../store/app_database.dart';
 import '../store/drift_progress_store.dart';
 import '../retention/retention_service.dart';
 import '../l10n/app_locale.dart';
+import '../l10n/app_strings.dart';
 import '../tasks/task_controller.dart';
 import '../theme/app_theme.dart';
 import '../timer/timer_controller.dart';
@@ -30,32 +31,34 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocale.of(context)?.code ?? AppLocaleCode.en;
+    final s = (key) => AppStrings.tr(locale, key);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Program'),
+        title: Text(s('home_title')),
         actions: [
           IconButton(
-            tooltip: 'Tasks',
+            tooltip: s('nav_tasks'),
             icon: const Icon(Icons.checklist),
             onPressed: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (_) =>
                     TaskListScreen(controller: TaskController(widget.db)))),
           ),
           IconButton(
-            tooltip: 'Focus timer',
+            tooltip: s('nav_timer'),
             icon: const Icon(Icons.timer_outlined),
             onPressed: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (_) =>
                     TimerScreen(controller: TimerController(widget.db)))),
           ),
           IconButton(
-            tooltip: 'Progress',
+            tooltip: s('nav_progress'),
             icon: const Icon(Icons.show_chart),
             onPressed: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (_) => ProgressScreen(db: widget.db))),
           ),
           IconButton(
-            tooltip: 'Settings',
+            tooltip: s('nav_settings'),
             icon: const Icon(Icons.settings_outlined),
             onPressed: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (_) => const SettingsScreen())),
@@ -72,16 +75,26 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _sessionCard(Session s) {
-    final locale = AppLocale.of(context)?.code.name ?? 'en';
+    final locale = AppLocale.of(context)?.code ?? AppLocaleCode.en;
+    final tr = (key) => AppStrings.tr(locale, key);
     final state = widget.engine.sessionState(s);
     final (label, color) = switch (state) {
-      SessionState.completed => ('Completed', AppColors.green900),
-      SessionState.inProgress => ('In progress', AppColors.primary700),
-      _ => ('Available', AppColors.textSecondary),
+      SessionState.completed => (tr('session_completed'), AppColors.green900),
+      SessionState.inProgress => (tr('session_in_progress'), AppColors.primary700),
+      _ => (tr('session_available'), AppColors.textSecondary),
     };
+    final isInProgress = state == SessionState.inProgress;
     return Card(
+      key: Key('session-card-${s.id}'),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppTheme.radius12),
+        side: BorderSide(
+          color: isInProgress ? AppColors.primary500 : AppColors.border,
+          width: isInProgress ? 4 : 1,
+        ),
+      ),
       child: ListTile(
-        title: Text('Session ${s.order} — ${s.titleFor(locale)}',
+        title: Text('${tr('session_label')} ${s.order} — ${s.titleFor(locale.name)}',
             style: AppText.subtitle),
         subtitle: Text(label,
             style: AppText.small.copyWith(color: color)),
