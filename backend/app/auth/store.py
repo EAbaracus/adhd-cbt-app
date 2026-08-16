@@ -27,6 +27,13 @@ CREATE TABLE IF NOT EXISTS email_verifications (
     user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     expires_at TEXT NOT NULL
 );
+CREATE TABLE IF NOT EXISTS push_tokens (
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    token TEXT NOT NULL,
+    platform TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    PRIMARY KEY (user_id, token)
+);
 """
 
 
@@ -80,6 +87,31 @@ class UserStore:
     def get_entitlement(self, user):
         """None = never purchased; ISO string = expiry (3-day grace window applied by route)."""
         return user.get("entitlement_expires_at")
+
+    # ---- push tokens ----
+    def upsert_push_token(self, user_id, token, platform):
+        now = dt.datetime.now(dt.timezone.utc).isoformat()
+        cur = self.conn.execute(
+            "INSERT INTO push_tokens (user_id, token, platform, created_at) VALUES (?, ?, ?, ?) "
+            "ON CONFLICT (user_id, token) DO UPDATE SET platform = excluded.platform, "
+            "created_at = excluded.created_at",
+            (user_id, token, platform, now),
+        )
+        self.conn.commit()
+        return 1
+
+    def remove_push_token(self, user_id, token):
+        cur = self.conn.execute(
+            "DELETE FROM push_tokens WHERE user_id = ? AND token = ?", (user_id, token)
+        )
+        self.conn.commit()
+        return cur.rowcount
+
+    def get_push_tokens(self, user_id):
+        rows = self.conn.execute(
+            "SELECT token, platform FROM push_tokens WHERE user_id = ?", (user_id,)
+        ).fetchall()
+        return [{"token": r["token"], "platform": r["platform"]} for r in rows]
 
     # ---- sessions ----
     def create_session(self, user_id, ttl_days=30):
