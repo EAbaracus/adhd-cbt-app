@@ -1,4 +1,9 @@
-# ADHD CBT — 12 Haftalık Rehberli Program
+<p align="center">
+  <kbd>🇬🇧 <b>English</b></kbd> ·
+  <a href="README.tr.md"><kbd>🇹🇷 Türkçe</kbd></a>
+</p>
+
+# ADHD CBT — 12-Week Guided Program
 
 > A calm, science-grounded 12-week CBT self-help program for adults with ADHD.
 > **No streaks. No guilt. No judgment.** The program cannot punish you — that's the design.
