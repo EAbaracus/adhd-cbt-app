@@ -6,7 +6,7 @@ void main() {
     // Pump the widget directly: the async asset bootstrap can't complete in
     // the widget-test FakeAsync zone (platform channels). bootstrap_test.dart
     // covers the real bootstrap path.
-    await tester.pumpWidget(const AdhdCbtApp());
+    await tester.pumpWidget(AdhdCbtApp());
     await tester.pumpAndSettle();
     expect(find.text('12-week guided CBT support program'), findsOneWidget);
     expect(find.text('Not medical advice or diagnosis'), findsOneWidget);

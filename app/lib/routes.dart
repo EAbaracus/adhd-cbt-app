@@ -19,12 +19,7 @@ class RouteGenerator {
           final scope = AppScope.of(ctx);
           if (scope == null || scope.engine == null || scope.db == null) {
             return const Scaffold(
-              body: Center(
-                child: Text(
-                  'The program content is not ready yet.\nPlease restart the app.',
-                  textAlign: TextAlign.center,
-                ),
-              ),
+              body: Center(child: CircularProgressIndicator()),
             );
           }
           return HomeScreen(engine: scope.engine!, db: scope.db!);

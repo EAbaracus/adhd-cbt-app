@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'api/api_client.dart';
@@ -13,79 +15,100 @@ import 'store/bootstrap.dart';
 import 'store/session_manager.dart';
 import 'theme/app_theme.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  ProgramEngine? engine;
-  AppDatabase? db;
-  Map<String, FormDefinition>? forms;
-  ApiClient? api;
-  SessionManager? sessionManager;
-  var locale = AppLocaleCode.en;
-  try {
-    final contentDir = await bootstrapContentFromAssets();
-    if (contentDir != null) {
-      db = AppDatabase.open('${contentDir.parent.path}/app.db');
-      engine = await bootstrapEngine(db, contentDir);
-      forms = {
-        for (final f in ContentRuntime(contentDir).loadForms()) f.id: f,
-      };
-      api = ApiClient();
-      sessionManager = SessionManager(db: db, api: api);
-      await sessionManager.restoreToken();
-      locale = await AppLocale.load(db);
-    }
-  } catch (_) {
-    engine = null;
-  }
-  runApp(AdhdCbtApp(
-      engine: engine,
-      db: db,
-      forms: forms,
-      api: api,
-      sessionManager: sessionManager,
-      initialLocale: locale));
-}
-
-class AdhdCbtApp extends StatelessWidget {
+/// Result of the background content/db bootstrap. `null` members mean the
+/// bootstrapped resource is not available (local-first: the app shell still
+/// renders — onboarding works without an engine; home upgrades in place).
+class BootState {
   final ProgramEngine? engine;
   final AppDatabase? db;
   final Map<String, FormDefinition>? forms;
   final ApiClient? api;
   final SessionManager? sessionManager;
-  final AppLocaleCode initialLocale;
-  const AdhdCbtApp(
-      {super.key,
-      this.engine,
-      this.db,
-      this.forms,
-      this.api,
-      this.sessionManager,
-      this.initialLocale = AppLocaleCode.en});
+  final AppLocaleCode locale;
+
+  const BootState({
+    this.engine,
+    this.db,
+    this.forms,
+    this.api,
+    this.sessionManager,
+    this.locale = AppLocaleCode.en,
+  });
+
+  static const empty = BootState();
+}
+
+Future<BootState> _bootstrap() async {
+  final contentDir = await bootstrapContentFromAssets();
+  if (contentDir == null) return const BootState();
+  final db = AppDatabase.open('${contentDir.parent.path}/app.db');
+  final engine = await bootstrapEngine(db, contentDir);
+  final forms = {
+    for (final f in ContentRuntime(contentDir).loadForms()) f.id: f,
+  };
+  final api = ApiClient();
+  final sessionManager = SessionManager(db: db, api: api);
+  await sessionManager.restoreToken();
+  final locale = await AppLocale.load(db);
+  return BootState(
+      engine: engine,
+      db: db,
+      forms: forms,
+      api: api,
+      sessionManager: sessionManager,
+      locale: locale);
+}
+
+/// First frame renders IMMEDIATELY (onboarding needs no engine); the heavy
+/// content/db bootstrap runs in the background and upgrades the scope in
+/// place when ready. No white screen on cold start.
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final boot = ValueNotifier<BootState>(const BootState());
+  unawaited(() async {
+    try {
+      boot.value = await _bootstrap();
+    } catch (_) {
+      boot.value = const BootState();
+    }
+  }());
+  runApp(AdhdCbtApp(boot: boot));
+}
+
+class AdhdCbtApp extends StatelessWidget {
+  final ValueNotifier<BootState> boot;
+  AdhdCbtApp({super.key, ValueNotifier<BootState>? boot})
+      : boot = boot ?? ValueNotifier(const BootState());
 
   @override
   Widget build(BuildContext context) {
-    final notifier = ValueNotifier<AppLocaleCode>(initialLocale);
-    return ValueListenableBuilder<AppLocaleCode>(
-      valueListenable: notifier,
-      builder: (context, code, _) => AppLocale(
-        code: code,
-        db: db,
-        onChanged: (c) => notifier.value = c,
-        child: AppScope(
-          engine: engine,
-          db: db,
-          forms: forms,
-          api: api,
-          sessionManager: sessionManager,
-          child: MaterialApp(
-            title: 'ADHD CBT',
-            debugShowCheckedModeBanner: false,
-            theme: AppTheme.light,
-            onGenerateRoute: RouteGenerator.generateRoute,
-            initialRoute: RouteGenerator.onboarding,
+    return ValueListenableBuilder<BootState>(
+      valueListenable: boot,
+      builder: (context, state, _) {
+        final localeNotifier = ValueNotifier<AppLocaleCode>(state.locale);
+        return ValueListenableBuilder<AppLocaleCode>(
+          valueListenable: localeNotifier,
+          builder: (context, code, _) => AppLocale(
+            code: code,
+            db: state.db,
+            onChanged: (c) => localeNotifier.value = c,
+            child: AppScope(
+              engine: state.engine,
+              db: state.db,
+              forms: state.forms,
+              api: state.api,
+              sessionManager: state.sessionManager,
+              child: MaterialApp(
+                title: 'ADHD CBT',
+                debugShowCheckedModeBanner: false,
+                theme: AppTheme.light,
+                onGenerateRoute: RouteGenerator.generateRoute,
+                initialRoute: RouteGenerator.onboarding,
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
