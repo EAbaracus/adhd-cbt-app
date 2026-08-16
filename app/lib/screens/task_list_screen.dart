@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_locale.dart';
+import '../l10n/app_strings.dart';
 import '../tasks/task_controller.dart';
 import '../theme/app_theme.dart';
 
@@ -17,6 +19,8 @@ class _TaskListScreenState extends State<TaskListScreen> {
   List<Task> _tasks = [];
   bool _loading = true;
   final _stepInputs = <String, TextEditingController>{};
+
+  Function(String) tr = (key) => key;
 
   @override
   void initState() {
@@ -63,8 +67,10 @@ class _TaskListScreenState extends State<TaskListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocale.of(context)?.code ?? AppLocaleCode.en;
+    tr = (key) => AppStrings.tr(locale, key);
     return Scaffold(
-      appBar: AppBar(title: const Text('Task list')),
+      appBar: AppBar(title: Text(tr('task_list_title'))),
       body: _loading
           ? const Center(child: CircularProgressIndicator())
           : Column(
@@ -76,8 +82,8 @@ class _TaskListScreenState extends State<TaskListScreen> {
                       Expanded(
                         child: TextField(
                           controller: _title,
-                          decoration: const InputDecoration(
-                              hintText: 'Add a task'),
+                          decoration: InputDecoration(
+                              hintText: tr('task_list_add_hint')),
                           onSubmitted: (_) => _add(),
                         ),
                       ),
@@ -103,7 +109,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
                 Expanded(
                   child: _tasks.isEmpty
                       ? Center(
-                          child: Text('Nothing here yet',
+                          child: Text(tr('task_list_empty'),
                               style: AppText.small
                                   .copyWith(color: AppColors.textTertiary)))
                       : ListView.builder(
@@ -194,7 +200,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
                   child: TextField(
                     controller: stepCtl,
                     decoration:
-                        const InputDecoration(hintText: 'Break it into a step'),
+                        InputDecoration(hintText: tr('task_list_step_hint')),
                   ),
                 ),
                 IconButton(

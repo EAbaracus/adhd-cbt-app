@@ -64,7 +64,8 @@ void main() {
     await tester.pump();
     await tester.tap(find.widgetWithText(FilledButton, 'Continue'));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('I already have an account'));
+    // Switch to login mode by tapping "Create an account instead"
+    await tester.tap(find.text('Create an account instead'));
     await tester.pumpAndSettle();
     await tester.enterText(find.byKey(const Key('email')), 'a@b.com');
     await tester.enterText(find.byKey(const Key('password')), 'secret123');

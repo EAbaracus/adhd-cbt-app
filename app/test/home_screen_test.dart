@@ -4,7 +4,6 @@ import 'package:adhd_cbt_app/screens/home_screen.dart';
 import 'package:adhd_cbt_app/engine/models.dart';
 import 'package:adhd_cbt_app/engine/program_engine.dart';
 import 'package:adhd_cbt_app/store/app_database.dart';
-import 'package:adhd_cbt_app/store/drift_progress_store.dart';
 import 'dart:io';
 
 Session _mkSession(int order, String id, {bool optional = false}) {
@@ -39,9 +38,10 @@ void main() {
       _mkSession(1, 's1'),
       _mkSession(2, 's2'),
     ]);
-    // Complete first session to make second one in-progress
+    // Complete first session to unlock second, then complete one checkpoint of second to make it in-progress
     engine.complete('s1c0');
     engine.complete('s1c1');
+    engine.complete('s2c0'); // complete first checkpoint of s2 to make it in-progress
 
     await tester.pumpWidget(
       MaterialApp(
@@ -61,9 +61,7 @@ void main() {
     expect(shape.side.width, 4);
     expect(shape.side.color, equals(const Color(0xFF2F5FD0))); // AppColors.primary500
 
-    // Available session should have normal border
-    final availableCard = find.byKey(const Key('session-card-s1'));
-    // s1 is completed, not available - but let's check completed
+    // Completed session should have normal border
     final completedCard = find.byKey(const Key('session-card-s1'));
     expect(completedCard, findsOneWidget);
     final completedCardWidget = tester.widget<Card>(completedCard);
@@ -74,7 +72,7 @@ void main() {
     await db.close();
   });
 
-  testWidgets('session card has Key for all sessions', (tester) async {
+  testWidgets('session card has Key for all available sessions', (tester) async {
     final db = AppDatabase.open(
         '${Directory.systemTemp.createTempSync('hs2_').path}/t.db');
     final engine = ProgramEngine([
@@ -89,9 +87,10 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    // Both sessions should have keys
+    // Only s1 is available (s2 is locked because no earlier session started)
     expect(find.byKey(const Key('session-card-s1')), findsOneWidget);
-    expect(find.byKey(const Key('session-card-s2')), findsOneWidget);
+    // s2 is locked, so not in availableSessions
+    expect(find.byKey(const Key('session-card-s2')), findsNothing);
 
     await db.close();
   });

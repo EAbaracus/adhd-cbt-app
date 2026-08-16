@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../charts/symptom_chart.dart';
+import '../l10n/app_locale.dart';
+import '../l10n/app_strings.dart';
 import '../store/app_database.dart';
 import '../theme/app_theme.dart';
 
@@ -30,18 +32,20 @@ class _ProgressScreenState extends State<ProgressScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocale.of(context)?.code ?? AppLocaleCode.en;
+    String tr(String key) => AppStrings.tr(locale, key);
     final totals = _totals;
     return Scaffold(
-      appBar: AppBar(title: const Text('Progress')),
+      appBar: AppBar(title: Text(tr('progress_title'))),
       body: totals == null
           ? const Center(child: CircularProgressIndicator())
           : ListView(
               padding: const EdgeInsets.all(AppTheme.spacing24),
               children: [
-                Text('Weekly symptom score', style: AppText.h2),
+                Text(tr('progress_weekly_score'), style: AppText.h2),
                 const SizedBox(height: AppTheme.spacing8),
                 Text(
-                  'Lower is better. Each point is one weekly check-in.',
+                  tr('progress_subtitle'),
                   style: AppText.small.copyWith(color: AppColors.textSecondary),
                 ),
                 const SizedBox(height: AppTheme.spacing16),

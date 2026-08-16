@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../l10n/app_locale.dart';
+import '../l10n/app_strings.dart';
 import '../theme/app_theme.dart';
 import '../timer/chunk_timer.dart';
 import '../timer/timer_controller.dart';
@@ -25,6 +27,8 @@ class _TimerScreenState extends State<TimerScreen> {
   Timer? _ticker;
   final _parkController = TextEditingController();
   final List<String> _parked = [];
+
+  Function(String) tr = (key) => key;
 
   @override
   void initState() {
@@ -111,9 +115,11 @@ class _TimerScreenState extends State<TimerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocale.of(context)?.code ?? AppLocaleCode.en;
+    tr = (key) => AppStrings.tr(locale, key);
     final t = _timer;
     return Scaffold(
-      appBar: AppBar(title: const Text('Focus timer')),
+      appBar: AppBar(title: Text(tr('timer_title'))),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(AppTheme.spacing24),
@@ -139,12 +145,12 @@ class _TimerScreenState extends State<TimerScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     if (t.state == ChunkTimerState.running)
-                      FilledButton(onPressed: _pause, child: const Text('Pause'))
+                      FilledButton(onPressed: _pause, child: Text(tr('timer_pause')))
                     else if (t.state == ChunkTimerState.paused)
                       FilledButton(
-                          onPressed: _resume, child: const Text('Resume')),
+                          onPressed: _resume, child: Text(tr('timer_resume'))),
                     const SizedBox(width: AppTheme.spacing16),
-                    TextButton(onPressed: _finish, child: const Text('Finish')),
+                    TextButton(onPressed: _finish, child: Text(tr('timer_finish'))),
                   ],
                 ),
               ],
@@ -154,7 +160,7 @@ class _TimerScreenState extends State<TimerScreen> {
                 const SizedBox(height: AppTheme.spacing8),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text('Something pulling you away? Park it here.',
+                  child: Text(tr('timer_park_label'),
                       style: AppText.small.copyWith(color: AppColors.textSecondary)),
                 ),
                 const SizedBox(height: AppTheme.spacing8),
@@ -164,12 +170,12 @@ class _TimerScreenState extends State<TimerScreen> {
                       child: TextField(
                         controller: _parkController,
                         decoration:
-                            const InputDecoration(hintText: 'Park a distraction'),
+                            InputDecoration(hintText: tr('timer_park_hint')),
                         onSubmitted: (_) => _park(),
                       ),
                     ),
                     const SizedBox(width: AppTheme.spacing8),
-                    TextButton(onPressed: _park, child: const Text('Park it')),
+                    TextButton(onPressed: _park, child: Text(tr('timer_park_button'))),
                   ],
                 ),
                 for (final p in _parked)
