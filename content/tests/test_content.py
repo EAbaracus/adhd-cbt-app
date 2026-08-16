@@ -30,3 +30,17 @@ def test_session_orders_unique():
     orders = [s["order"] for s in sessions]
     assert len(orders) == len(set(orders)), "duplicate session orders"
     assert orders == sorted(orders), "session orders must be 1..N contiguous"
+
+def test_module_coverage():
+    sessions = [json.load(open(p, encoding="utf-8")) for p in V._glob_json(V.SESSIONS_DIR)]
+    modules = {s["module"] for s in sessions}
+    assert {"psychoeducation", "organization_planning", "distractibility",
+            "adaptive_thinking", "relapse_prevention"} <= modules
+
+def test_form_refs_resolve():
+    forms = {p.stem for p in V._glob_json(V.FORMS_DIR)}
+    sessions = [json.load(open(p, encoding="utf-8")) for p in V._glob_json(V.SESSIONS_DIR)]
+    for s in sessions:
+        for c in s["checkpoints"]:
+            if "formRef" in c:
+                assert c["formRef"].removeprefix("form:") in forms, f"{s['id']} {c['id']}"
