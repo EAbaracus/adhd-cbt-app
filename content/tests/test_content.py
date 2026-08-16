@@ -43,3 +43,9 @@ def test_distractibility_sessions_reference_gauge_and_delay():
     sessions = {p.stem: json.load(open(p, encoding="utf-8")) for p in V._glob_json(V.SESSIONS_DIR)}
     s7 = sessions["07-dist-attention-span"]
     assert any(c.get("formRef") == "form:attention-gauge" for c in s7["checkpoints"])
+
+def test_thought_record_used_in_adaptive_thinking():
+    sessions = {p.stem: json.load(open(p, encoding="utf-8")) for p in V._glob_json(V.SESSIONS_DIR)}
+    used = [s["id"] for s in sessions.values()
+            if any(c.get("formRef") == "form:thought-record" for c in s["checkpoints"])]
+    assert "10-think-adaptive-thinking" in used and "11-think-rehearsal" in used

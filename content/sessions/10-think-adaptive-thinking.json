@@ -1,0 +1,27 @@
+{
+  "id": "10-think-adaptive-thinking",
+  "order": 10,
+  "module": "adaptive_thinking",
+  "title": {"en": "The Thought Record"},
+  "checkpoints": [
+    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in"},
+     "content": {"en": ["Fill in the symptom check."]},
+     "formRef": "form:symptom-checklist"},
+    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check"},
+     "content": {"en": ["Record prescribed and missed doses."]},
+     "formRef": "form:medication-adherence"},
+    {"id": "read-record", "type": "reading", "title": {"en": "Situation → thought → error → response"},
+     "content": {"en": [
+       "The Thought Record has four parts: the situation, the automatic thought, the thinking error in it, and a more balanced response.",
+       "Common thinking errors: all-or-nothing, catastrophizing, mind-reading, fortune-telling, should-statements, overgeneralization.",
+       "A rational response is not forced optimism. It is the most accurate, useful thought available — the one you would offer a friend."
+     ]}},
+    {"id": "ex-record", "type": "exercise", "title": {"en": "Complete a Thought Record"},
+     "content": {"en": ["Pick a real situation from this week. Fill in a full Thought Record."]},
+     "formRef": "form:thought-record"},
+    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice"},
+     "content": {"en": ["Complete two Thought Records this week."]}},
+    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week"},
+     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"]}}
+  ]
+}

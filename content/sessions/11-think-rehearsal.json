@@ -1,0 +1,27 @@
+{
+  "id": "11-think-rehearsal",
+  "order": 11,
+  "module": "adaptive_thinking",
+  "title": {"en": "Make the skill automatic"},
+  "checkpoints": [
+    {"id": "ritual-check", "type": "ritual", "title": {"en": "Weekly check-in"},
+     "content": {"en": ["Fill in the symptom check."]},
+     "formRef": "form:symptom-checklist"},
+    {"id": "ritual-meds", "type": "ritual", "title": {"en": "Medication check"},
+     "content": {"en": ["Record prescribed and missed doses."]},
+     "formRef": "form:medication-adherence"},
+    {"id": "read-rehearsal", "type": "reading", "title": {"en": "Rehearsal under mild stress"},
+     "content": {"en": [
+       "Skills become automatic through rehearsal. Run the full Thought Record sequence on a real, mildly stressful task — not a calm one.",
+       "Self-coaching is talking yourself through a task the way you would coach a friend: specific, kind, and focused on the next step.",
+       "Review what worked afterwards. The point is not perfection; it is that the habit of pausing gets stronger each time."
+     ]}},
+    {"id": "ex-coach", "type": "exercise", "title": {"en": "Self-coach out loud"},
+     "content": {"en": ["Complete a full Thought Record and talk yourself through it out loud, as if coaching a friend."]},
+     "formRef": "form:thought-record"},
+    {"id": "hw-read", "type": "homework", "title": {"en": "Home practice"},
+     "content": {"en": ["Keep two Thought Records and do one self-coached task this week."]}},
+    {"id": "ref-obstacles", "type": "reflection", "title": {"en": "Anticipate the week"},
+     "content": {"en": ["What is likely to get in the way this week, and what will you do when it happens?"]}}
+  ]
+}
