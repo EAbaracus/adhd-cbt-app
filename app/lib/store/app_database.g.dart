@@ -1981,6 +1981,377 @@ class TimerLogCompanion extends UpdateCompanion<TimerLogData> {
   }
 }
 
+class $FormSubmissionsTable extends FormSubmissions
+    with TableInfo<$FormSubmissionsTable, FormSubmission> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $FormSubmissionsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _formIdMeta = const VerificationMeta('formId');
+  @override
+  late final GeneratedColumn<String> formId = GeneratedColumn<String>(
+    'form_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _answersJsonMeta = const VerificationMeta(
+    'answersJson',
+  );
+  @override
+  late final GeneratedColumn<String> answersJson = GeneratedColumn<String>(
+    'answers_json',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _submittedAtMeta = const VerificationMeta(
+    'submittedAt',
+  );
+  @override
+  late final GeneratedColumn<String> submittedAt = GeneratedColumn<String>(
+    'submitted_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<String> updatedAt = GeneratedColumn<String>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    formId,
+    answersJson,
+    submittedAt,
+    updatedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'form_submissions';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<FormSubmission> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('form_id')) {
+      context.handle(
+        _formIdMeta,
+        formId.isAcceptableOrUnknown(data['form_id']!, _formIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_formIdMeta);
+    }
+    if (data.containsKey('answers_json')) {
+      context.handle(
+        _answersJsonMeta,
+        answersJson.isAcceptableOrUnknown(
+          data['answers_json']!,
+          _answersJsonMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_answersJsonMeta);
+    }
+    if (data.containsKey('submitted_at')) {
+      context.handle(
+        _submittedAtMeta,
+        submittedAt.isAcceptableOrUnknown(
+          data['submitted_at']!,
+          _submittedAtMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_submittedAtMeta);
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_updatedAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  FormSubmission map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return FormSubmission(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      formId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}form_id'],
+      )!,
+      answersJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}answers_json'],
+      )!,
+      submittedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}submitted_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}updated_at'],
+      )!,
+    );
+  }
+
+  @override
+  $FormSubmissionsTable createAlias(String alias) {
+    return $FormSubmissionsTable(attachedDatabase, alias);
+  }
+}
+
+class FormSubmission extends DataClass implements Insertable<FormSubmission> {
+  final String id;
+  final String formId;
+  final String answersJson;
+  final String submittedAt;
+  final String updatedAt;
+  const FormSubmission({
+    required this.id,
+    required this.formId,
+    required this.answersJson,
+    required this.submittedAt,
+    required this.updatedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['form_id'] = Variable<String>(formId);
+    map['answers_json'] = Variable<String>(answersJson);
+    map['submitted_at'] = Variable<String>(submittedAt);
+    map['updated_at'] = Variable<String>(updatedAt);
+    return map;
+  }
+
+  FormSubmissionsCompanion toCompanion(bool nullToAbsent) {
+    return FormSubmissionsCompanion(
+      id: Value(id),
+      formId: Value(formId),
+      answersJson: Value(answersJson),
+      submittedAt: Value(submittedAt),
+      updatedAt: Value(updatedAt),
+    );
+  }
+
+  factory FormSubmission.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return FormSubmission(
+      id: serializer.fromJson<String>(json['id']),
+      formId: serializer.fromJson<String>(json['formId']),
+      answersJson: serializer.fromJson<String>(json['answersJson']),
+      submittedAt: serializer.fromJson<String>(json['submittedAt']),
+      updatedAt: serializer.fromJson<String>(json['updatedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'formId': serializer.toJson<String>(formId),
+      'answersJson': serializer.toJson<String>(answersJson),
+      'submittedAt': serializer.toJson<String>(submittedAt),
+      'updatedAt': serializer.toJson<String>(updatedAt),
+    };
+  }
+
+  FormSubmission copyWith({
+    String? id,
+    String? formId,
+    String? answersJson,
+    String? submittedAt,
+    String? updatedAt,
+  }) => FormSubmission(
+    id: id ?? this.id,
+    formId: formId ?? this.formId,
+    answersJson: answersJson ?? this.answersJson,
+    submittedAt: submittedAt ?? this.submittedAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+  );
+  FormSubmission copyWithCompanion(FormSubmissionsCompanion data) {
+    return FormSubmission(
+      id: data.id.present ? data.id.value : this.id,
+      formId: data.formId.present ? data.formId.value : this.formId,
+      answersJson: data.answersJson.present
+          ? data.answersJson.value
+          : this.answersJson,
+      submittedAt: data.submittedAt.present
+          ? data.submittedAt.value
+          : this.submittedAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('FormSubmission(')
+          ..write('id: $id, ')
+          ..write('formId: $formId, ')
+          ..write('answersJson: $answersJson, ')
+          ..write('submittedAt: $submittedAt, ')
+          ..write('updatedAt: $updatedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(id, formId, answersJson, submittedAt, updatedAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is FormSubmission &&
+          other.id == this.id &&
+          other.formId == this.formId &&
+          other.answersJson == this.answersJson &&
+          other.submittedAt == this.submittedAt &&
+          other.updatedAt == this.updatedAt);
+}
+
+class FormSubmissionsCompanion extends UpdateCompanion<FormSubmission> {
+  final Value<String> id;
+  final Value<String> formId;
+  final Value<String> answersJson;
+  final Value<String> submittedAt;
+  final Value<String> updatedAt;
+  final Value<int> rowid;
+  const FormSubmissionsCompanion({
+    this.id = const Value.absent(),
+    this.formId = const Value.absent(),
+    this.answersJson = const Value.absent(),
+    this.submittedAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  FormSubmissionsCompanion.insert({
+    required String id,
+    required String formId,
+    required String answersJson,
+    required String submittedAt,
+    required String updatedAt,
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       formId = Value(formId),
+       answersJson = Value(answersJson),
+       submittedAt = Value(submittedAt),
+       updatedAt = Value(updatedAt);
+  static Insertable<FormSubmission> custom({
+    Expression<String>? id,
+    Expression<String>? formId,
+    Expression<String>? answersJson,
+    Expression<String>? submittedAt,
+    Expression<String>? updatedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (formId != null) 'form_id': formId,
+      if (answersJson != null) 'answers_json': answersJson,
+      if (submittedAt != null) 'submitted_at': submittedAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  FormSubmissionsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? formId,
+    Value<String>? answersJson,
+    Value<String>? submittedAt,
+    Value<String>? updatedAt,
+    Value<int>? rowid,
+  }) {
+    return FormSubmissionsCompanion(
+      id: id ?? this.id,
+      formId: formId ?? this.formId,
+      answersJson: answersJson ?? this.answersJson,
+      submittedAt: submittedAt ?? this.submittedAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (formId.present) {
+      map['form_id'] = Variable<String>(formId.value);
+    }
+    if (answersJson.present) {
+      map['answers_json'] = Variable<String>(answersJson.value);
+    }
+    if (submittedAt.present) {
+      map['submitted_at'] = Variable<String>(submittedAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<String>(updatedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('FormSubmissionsCompanion(')
+          ..write('id: $id, ')
+          ..write('formId: $formId, ')
+          ..write('answersJson: $answersJson, ')
+          ..write('submittedAt: $submittedAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -1992,6 +2363,9 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $TaskStepsTable taskSteps = $TaskStepsTable(this);
   late final $FormDraftsTable formDrafts = $FormDraftsTable(this);
   late final $TimerLogTable timerLog = $TimerLogTable(this);
+  late final $FormSubmissionsTable formSubmissions = $FormSubmissionsTable(
+    this,
+  );
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -2003,6 +2377,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     taskSteps,
     formDrafts,
     timerLog,
+    formSubmissions,
   ];
 }
 
@@ -3342,6 +3717,216 @@ typedef $$TimerLogTableProcessedTableManager =
       TimerLogData,
       PrefetchHooks Function()
     >;
+typedef $$FormSubmissionsTableCreateCompanionBuilder =
+    FormSubmissionsCompanion Function({
+      required String id,
+      required String formId,
+      required String answersJson,
+      required String submittedAt,
+      required String updatedAt,
+      Value<int> rowid,
+    });
+typedef $$FormSubmissionsTableUpdateCompanionBuilder =
+    FormSubmissionsCompanion Function({
+      Value<String> id,
+      Value<String> formId,
+      Value<String> answersJson,
+      Value<String> submittedAt,
+      Value<String> updatedAt,
+      Value<int> rowid,
+    });
+
+class $$FormSubmissionsTableFilterComposer
+    extends Composer<_$AppDatabase, $FormSubmissionsTable> {
+  $$FormSubmissionsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get formId => $composableBuilder(
+    column: $table.formId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get answersJson => $composableBuilder(
+    column: $table.answersJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get submittedAt => $composableBuilder(
+    column: $table.submittedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$FormSubmissionsTableOrderingComposer
+    extends Composer<_$AppDatabase, $FormSubmissionsTable> {
+  $$FormSubmissionsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get formId => $composableBuilder(
+    column: $table.formId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get answersJson => $composableBuilder(
+    column: $table.answersJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get submittedAt => $composableBuilder(
+    column: $table.submittedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$FormSubmissionsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $FormSubmissionsTable> {
+  $$FormSubmissionsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get formId =>
+      $composableBuilder(column: $table.formId, builder: (column) => column);
+
+  GeneratedColumn<String> get answersJson => $composableBuilder(
+    column: $table.answersJson,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get submittedAt => $composableBuilder(
+    column: $table.submittedAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+}
+
+class $$FormSubmissionsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $FormSubmissionsTable,
+          FormSubmission,
+          $$FormSubmissionsTableFilterComposer,
+          $$FormSubmissionsTableOrderingComposer,
+          $$FormSubmissionsTableAnnotationComposer,
+          $$FormSubmissionsTableCreateCompanionBuilder,
+          $$FormSubmissionsTableUpdateCompanionBuilder,
+          (
+            FormSubmission,
+            BaseReferences<
+              _$AppDatabase,
+              $FormSubmissionsTable,
+              FormSubmission
+            >,
+          ),
+          FormSubmission,
+          PrefetchHooks Function()
+        > {
+  $$FormSubmissionsTableTableManager(
+    _$AppDatabase db,
+    $FormSubmissionsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$FormSubmissionsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$FormSubmissionsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$FormSubmissionsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> formId = const Value.absent(),
+                Value<String> answersJson = const Value.absent(),
+                Value<String> submittedAt = const Value.absent(),
+                Value<String> updatedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => FormSubmissionsCompanion(
+                id: id,
+                formId: formId,
+                answersJson: answersJson,
+                submittedAt: submittedAt,
+                updatedAt: updatedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String formId,
+                required String answersJson,
+                required String submittedAt,
+                required String updatedAt,
+                Value<int> rowid = const Value.absent(),
+              }) => FormSubmissionsCompanion.insert(
+                id: id,
+                formId: formId,
+                answersJson: answersJson,
+                submittedAt: submittedAt,
+                updatedAt: updatedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$FormSubmissionsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $FormSubmissionsTable,
+      FormSubmission,
+      $$FormSubmissionsTableFilterComposer,
+      $$FormSubmissionsTableOrderingComposer,
+      $$FormSubmissionsTableAnnotationComposer,
+      $$FormSubmissionsTableCreateCompanionBuilder,
+      $$FormSubmissionsTableUpdateCompanionBuilder,
+      (
+        FormSubmission,
+        BaseReferences<_$AppDatabase, $FormSubmissionsTable, FormSubmission>,
+      ),
+      FormSubmission,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -3358,4 +3943,6 @@ class $AppDatabaseManager {
       $$FormDraftsTableTableManager(_db, _db.formDrafts);
   $$TimerLogTableTableManager get timerLog =>
       $$TimerLogTableTableManager(_db, _db.timerLog);
+  $$FormSubmissionsTableTableManager get formSubmissions =>
+      $$FormSubmissionsTableTableManager(_db, _db.formSubmissions);
 }

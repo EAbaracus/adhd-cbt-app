@@ -55,3 +55,13 @@ class TimerLog extends Table {
   @override
   Set<Column> get primaryKey => {id};
 }
+
+class FormSubmissions extends Table {
+  TextColumn get id => text()();
+  TextColumn get formId => text()();
+  TextColumn get answersJson => text()();
+  TextColumn get submittedAt => text()();
+  TextColumn get updatedAt => text()();
+  @override
+  Set<Column> get primaryKey => {id};
+}

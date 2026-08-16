@@ -14,18 +14,19 @@ part 'app_database.g.dart';
   TaskSteps,
   FormDrafts,
   TimerLog,
+  FormSubmissions,
 ])
 class AppDatabase extends _$AppDatabase {
   AppDatabase(super.e);
 
-  AppDatabase.open(String path, {int schemaVersion = 1})
+  AppDatabase.open(String path, {int schemaVersion = 2})
       : super(NativeDatabase(File(path), setup: (db) {
           db.execute('PRAGMA foreign_keys = ON');
         })) {
     _schemaVersion = schemaVersion;
   }
 
-  int _schemaVersion = 1;
+  int _schemaVersion = 2;
   @override
   int get schemaVersion => _schemaVersion;
 
@@ -35,8 +36,9 @@ class AppDatabase extends _$AppDatabase {
           await m.createAll();
         },
         onUpgrade: (m, from, to) async {
-          // v1 -> v2: additive migration fixture (no-op keeps data).
-          // Any future destructive step must be its own tested migration.
+          if (from < 2) {
+            await m.createTable(formSubmissions);
+          }
         },
       );
 }
