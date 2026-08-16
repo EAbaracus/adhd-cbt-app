@@ -127,4 +127,5 @@ services or a mental-health hotline (US: **988**).
 ---
 
 *Built deliberately: calm colors, one primary action per screen, and a completion
-card that says "Harika — bir sonraki oturuma dön" without ever asking why you left.*
+card that says "Great — you're done. See you next session." without ever asking
+why you left.*
