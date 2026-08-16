@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_locale.dart';
 import '../theme/app_theme.dart';
 import 'form_definition.dart';
 import 'thought_record_controller.dart';
@@ -55,8 +56,9 @@ class _ThoughtRecordScreenState extends State<ThoughtRecordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocale.of(context)?.code ?? AppLocaleCode.en;
     return Scaffold(
-      appBar: AppBar(title: Text(widget.form.title)),
+      appBar: AppBar(title: Text(widget.form.titleFor(locale.name))),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(AppTheme.spacing32),

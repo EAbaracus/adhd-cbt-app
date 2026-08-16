@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_locale.dart';
 import '../theme/app_theme.dart';
 import 'form_controller.dart';
 import 'form_definition.dart';
@@ -63,8 +64,9 @@ class _ProblemSolvingWizardState extends State<ProblemSolvingWizard> {
   @override
   Widget build(BuildContext context) {
     final field = widget.form.fields[_step];
+    final locale = AppLocale.of(context)?.code ?? AppLocaleCode.en;
     return Scaffold(
-      appBar: AppBar(title: Text(widget.form.title)),
+      appBar: AppBar(title: Text(widget.form.titleFor(locale.name))),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(AppTheme.spacing32),
@@ -76,7 +78,7 @@ class _ProblemSolvingWizardState extends State<ProblemSolvingWizard> {
                 style: AppText.caption.copyWith(color: AppColors.textTertiary),
               ),
               const SizedBox(height: AppTheme.spacing8),
-              Text(field.label, style: AppText.h2),
+              Text(field.labelFor(locale.name), style: AppText.h2),
               const SizedBox(height: AppTheme.spacing24),
               TextField(
                 controller: _texts[_step],

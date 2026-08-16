@@ -148,7 +148,7 @@ class _FormScreenState extends State<FormScreen> {
   Widget build(BuildContext context) {
     final locale = AppLocale.of(context)?.code ?? AppLocaleCode.en;
     return Scaffold(
-      appBar: AppBar(title: Text(widget.form.title)),
+      appBar: AppBar(title: Text(widget.form.titleFor(locale.name))),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(AppTheme.spacing24),
@@ -175,14 +175,14 @@ class _FormScreenState extends State<FormScreen> {
     Widget field;
     switch (f.kind) {
       case FieldKind.scale0to3:
-        field = _scale(f, 3);
+        field = _scale(f, 3, locale);
         break;
       case FieldKind.scale0to100:
-        field = _scale(f, 100);
+        field = _scale(f, 100, locale);
         break;
       case FieldKind.bool:
         field = SwitchListTile(
-          title: Text(f.label, style: AppText.body),
+          title: Text(f.labelFor(locale.name), style: AppText.body),
           value: _controller.answers[f.id] == true,
           onChanged: (v) {
             _controller.setValue(f.id, v);
@@ -197,7 +197,7 @@ class _FormScreenState extends State<FormScreen> {
           controller: _textControllers[f.id],
           maxLines: f.kind == FieldKind.textarea ? 4 : 1,
           decoration: InputDecoration(
-            labelText: f.label,
+            labelText: f.labelFor(locale.name),
             errorText: showError ? error : null,
           ),
           onChanged: (_) => _onAnswerChanged(),
@@ -209,7 +209,7 @@ class _FormScreenState extends State<FormScreen> {
           controller: _textControllers[f.id],
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
-            labelText: f.label,
+            labelText: f.labelFor(locale.name),
             errorText: showError ? error : null,
           ),
           onChanged: (_) => _onAnswerChanged(),
@@ -220,14 +220,14 @@ class _FormScreenState extends State<FormScreen> {
     return field;
   }
 
-  Widget _scale(FieldDefinition f, int max) {
+  Widget _scale(FieldDefinition f, int max, AppLocaleCode locale) {
     final error = _fieldErrors[f.id];
     final showError = error != null && error.isNotEmpty;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(f.label, style: AppText.body),
+        Text(f.labelFor(locale.name), style: AppText.body),
         const SizedBox(height: AppTheme.spacing12),
         Row(
           children: [

@@ -59,4 +59,21 @@ void main() {
     expect(f.title, 'Review');
     expect(f.fields.single.label, 'A');
   });
+
+  test('form labels are locale-aware with en fallback', () {
+    final form = FormDefinition.fromJson({
+      'id': 'f1',
+      'type': 'symptom_checklist',
+      'title': {'en': 'Check', 'tr': 'Kontrol'},
+      'fields': [
+        {'id': 's1', 'kind': 'scale_0_3', 'label': {'en': 'Careless', 'tr': 'Dikkatsiz'}},
+        {'id': 's2', 'kind': 'scale_0_3', 'label': {'en': 'Only en'}},
+      ],
+    });
+    expect(form.titleFor('tr'), 'Kontrol');
+    expect(form.titleFor('de'), 'Check'); // fallback en
+    expect(form.fields[0].labelFor('tr'), 'Dikkatsiz');
+    expect(form.fields[0].labelFor('de'), 'Careless'); // fallback en
+    expect(form.fields[1].labelFor('tr'), 'Only en'); // fallback en
+  });
 }
