@@ -1,4 +1,5 @@
 """Bearer-token dependency. 401 on missing/invalid/expired token."""
+
 from fastapi import Depends, HTTPException, Request
 
 from app.auth.store import UserStore
@@ -21,6 +22,7 @@ def get_current_user(request: Request, store: UserStore = Depends(get_store)):
 
 def require_entitlement(user: dict = Depends(get_current_user)):
     from app.billing.routes import _status
+
     if not _status(user)["active"]:
         raise HTTPException(status_code=403, detail="entitlement required")
     return user

@@ -1,4 +1,5 @@
 """UserStore over a dedicated users.db (account + sync data only)."""
+
 import datetime as dt
 import hashlib
 import secrets
@@ -62,8 +63,14 @@ class UserStore:
             self.conn.execute(
                 "INSERT INTO users (email, password_hash, age_country, age_min, privacy_consent, created_at) "
                 "VALUES (?, ?, ?, ?, ?, ?)",
-                (email.strip().lower(), pw_hash, age_country, age_min, 1 if privacy_consent else 0,
-                 dt.datetime.now(dt.timezone.utc).isoformat()),
+                (
+                    email.strip().lower(),
+                    pw_hash,
+                    age_country,
+                    age_min,
+                    1 if privacy_consent else 0,
+                    dt.datetime.now(dt.timezone.utc).isoformat(),
+                ),
             )
             self.conn.commit()
             return self.get_user_by_email(email)
@@ -73,7 +80,9 @@ class UserStore:
             raise
 
     def get_user_by_email(self, email):
-        row = self.conn.execute("SELECT * FROM users WHERE email = ?", (email.strip().lower(),)).fetchone()
+        row = self.conn.execute(
+            "SELECT * FROM users WHERE email = ?", (email.strip().lower(),)
+        ).fetchone()
         return dict(row) if row else None
 
     def get_public_user(self, user):
@@ -81,7 +90,10 @@ class UserStore:
 
     # ---- entitlement ----
     def set_entitlement(self, user_id, expires_at):
-        self.conn.execute("UPDATE users SET entitlement_expires_at = ? WHERE id = ?", (expires_at, user_id))
+        self.conn.execute(
+            "UPDATE users SET entitlement_expires_at = ? WHERE id = ?",
+            (expires_at, user_id),
+        )
         self.conn.commit()
 
     def get_entitlement(self, user):
@@ -117,9 +129,13 @@ class UserStore:
     def create_session(self, user_id, ttl_days=30):
         token = secrets.token_urlsafe(32)
         token_hash = hashlib.sha256(token.encode()).hexdigest()
-        expires = (dt.datetime.now(dt.timezone.utc) + dt.timedelta(days=ttl_days)).isoformat()
-        self.conn.execute("INSERT INTO sessions (token_hash, user_id, expires_at) VALUES (?, ?, ?)",
-                          (token_hash, user_id, expires))
+        expires = (
+            dt.datetime.now(dt.timezone.utc) + dt.timedelta(days=ttl_days)
+        ).isoformat()
+        self.conn.execute(
+            "INSERT INTO sessions (token_hash, user_id, expires_at) VALUES (?, ?, ?)",
+            (token_hash, user_id, expires),
+        )
         self.conn.commit()
         return token
 
@@ -134,14 +150,19 @@ class UserStore:
 
     def delete_session(self, user_id, token):
         token_hash = hashlib.sha256(token.encode()).hexdigest()
-        self.conn.execute("DELETE FROM sessions WHERE token_hash = ? AND user_id = ?", (token_hash, user_id))
+        self.conn.execute(
+            "DELETE FROM sessions WHERE token_hash = ? AND user_id = ?",
+            (token_hash, user_id),
+        )
         self.conn.commit()
 
     # ---- erasure ----
     def delete_user(self, user_id):
         for kind in SYNC_KINDS:
             self.conn.execute(f"DELETE FROM sync_{kind} WHERE user_id = ?", (user_id,))
-        self.conn.execute("DELETE FROM email_verifications WHERE user_id = ?", (user_id,))
+        self.conn.execute(
+            "DELETE FROM email_verifications WHERE user_id = ?", (user_id,)
+        )
         self.conn.execute("DELETE FROM sessions WHERE user_id = ?", (user_id,))
         self.conn.execute("DELETE FROM users WHERE id = ?", (user_id,))
         self.conn.commit()

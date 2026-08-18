@@ -1,4 +1,5 @@
 """SQLite connection helper. row_factory=Row, FK enforcement on."""
+
 import os
 import sqlite3
 

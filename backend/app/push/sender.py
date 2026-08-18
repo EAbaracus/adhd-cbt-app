@@ -3,11 +3,11 @@
 Anti-engagement guard (I1): this is the ONLY way to emit remote messages, and no
 engagement copy is emitted. Remote messages carry user-value events only.
 """
+
 import os
 import pathlib
 
 from app.auth.store import UserStore
-
 
 _CRED_FALLBACK = pathlib.Path(__file__).resolve().parents[2] / "service-account.json"
 
@@ -15,14 +15,18 @@ _CRED_FALLBACK = pathlib.Path(__file__).resolve().parents[2] / "service-account.
 class PushSender:
     """send(user_id, title, body, data) -> number of devices notified."""
 
-    def send(self, user_id: int, title: str, body: str, data: dict | None = None) -> int:
+    def send(
+        self, user_id: int, title: str, body: str, data: dict | None = None
+    ) -> int:
         raise NotImplementedError
 
 
 class NoopPushSender(PushSender):
     """No credential configured -> do nothing (local-first: app is fully functional)."""
 
-    def send(self, user_id: int, title: str, body: str, data: dict | None = None) -> int:
+    def send(
+        self, user_id: int, title: str, body: str, data: dict | None = None
+    ) -> int:
         return 0
 
 

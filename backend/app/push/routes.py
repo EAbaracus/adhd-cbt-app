@@ -1,4 +1,5 @@
 """Push token registration endpoints. Auth-only (token is user-identifying, A3)."""
+
 from fastapi import APIRouter, Depends, HTTPException
 
 from app.auth.deps import get_current_user, get_store

@@ -1,4 +1,5 @@
 """Versioned content serving. Immutable manifest + traversal-safe file reads."""
+
 import json
 import pathlib
 
@@ -27,7 +28,11 @@ def manifest(request: Request, user: dict = Depends(require_entitlement)):
 @router.get("/file/{path:path}")
 def file_(path: str, request: Request, user: dict = Depends(require_entitlement)):
     parts = pathlib.PurePosixPath(path).parts
-    if len(parts) != 2 or parts[0] not in _ALLOWED_DIRS or not parts[1].endswith(".json"):
+    if (
+        len(parts) != 2
+        or parts[0] not in _ALLOWED_DIRS
+        or not parts[1].endswith(".json")
+    ):
         raise HTTPException(status_code=400, detail="invalid path")
     p = _build_dir(request).joinpath(*parts)
     if not p.is_file():

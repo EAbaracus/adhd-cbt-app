@@ -1,4 +1,5 @@
 """H2 billing: receipt validation + entitlement (3-day grace)."""
+
 import datetime as dt
 
 from fastapi import APIRouter, Depends, HTTPException, Request
@@ -14,7 +15,9 @@ def _verifier(request: Request, platform: str):
     key = f"{platform}_verifier"
     v = getattr(request.app.state, key, None)
     if v is None:
-        v = __import__("app.billing.verifiers", fromlist=["VERIFIERS"]).VERIFIERS[platform]()
+        v = __import__("app.billing.verifiers", fromlist=["VERIFIERS"]).VERIFIERS[
+            platform
+        ]()
         setattr(request.app.state, key, v)
     return v
 
@@ -30,8 +33,12 @@ def _status(user, now=None):
 
 
 @router.post("/receipt")
-def receipt(body: dict, request: Request, user: dict = Depends(get_current_user),
-            store=Depends(get_store)):
+def receipt(
+    body: dict,
+    request: Request,
+    user: dict = Depends(get_current_user),
+    store=Depends(get_store),
+):
     platform = body.get("platform")
     if platform not in ("apple", "google"):
         raise HTTPException(status_code=400, detail="unsupported platform")

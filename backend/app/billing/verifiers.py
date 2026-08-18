@@ -6,12 +6,16 @@ class AppleReceiptVerifier:
     Raises ValueError on invalid receipt; returns {'active', 'expires_at'} on valid."""
 
     def verify(self, receipt: str):
-        raise NotImplementedError("Apple verification requires store account (spec open item 2)")
+        raise NotImplementedError(
+            "Apple verification requires store account (spec open item 2)"
+        )
 
 
 class GoogleReceiptVerifier:
     def verify(self, receipt: str):
-        raise NotImplementedError("Google verification requires Play account (spec open item 2)")
+        raise NotImplementedError(
+            "Google verification requires Play account (spec open item 2)"
+        )
 
 
 VERIFIERS = {"apple": AppleReceiptVerifier, "google": GoogleReceiptVerifier}

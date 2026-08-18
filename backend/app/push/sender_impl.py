@@ -20,6 +20,7 @@ class FcmPushSender:
     def _resolve_messaging(self):
         try:
             from firebase_admin import messaging
+
             return messaging
         except Exception:
             return self._messaging
@@ -43,6 +44,9 @@ class FcmPushSender:
                 sent += 1
             except Exception as e:
                 code = getattr(e, "code", "")
-                if code in ("messaging/registration-token-not-registered", "messaging/invalid-argument"):
+                if code in (
+                    "messaging/registration-token-not-registered",
+                    "messaging/invalid-argument",
+                ):
                     self.store.remove_push_token(user_id, token)
         return sent

@@ -5,6 +5,7 @@ from app.auth import store as S
 @pytest.fixture
 def store(tmp_path):
     from app.db import get_conn
+
     conn = get_conn(str(tmp_path / "users.db"))
     st = S.UserStore(conn)
     st.init_schema()

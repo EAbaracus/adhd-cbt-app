@@ -5,14 +5,24 @@ from app.auth.store import UserStore
 
 
 def _client(tmp_path, build_dir):
-    app = create_app(db_path=str(tmp_path / "users.db"), content_build_dir=str(build_dir))
+    app = create_app(
+        db_path=str(tmp_path / "users.db"), content_build_dir=str(build_dir)
+    )
     UserStore(app.state.db).init_schema()
     client = TestClient(app)
-    client.post("/api/auth/register", json={
-        "email": "a@b.com", "password": "secret123", "age_country": "TR",
-        "age_min": 18, "privacy_consent": True,
-    })
-    login = client.post("/api/auth/login", json={"email": "a@b.com", "password": "secret123"}).json()
+    client.post(
+        "/api/auth/register",
+        json={
+            "email": "a@b.com",
+            "password": "secret123",
+            "age_country": "TR",
+            "age_min": 18,
+            "privacy_consent": True,
+        },
+    )
+    login = client.post(
+        "/api/auth/login", json={"email": "a@b.com", "password": "secret123"}
+    ).json()
     token = login["token"]
     # M1-7: content routes require entitlement — grant one directly for content tests
     app.state.store.set_entitlement(login["user"]["id"], "2099-01-01T00:00:00+00:00")
@@ -22,7 +32,9 @@ def _client(tmp_path, build_dir):
 def test_manifest_served(tmp_path):
     build = tmp_path / "build"
     build.mkdir()
-    (build / "manifest.json").write_text(json.dumps({"content_version": "0.1.0", "files": []}), encoding="utf-8")
+    (build / "manifest.json").write_text(
+        json.dumps({"content_version": "0.1.0", "files": []}), encoding="utf-8"
+    )
     client, h = _client(tmp_path, build)
     r = client.get("/api/content/manifest", headers=h)
     assert r.status_code == 200

@@ -1,7 +1,10 @@
 """Env-driven settings. Never read env vars directly in route code."""
+
 import os
 
-DEFAULT_DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "users.db")
+DEFAULT_DB_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "users.db"
+)
 
 
 class Settings:

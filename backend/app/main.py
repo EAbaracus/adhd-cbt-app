@@ -1,4 +1,5 @@
 """FastAPI app factory. Tests build a fresh app per case with a tmp db."""
+
 import os
 
 from fastapi import FastAPI
@@ -13,11 +14,16 @@ from app.settings import settings
 from app.sync.routes import router as sync_router
 
 DEFAULT_CONTENT_BUILD = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "..", "content", "build"
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "..",
+    "content",
+    "build",
 )
 
 
-def create_app(db_path: str | None = None, content_build_dir: str | None = None) -> FastAPI:
+def create_app(
+    db_path: str | None = None, content_build_dir: str | None = None
+) -> FastAPI:
     app = FastAPI(title="adhd-cbt-backend")
     app.state.db_path = db_path or settings.db_path
     app.state.db = db.get_conn(app.state.db_path)
