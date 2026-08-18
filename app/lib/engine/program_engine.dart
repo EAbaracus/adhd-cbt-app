@@ -6,8 +6,14 @@ import '../store/progress_store.dart';
 
 class ProgramEngine {
   final List<Session> sessions;
+  late final Map<String, Checkpoint> _checkpointsMap;
 
-  ProgramEngine(this.sessions);
+  ProgramEngine(this.sessions) {
+    _checkpointsMap = {
+      for (final s in sessions)
+        for (final c in s.checkpoints) c.id: c,
+    };
+  }
 
   List<Session> get availableSessions =>
       sessions.where((s) => sessionState(s) != SessionState.locked).toList();
@@ -15,7 +21,8 @@ class ProgramEngine {
   Session? get currentSession {
     for (final s in sessions) {
       final st = sessionState(s);
-      if (st == SessionState.inProgress || st == SessionState.available) return s;
+      if (st == SessionState.inProgress || st == SessionState.available)
+        return s;
     }
     return null;
   }
@@ -23,7 +30,8 @@ class ProgramEngine {
   Checkpoint? get currentCheckpoint {
     for (final s in sessions) {
       for (final c in s.checkpoints) {
-        if (c.state == CheckpointState.completed || c.state == CheckpointState.deferred) {
+        if (c.state == CheckpointState.completed ||
+            c.state == CheckpointState.deferred) {
           continue;
         }
         final unmet = c.requires.any((r) => !_isDone(s, r));
@@ -36,7 +44,8 @@ class ProgramEngine {
   bool _isDone(Session s, String cpId) {
     final cp = _findIn(s, cpId);
     return cp != null &&
-        (cp.state == CheckpointState.completed || cp.state == CheckpointState.deferred);
+        (cp.state == CheckpointState.completed ||
+            cp.state == CheckpointState.deferred);
   }
 
   Checkpoint? _findIn(Session s, String id) {
@@ -55,11 +64,7 @@ class ProgramEngine {
   }
 
   Checkpoint? _find(String checkpointId) {
-    for (final s in sessions) {
-      final c = _findIn(s, checkpointId);
-      if (c != null) return c;
-    }
-    return null;
+    return _checkpointsMap[checkpointId];
   }
 
   int completedCount(Session s) =>
@@ -69,8 +74,9 @@ class ProgramEngine {
     final states = await store.load();
     for (final entry in states.entries) {
       _find(entry.key)?.state = CheckpointState.values.firstWhere(
-          (s) => s.name == entry.value,
-          orElse: () => CheckpointState.current);
+        (s) => s.name == entry.value,
+        orElse: () => CheckpointState.current,
+      );
     }
   }
 
@@ -84,8 +90,11 @@ class ProgramEngine {
   }
 
   SessionState sessionState(Session s) {
-    final all = s.checkpoints.every((c) =>
-        c.state == CheckpointState.completed || c.state == CheckpointState.deferred);
+    final all = s.checkpoints.every(
+      (c) =>
+          c.state == CheckpointState.completed ||
+          c.state == CheckpointState.deferred,
+    );
     if (all) return SessionState.completed;
     if (completedCount(s) > 0) return SessionState.inProgress;
     final earlier = sessions.where((x) => x.order < s.order);
