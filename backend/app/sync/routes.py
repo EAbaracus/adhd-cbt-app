@@ -13,19 +13,24 @@ router = APIRouter(prefix="/api/sync", tags=["sync"])
 def _upsert(store: UserStore, user_id: int, kind: str, items: dict) -> int:
     if kind not in SYNC_KINDS:
         return 0
-    saved = 0
-    for key, item in items.items():
-        payload = item.get("payload", item)
-        updated_at = item.get("updated_at", "")
-        cur = store.conn.execute(
-            f"INSERT INTO sync_{kind} (user_id, item_key, payload, updated_at) VALUES (?, ?, ?, ?) "
-            "ON CONFLICT (user_id, item_key) DO UPDATE SET payload = excluded.payload, "
-            "updated_at = excluded.updated_at",
-            (user_id, key, json.dumps(payload), updated_at),
-        )
-        saved += cur.rowcount
+    if not items:
+        return 0
+
+    # ⚡ Bolt: Batch database operations using executemany instead of looping execute.
+    # This reduces overhead by avoiding multiple query parsing and DB transitions,
+    # significantly speeding up large sync payloads.
+    params = [
+        (user_id, key, json.dumps(item.get("payload", item)), item.get("updated_at", ""))
+        for key, item in items.items()
+    ]
+    cur = store.conn.executemany(
+        f"INSERT INTO sync_{kind} (user_id, item_key, payload, updated_at) VALUES (?, ?, ?, ?) "
+        "ON CONFLICT (user_id, item_key) DO UPDATE SET payload = excluded.payload, "
+        "updated_at = excluded.updated_at",
+        params,
+    )
     store.conn.commit()
-    return saved
+    return cur.rowcount
 
 
 @router.put("/backup")
