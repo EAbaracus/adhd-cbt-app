@@ -1,21 +1,35 @@
 # Security Policy
 
-## Supported Versions
-
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
-
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+Please report security vulnerabilities privately. **Do not open a public
+issue for a security problem.**
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+Use GitHub's private reporting: go to the
+[**Security** tab](https://github.com/EAbaracus/adhd-cbt-app/security/advisories/new)
+and click **Report a vulnerability**. This opens a private advisory visible
+only to the maintainer.
+
+Please include:
+
+- a description of the vulnerability and its impact,
+- steps to reproduce (a proof of concept if possible),
+- affected component (Flutter app, FastAPI backend, or content pipeline), and
+- any suggested remediation.
+
+## What to expect
+
+- **Acknowledgement:** within 5 business days.
+- **Assessment:** the report is triaged and you receive an initial severity
+  assessment.
+- **Resolution:** accepted vulnerabilities are fixed as a priority; you are
+  told when a fix ships. Declined reports are explained.
+
+Please give a reasonable window for a fix before any public disclosure.
+
+## Scope
+
+This policy covers the code in this repository — the local-first Flutter app,
+the FastAPI backend, and the content pipeline. The app is local-first and does
+not transmit personal health information to a server by default; issues that
+could cause unintended data exposure are treated as high priority.
