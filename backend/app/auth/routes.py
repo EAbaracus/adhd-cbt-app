@@ -1,4 +1,5 @@
 """Anonymous auth routes + bearer-protected me/logout/delete."""
+
 from fastapi import APIRouter, Depends, HTTPException, Request
 
 from app.auth import passwords
@@ -15,19 +16,36 @@ def register(body: dict, store: UserStore = Depends(get_store)):
     consent = body.get("privacy_consent") is True
     age_min = body.get("age_min")
     age_country = body.get("age_country")
-    if not email or not pw or not consent or age_min is None or age_min < 18 or not age_country:
-        raise HTTPException(status_code=422, detail="privacy consent and age gate required")
+    if (
+        not email
+        or not pw
+        or not consent
+        or age_min is None
+        or age_min < 18
+        or not age_country
+    ):
+        raise HTTPException(
+            status_code=422, detail="privacy consent and age gate required"
+        )
     try:
-        user = store.create_user(email, passwords.hash_password(pw), age_country, age_min, True)
+        user = store.create_user(
+            email, passwords.hash_password(pw), age_country, age_min, True
+        )
     except DuplicateEmailError:
-        raise HTTPException(status_code=409, detail="email already registered") from None
+        raise HTTPException(
+            status_code=409, detail="email already registered"
+        ) from None
     return store.get_public_user(user)
 
 
 @router.post("/login")
 def login(body: dict, store: UserStore = Depends(get_store)):
     user = store.get_user_by_email(body.get("email", ""))
-    if user is None or not passwords.verify_password(body.get("password", ""), user["password_hash"]):
+    password = body.get("password", "")
+    if user is None:
+        passwords.hash_password(password)
+        raise HTTPException(status_code=401, detail="invalid credentials")
+    if not passwords.verify_password(password, user["password_hash"]):
         raise HTTPException(status_code=401, detail="invalid credentials")
     token = store.create_session(user["id"])
     return {"token": token, "user": store.get_public_user(user)}
