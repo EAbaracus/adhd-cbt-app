@@ -11,19 +11,24 @@ router = APIRouter(prefix="/api/sync", tags=["sync"])
 
 
 def _upsert(store: UserStore, user_id: int, kind: str, items: dict) -> int:
-    if kind not in SYNC_KINDS:
+    if kind not in SYNC_KINDS or not items:
         return 0
-    saved = 0
-    for key, item in items.items():
-        payload = item.get("payload", item)
-        updated_at = item.get("updated_at", "")
-        cur = store.conn.execute(
-            f"INSERT INTO sync_{kind} (user_id, item_key, payload, updated_at) VALUES (?, ?, ?, ?) "
-            "ON CONFLICT (user_id, item_key) DO UPDATE SET payload = excluded.payload, "
-            "updated_at = excluded.updated_at",
-            (user_id, key, json.dumps(payload), updated_at),
-        )
-        saved += cur.rowcount
+
+    # ⚡ Bolt Optimization: Batch database inserts using executemany instead of looping.
+    # This prevents the N+1 query problem, significantly reducing Python overhead
+    # and repetitive SQLite query parsing when syncing large numbers of records.
+    params = [
+        (user_id, key, json.dumps(item.get("payload", item)), item.get("updated_at", ""))
+        for key, item in items.items()
+    ]
+
+    cur = store.conn.executemany(
+        f"INSERT INTO sync_{kind} (user_id, item_key, payload, updated_at) VALUES (?, ?, ?, ?) "
+        "ON CONFLICT (user_id, item_key) DO UPDATE SET payload = excluded.payload, "
+        "updated_at = excluded.updated_at",
+        params,
+    )
+    saved = cur.rowcount
     store.conn.commit()
     return saved
 
