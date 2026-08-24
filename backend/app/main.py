@@ -2,6 +2,7 @@
 import os
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app import db
 from app.auth.routes import router as auth_router
@@ -19,6 +20,15 @@ DEFAULT_CONTENT_BUILD = os.path.join(
 
 def create_app(db_path: str | None = None, content_build_dir: str | None = None) -> FastAPI:
     app = FastAPI(title="adhd-cbt-backend")
+
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=settings.cors_origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
     app.state.db_path = db_path or settings.db_path
     app.state.db = db.get_conn(app.state.db_path)
     app.state.store = UserStore(app.state.db)
