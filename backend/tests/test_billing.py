@@ -47,6 +47,8 @@ def test_unknown_platform_400(tmp_path):
     client, h = _client(tmp_path)
     r = client.post("/api/billing/receipt", json={"platform": "web", "receipt": "x"}, headers=h)
     assert r.status_code == 400
+    r2 = client.post("/api/billing/receipt", json={"receipt": "x"}, headers=h)
+    assert r2.status_code == 400
 
 
 def test_entitlement_gates_content(tmp_path):
