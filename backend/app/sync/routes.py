@@ -9,11 +9,22 @@ from app.auth.store import SYNC_KINDS, UserStore
 
 router = APIRouter(prefix="/api/sync", tags=["sync"])
 
+_UPSERT_QUERIES = {
+    k: f"INSERT INTO sync_{k} (user_id, item_key, payload, updated_at) VALUES (?, ?, ?, ?) "
+       "ON CONFLICT (user_id, item_key) DO UPDATE SET payload = excluded.payload, "
+       "updated_at = excluded.updated_at"
+    for k in SYNC_KINDS
+}
+
 
 def _upsert(store: UserStore, user_id: int, kind: str, items: dict) -> int:
     if kind not in SYNC_KINDS:
         return 0
     if not items:
+        return 0
+
+    query = _UPSERT_QUERIES.get(kind)
+    if not query:
         return 0
 
     # ⚡ Bolt: Batch database operations using executemany instead of looping execute.
@@ -23,12 +34,7 @@ def _upsert(store: UserStore, user_id: int, kind: str, items: dict) -> int:
         (user_id, key, json.dumps(item.get("payload", item)), item.get("updated_at", ""))
         for key, item in items.items()
     ]
-    cur = store.conn.executemany(
-        f"INSERT INTO sync_{kind} (user_id, item_key, payload, updated_at) VALUES (?, ?, ?, ?) "
-        "ON CONFLICT (user_id, item_key) DO UPDATE SET payload = excluded.payload, "
-        "updated_at = excluded.updated_at",
-        params,
-    )
+    cur = store.conn.executemany(query, params)
     store.conn.commit()
     return cur.rowcount
 
