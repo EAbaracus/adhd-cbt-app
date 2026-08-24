@@ -86,3 +86,22 @@ def test_delete_me_erases_and_kills_all_tokens(tmp_path):
     assert client.get("/api/auth/me", headers=h1).status_code == 401
     assert client.get("/api/auth/me", headers=h2).status_code == 401
     assert client.post("/api/auth/login", json={"email": "a@b.com", "password": "secret123"}).status_code == 401
+
+def test_login_missing_fields(tmp_path):
+    client = _client(tmp_path)
+    client.post("/api/auth/register", json={
+        "email": "a@b.com", "password": "secret123", "age_country": "TR", "age_min": 18,
+        "privacy_consent": True,
+    })
+
+    # Missing email
+    r1 = client.post("/api/auth/login", json={"password": "secret123"})
+    assert r1.status_code == 401
+
+    # Missing password
+    r2 = client.post("/api/auth/login", json={"email": "a@b.com"})
+    assert r2.status_code == 401
+
+    # Missing both
+    r3 = client.post("/api/auth/login", json={})
+    assert r3.status_code == 401
