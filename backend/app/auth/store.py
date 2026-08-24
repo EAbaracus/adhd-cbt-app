@@ -139,8 +139,10 @@ class UserStore:
 
     # ---- erasure ----
     def delete_user(self, user_id):
-        for kind in SYNC_KINDS:
-            self.conn.execute(f"DELETE FROM sync_{kind} WHERE user_id = ?", (user_id,))
+        self.conn.execute("DELETE FROM sync_progress WHERE user_id = ?", (user_id,))
+        self.conn.execute("DELETE FROM sync_forms WHERE user_id = ?", (user_id,))
+        self.conn.execute("DELETE FROM sync_logs WHERE user_id = ?", (user_id,))
+        self.conn.execute("DELETE FROM sync_settings WHERE user_id = ?", (user_id,))
         self.conn.execute("DELETE FROM email_verifications WHERE user_id = ?", (user_id,))
         self.conn.execute("DELETE FROM sessions WHERE user_id = ?", (user_id,))
         self.conn.execute("DELETE FROM users WHERE id = ?", (user_id,))
