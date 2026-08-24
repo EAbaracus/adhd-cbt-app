@@ -46,14 +46,14 @@ class UserStore:
         self.conn = conn
 
     def init_schema(self):
-        self.conn.executescript(_SCHEMA)
-        for kind in SYNC_KINDS:
-            self.conn.execute(
-                f"CREATE TABLE IF NOT EXISTS sync_{kind} ("
-                "user_id INTEGER NOT NULL, item_key TEXT NOT NULL, "
-                "payload TEXT NOT NULL, updated_at TEXT NOT NULL, "
-                "PRIMARY KEY (user_id, item_key))"
-            )
+        sql = _SCHEMA + "\n" + "\n".join(
+            f"CREATE TABLE IF NOT EXISTS sync_{kind} ("
+            "user_id INTEGER NOT NULL, item_key TEXT NOT NULL, "
+            "payload TEXT NOT NULL, updated_at TEXT NOT NULL, "
+            "PRIMARY KEY (user_id, item_key));"
+            for kind in SYNC_KINDS
+        )
+        self.conn.executescript(sql)
         self.conn.commit()
 
     # ---- users ----
