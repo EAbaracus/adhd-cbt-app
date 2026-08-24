@@ -60,6 +60,12 @@ def test_me_requires_token(tmp_path):
     assert client.get("/api/auth/me", headers={"Authorization": "Bearer bogus"}).status_code == 401
 
 
+def test_logout_requires_token(tmp_path):
+    client = _client(tmp_path)
+    assert client.post("/api/auth/logout").status_code == 401
+    assert client.post("/api/auth/logout", headers={"Authorization": "Bearer bogus"}).status_code == 401
+
+
 def test_logout_invalidates(tmp_path):
     client = _client(tmp_path)
     client.post("/api/auth/register", json={
