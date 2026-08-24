@@ -39,6 +39,17 @@ def test_file_served_and_traversal_blocked(tmp_path):
     r = client.get("/api/content/file/../../etc/passwd", headers=h)
     assert r.status_code == 400 or r.status_code == 404
 
+    # Exploit traversal attempts with backslashes bypassing path length checks on POSIX PurePaths
+    r = client.get("/api/content/file/sessions/..%5C..%5Cetc%5Cpasswd.json", headers=h)
+    assert r.status_code == 400 or r.status_code == 404
+
+    r = client.get("/api/content/file/sessions/..%2F..%2Fetc%2Fpasswd.json", headers=h)
+    assert r.status_code == 400 or r.status_code == 404
+
+    # Absolute path payloads
+    r = client.get("/api/content/file/sessions//etc/passwd.json", headers=h)
+    assert r.status_code == 400 or r.status_code == 404
+
 
 def test_content_requires_auth(tmp_path):
     build = tmp_path / "build"
