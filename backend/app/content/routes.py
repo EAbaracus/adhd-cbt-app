@@ -29,7 +29,13 @@ def file_(path: str, request: Request, user: dict = Depends(require_entitlement)
     parts = pathlib.PurePosixPath(path).parts
     if len(parts) != 2 or parts[0] not in _ALLOWED_DIRS or not parts[1].endswith(".json"):
         raise HTTPException(status_code=400, detail="invalid path")
-    p = _build_dir(request).joinpath(*parts)
+
+    base_dir = _build_dir(request).resolve()
+    p = base_dir.joinpath(*parts).resolve()
+
+    if not p.is_relative_to(base_dir):
+        raise HTTPException(status_code=400, detail="invalid path")
+
     if not p.is_file():
         raise HTTPException(status_code=404, detail="file not found")
     return JSONResponse(json.loads(p.read_text(encoding="utf-8")))
