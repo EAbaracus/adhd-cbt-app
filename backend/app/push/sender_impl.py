@@ -31,18 +31,32 @@ class FcmPushSender:
         tokens = [t["token"] for t in self.store.get_push_tokens(user_id)]
         if not tokens:
             return 0
+
         sent = 0
-        for token in tokens:
-            msg = messaging.Message(
-                notification=messaging.Notification(title=title, body=body),
-                data={k: str(v) for k, v in (data or {}).items()},
-                token=token,
+        data_dict = {k: str(v) for k, v in (data or {}).items()}
+        notification = messaging.Notification(title=title, body=body)
+
+        # Firebase limits MulticastMessage to 500 tokens
+        batch_size = 500
+        for i in range(0, len(tokens), batch_size):
+            batch_tokens = tokens[i:i + batch_size]
+            msg = messaging.MulticastMessage(
+                tokens=batch_tokens,
+                notification=notification,
+                data=data_dict,
             )
             try:
-                messaging.send(msg)
-                sent += 1
-            except Exception as e:
-                code = getattr(e, "code", "")
-                if code in ("messaging/registration-token-not-registered", "messaging/invalid-argument"):
-                    self.store.remove_push_token(user_id, token)
+                response = messaging.send_each_for_multicast(msg)
+                sent += response.success_count
+
+                if response.failure_count > 0:
+                    for idx, res in enumerate(response.responses):
+                        if not res.success and res.exception:
+                            code = getattr(res.exception, "code", "")
+                            if code in ("messaging/registration-token-not-registered", "messaging/invalid-argument"):
+                                self.store.remove_push_token(user_id, batch_tokens[idx])
+            except Exception:
+                # If the whole batch fails, we log or ignore
+                pass
+
         return sent
