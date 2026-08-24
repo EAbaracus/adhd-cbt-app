@@ -15,5 +15,5 @@ def test_hash_is_self_describing():
     h = P.hash_password("x")
     parts = h.split("$")
     assert parts[0] == "pbkdf2_sha256"
-    assert int(parts[1]) == 240_000
+    assert int(parts[1]) == P._ITERATIONS
     assert len(parts[2]) > 0 and len(parts[3]) > 0
