@@ -8,6 +8,7 @@ class Settings:
     def __init__(self):
         self.db_path = os.environ.get("USERS_DB_PATH", DEFAULT_DB_PATH)
         self.session_ttl_days = int(os.environ.get("SESSION_TTL_DAYS", "30"))
+        self.pbkdf2_iterations = int(os.environ.get("PBKDF2_ITERATIONS", "600000"))
 
 
 settings = Settings()

@@ -4,7 +4,9 @@ import hashlib
 import hmac
 import os
 
-_ITERATIONS = 240_000
+from app.settings import settings
+
+_ITERATIONS = settings.pbkdf2_iterations
 _ALGO = "pbkdf2_sha256"
 
 
